@@ -15,4 +15,13 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
     },
+
+        server: {
+        host: '0.0.0.0',
+        port: 5173, // or your default Vite port
+        hmr: {
+            host: '192.168.1.14',  
+            protocol: 'ws',
+        },
+    },
 });
