@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
     <title></title>
 </head>
@@ -100,63 +101,5 @@
             @yield('content')
         </div>
     </div>
-
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const sidebarClose = document.getElementById('sidebarClose');
-
-        function setSidebarInitialState() {
-            if (window.innerWidth <= 768) {
-                // On mobile: hide sidebar by default
-                sidebar.classList.add('mobile-hidden');
-                sidebar.classList.remove('mobile-open');
-                overlay.classList.remove('active');
-            } else {
-                // On desktop: show sidebar
-                sidebar.classList.remove('mobile-hidden');
-                sidebar.classList.remove('mobile-open');
-                overlay.classList.remove('active');
-            }
-        }
-
-        // Set initial state on page load
-        window.addEventListener('load', setSidebarInitialState);
-
-        // Toggle sidebar when hamburger menu is clicked
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('mobile-hidden');
-            sidebar.classList.toggle('mobile-open');
-            overlay.classList.toggle('active');
-        });
-
-        // Close sidebar when overlay is clicked
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('mobile-hidden');
-            sidebar.classList.remove('mobile-open');
-            overlay.classList.remove('active');
-        });
-
-        // Close sidebar when X button is clicked
-        sidebarClose.addEventListener('click', () => {
-            sidebar.classList.add('mobile-hidden');
-            sidebar.classList.remove('mobile-open');
-            overlay.classList.remove('active');
-        });
-
-        // Close sidebar on back button press (mobile)
-        window.addEventListener('popstate', () => {
-            if (window.innerWidth <= 768 && sidebar.classList.contains('mobile-open')) {
-                sidebar.classList.add('mobile-hidden');
-                sidebar.classList.remove('mobile-open');
-                overlay.classList.remove('active');
-            }
-        });
-
-        // Adjust sidebar on window resize
-        window.addEventListener('resize', setSidebarInitialState);
-    </script>
-
 </body>
 </html>

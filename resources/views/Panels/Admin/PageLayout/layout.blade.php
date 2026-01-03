@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
 </head>
 <body>
@@ -41,16 +43,6 @@
                 <span class="nav-text">Dashboard</span>
             </a>
 
-            <a href="{{ route('Panels.Admin.PageLayout.agency') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.agency') ? 'active' : '' }}">
-                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2-icon lucide-building-2">
-                    <path d="M10 12h4"/><path d="M10 8h4"/>
-                    <path d="M14 21v-3a2 2 0 0 0-4 0v3"/>
-                    <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/>
-                    <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/>
-                </svg>
-                <span class="nav-text">Agencies</span>
-            </a>
-
             <a href="{{ route('Panels.Admin.PageLayout.manager_schedule') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.manager_schedule') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -61,6 +53,16 @@
                 <span class="nav-text">Manager Schedule</span>
             </a>
 
+            <a href="{{ route('Panels.Admin.PageLayout.crew') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.crew', 'Panels.Admin.PageLayout.manager') ? 'active' : '' }}">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <path d="M16 3.128a4 4 0 0 1 0 7.744"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <circle cx="9" cy="7" r="4"/>
+                </svg>
+                <span class="nav-text">Employee Management</span>
+            </a>
+
             <a href="{{ route('Panels.Admin.PageLayout.requests') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.requests') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -69,6 +71,16 @@
                     <line x1="9" y1="15" x2="15" y2="15"></line>
                 </svg>
                 <span class="nav-text">Requests</span>
+            </a>
+
+            <a href="{{ route('Panels.Admin.PageLayout.agency') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.agency') ? 'active' : '' }}">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2-icon lucide-building-2">
+                    <path d="M10 12h4"/><path d="M10 8h4"/>
+                    <path d="M14 21v-3a2 2 0 0 0-4 0v3"/>
+                    <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/>
+                    <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/>
+                </svg>
+                <span class="nav-text">Agencies</span>
             </a>
         </nav>
     </div>
@@ -109,63 +121,5 @@
             @yield('content')
         </div>
     </div>
-
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const sidebarClose = document.getElementById('sidebarClose');
-
-        function setSidebarInitialState() {
-            if (window.innerWidth <= 768) {
-                // On mobile: hide sidebar by default
-                sidebar.classList.add('mobile-hidden');
-                sidebar.classList.remove('mobile-open');
-                overlay.classList.remove('active');
-            } else {
-                // On desktop: show sidebar
-                sidebar.classList.remove('mobile-hidden');
-                sidebar.classList.remove('mobile-open');
-                overlay.classList.remove('active');
-            }
-        }
-
-        // Set initial state on page load
-        window.addEventListener('load', setSidebarInitialState);
-
-        // Toggle sidebar when hamburger menu is clicked
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('mobile-hidden');
-            sidebar.classList.toggle('mobile-open');
-            overlay.classList.toggle('active');
-        });
-
-        // Close sidebar when overlay is clicked
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('mobile-hidden');
-            sidebar.classList.remove('mobile-open');
-            overlay.classList.remove('active');
-        });
-
-        // Close sidebar when X button is clicked
-        sidebarClose.addEventListener('click', () => {
-            sidebar.classList.add('mobile-hidden');
-            sidebar.classList.remove('mobile-open');
-            overlay.classList.remove('active');
-        });
-
-        // Close sidebar on back button press (mobile)
-        window.addEventListener('popstate', () => {
-            if (window.innerWidth <= 768 && sidebar.classList.contains('mobile-open')) {
-                sidebar.classList.add('mobile-hidden');
-                sidebar.classList.remove('mobile-open');
-                overlay.classList.remove('active');
-            }
-        });
-
-        // Adjust sidebar on window resize
-        window.addEventListener('resize', setSidebarInitialState);
-    </script>
-
 </body>
 </html>

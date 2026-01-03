@@ -22,4 +22,12 @@ class AdminPageController extends Controller
     public function requests () {
         return view('Panels.Admin.Pages.requests');
     }
+
+    public function crew () {
+        return view('Panels.Admin.Pages.crew');
+    }
+
+    public function manager () {
+        return view('Panels.Admin.Pages.manager');
+    }
 }
