@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchManagerInput = document.getElementById('searchManagerInput');
+    const clearManagerSearchBtn = document.getElementById('clearManagerSearchBtn');
     const statusFilterBtns = document.querySelectorAll('.status-filter-btn');
     const totalCount = document.getElementById('totalCount');
     const countText = document.getElementById('countText');
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     let itemsPerPage = calculateItemsPerPage();
     let isMobileView = window.innerWidth < 768;
+    let isSearching = false;
     
     // Store scroll position before pagination changes
     let scrollPositionBeforePagination = 0;
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Extract email and phone from contact column
         const contactDivs = contactTd.querySelectorAll('div');
         const email = contactDivs[0].textContent;
-        const phone = contactDivs[1].textContent;
+        const phone = contactDivs[1].textContent.replace(/\D/g, ''); // Remove non-numeric characters
         
         // Extract address from address column
         const addressDivs = addressTd.querySelectorAll('div');
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Get status class
         const statusClass = statusElement.className.split(' ')[1];
+        const statusText = statusElement.textContent;
         
         return {
             element: row,
@@ -53,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             city: city,
             hireDate: hireDateTd.textContent,
             status: statusClass,
-            statusText: statusElement.textContent
+            statusText: statusText
         };
     });
     
@@ -79,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         filterAndPaginate();
     });
     
-    updateTotalCount();
+    // Initialize count display
+    updateCountDisplay();
     attachEventListeners();
     filterAndPaginate();
     
@@ -100,6 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
         card.dataset.id = employee.id.toLowerCase();
         card.dataset.email = employee.email.toLowerCase();
         card.dataset.phone = employee.phone;
+        card.dataset.address = (employee.address + ' ' + employee.city).toLowerCase();
+        card.dataset.hiredate = employee.hireDate.toLowerCase();
+        card.dataset.statustext = employee.statusText.toLowerCase();
         
         card.innerHTML = `
             <div class="card-header">
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="detail-label">Contact</span>
                     <div class="detail-value">
                         ${employee.email}
-                        <small>${employee.phone}</small>
+                        <small>(${formatPhoneNumber(employee.phone)})</small>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -147,6 +154,16 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         return card;
+    }
+    
+    function formatPhoneNumber(phoneNumber) {
+        // Format as (XXX) XXX-XXXX
+        const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+            return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        }
+        return phoneNumber;
     }
     
     function calculateItemsPerPage() {
@@ -184,6 +201,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function attachEventListeners() {
         searchManagerInput.addEventListener('input', function() {
             currentSearchTerm = this.value.toLowerCase().trim();
+            isSearching = currentSearchTerm.length > 0;
+            
+            // Show/hide clear button based on input
+            if (currentSearchTerm.length > 0) {
+                clearManagerSearchBtn.style.display = 'flex';
+            } else {
+                clearManagerSearchBtn.style.display = 'none';
+            }
+            
+            currentPage = 1;
+            filterAndPaginate();
+        });
+        
+        // Clear search button functionality
+        clearManagerSearchBtn.addEventListener('click', function() {
+            searchManagerInput.value = '';
+            currentSearchTerm = '';
+            isSearching = false;
+            clearManagerSearchBtn.style.display = 'none';
             currentPage = 1;
             filterAndPaginate();
         });
@@ -194,10 +230,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('active');
                 currentStatusFilter = this.getAttribute('data-status');
                 currentSearchTerm = '';
+                isSearching = false;
                 currentPage = 1;
                 searchManagerInput.value = '';
+                clearManagerSearchBtn.style.display = 'none';
                 filterAndPaginate();
-                updateTotalCount();
+                updateCountDisplay();
             });
         });
         
@@ -231,45 +269,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 filterAndPaginate(true); // Pass true to maintain scroll position
             }
         });
+        
+        // Add event listener for Enter key in search
+        searchManagerInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                filterAndPaginate();
+            }
+        });
     }
     
     function getFilteredRows() {
-        if (window.innerWidth < 768) {
-            // Filter mobile cards
-            const cards = mobileCardsContainer.querySelectorAll('.mobile-employee-card');
-            return Array.from(cards).filter(card => {
-                if (currentStatusFilter !== 'all' && card.dataset.status !== currentStatusFilter) {
-                    return false;
-                }
+        const filteredData = employeeData.filter(employee => {
+            // Apply status filter
+            if (currentStatusFilter !== 'all' && employee.status !== currentStatusFilter) {
+                return false;
+            }
+            
+            // Apply search filter if there's a search term
+            if (currentSearchTerm) {
+                const searchIn = currentSearchTerm.toLowerCase();
                 
-                if (currentSearchTerm) {
-                    const searchIn = currentSearchTerm.toLowerCase();
-                    return card.dataset.name.includes(searchIn) || 
-                        card.dataset.id.includes(searchIn) ||
-                        card.dataset.email.includes(searchIn) ||
-                        card.dataset.phone.includes(searchIn);
-                }
-                
-                return true;
-            });
-        } else {
-            // Filter desktop rows
-            return employeeData.filter(employee => {
-                if (currentStatusFilter !== 'all' && employee.status !== currentStatusFilter) {
-                    return false;
-                }
-                
-                if (currentSearchTerm) {
-                    const searchIn = currentSearchTerm.toLowerCase();
-                    return employee.name.toLowerCase().includes(searchIn) || 
-                        employee.id.toLowerCase().includes(searchIn) ||
-                        employee.email.toLowerCase().includes(searchIn) ||
-                        employee.phone.includes(searchIn);
-                }
-                
-                return true;
-            });
-        }
+                // Search in all fields
+                return (
+                    employee.name.toLowerCase().includes(searchIn) || 
+                    employee.id.toLowerCase().includes(searchIn) ||
+                    employee.email.toLowerCase().includes(searchIn) ||
+                    employee.phone.includes(searchIn) ||
+                    employee.address.toLowerCase().includes(searchIn) ||
+                    employee.city.toLowerCase().includes(searchIn) ||
+                    employee.hireDate.toLowerCase().includes(searchIn) ||
+                    employee.statusText.toLowerCase().includes(searchIn)
+                );
+            }
+            
+            return true;
+        });
+        
+        return filteredData;
     }
     
     function filterAndPaginate(maintainScrollPosition = false) {
@@ -292,8 +328,35 @@ document.addEventListener('DOMContentLoaded', function() {
             const allCards = mobileCardsContainer.querySelectorAll('.mobile-employee-card');
             allCards.forEach(card => card.style.display = 'none');
             
-            const visibleCards = filteredRows.slice(startIndex, endIndex);
-            visibleCards.forEach(card => {
+            const visibleCards = Array.from(allCards).filter(card => {
+                const cardIndex = parseInt(card.dataset.index);
+                const employee = employeeData[cardIndex];
+                
+                // Apply status filter
+                if (currentStatusFilter !== 'all' && employee.status !== currentStatusFilter) {
+                    return false;
+                }
+                
+                // Apply search filter
+                if (currentSearchTerm) {
+                    const searchIn = currentSearchTerm.toLowerCase();
+                    
+                    // Search in all card data attributes
+                    return (
+                        card.dataset.name.includes(searchIn) ||
+                        card.dataset.id.includes(searchIn) ||
+                        card.dataset.email.includes(searchIn) ||
+                        card.dataset.phone.includes(searchIn) ||
+                        card.dataset.address.includes(searchIn) ||
+                        card.dataset.hiredate.includes(searchIn) ||
+                        card.dataset.statustext.includes(searchIn)
+                    );
+                }
+                
+                return true;
+            });
+            
+            visibleCards.slice(startIndex, endIndex).forEach(card => {
                 card.style.display = 'block';
             });
             
@@ -310,7 +373,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     if (window.innerWidth < 768) {
                         // For mobile, scroll to the first card of the current page
-                        // or maintain previous scroll position relative to content
                         const firstVisibleCard = visibleCards[0];
                         if (firstVisibleCard) {
                             // Calculate position relative to the mobile container
@@ -358,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         updatePaginationInfo(totalItems, startIndex, endIndex);
-        updateCountDisplay(totalItems);
+        updateCountDisplay();
         createPaginationButtons(totalPages);
         updateTableHeight();
     }
@@ -373,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <i class="fas fa-search"></i>
                 <p>No results found</p>
                 <p class="small-text">
-                    ${currentSearchTerm ? 'Try adjusting your search or filter to find what you\'re looking for.' : 'No manager match the selected filter.'}
+                    ${currentSearchTerm ? `No managers found for "${currentSearchTerm}". Try adjusting your search or filter.` : 'No managers match the selected filter.'}
                 </p>
             `;
             
@@ -387,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-search" style="font-size: 2.5rem; margin-bottom: 12px; color: var(--border-color); display: block;"></i>
                         <p style="font-size: 1rem; margin-bottom: 4px; font-weight: 500;">No results found</p>
                         <p style="font-size: 0.85rem; color: var(--light-text);">
-                            ${currentSearchTerm ? 'Try adjusting your search or filter to find what you\'re looking for.' : 'No manager match the selected filter.'}
+                            ${currentSearchTerm ? `No managers found for "${currentSearchTerm}". Try adjusting your search or filter.` : 'No managers match the selected filter.'}
                         </p>
                     </div>
                 </td>
@@ -427,38 +489,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function updateCountDisplay(totalItems) {
+    function updateCountDisplay() {
+        const filteredRows = getFilteredRows();
+        const totalItems = filteredRows.length;
         let countDisplay = '';
         
-        if (currentStatusFilter === 'all') {
-            countDisplay = `${totalItems} Total Manager`;
-        } else if (currentStatusFilter === 'active') {
-            countDisplay = `${totalItems} Active Manager`;
-        } else if (currentStatusFilter === 'inactive') {
-            countDisplay = `${totalItems} Inactive Manager`;
-        } else if (currentStatusFilter === 'terminated') {
-            countDisplay = `${totalItems} Terminated Manager`;
-        } else if (currentStatusFilter === 'resigned') {
-            countDisplay = `${totalItems} Resigned Manager`;
-        }
-        
-        if (currentSearchTerm && totalItems > 0) {
-            countDisplay += ' (Search Results)';
+        if (isSearching) {
+            // When searching, always show "Search Results" first
+            countDisplay = `${totalItems} Search Results`;
+            
+            // Add status information if not showing all statuses
+            if (currentStatusFilter !== 'all') {
+                const statusText = getStatusText(currentStatusFilter);
+                countDisplay += ` (${statusText})`;
+            }
+        } else {
+            // When not searching, show status-based count
+            if (currentStatusFilter === 'all') {
+                countDisplay = `${totalItems} Total Manager`;
+            } else {
+                const statusText = getStatusText(currentStatusFilter);
+                countDisplay = `${totalItems} ${statusText}`;
+            }
         }
         
         countText.textContent = countDisplay;
     }
     
-    function updateTotalCount() {
-        const statusCounts = {
-            all: employeeData.length,
-            active: employeeData.filter(emp => emp.status === 'active').length,
-            inactive: employeeData.filter(emp => emp.status === 'inactive').length,
-            terminated: employeeData.filter(emp => emp.status === 'terminated').length,
-            resigned: employeeData.filter(emp => emp.status === 'resigned').length
-        };
-        
-        countText.textContent = `${statusCounts.all} Total Manager`;
+    function getStatusText(statusFilter) {
+        switch(statusFilter) {
+            case 'all': return 'Total Manager';
+            case 'active': return 'Active Manager';
+            case 'inactive': return 'Inactive Manager';
+            case 'terminated': return 'Terminated Manager';
+            case 'resigned': return 'Resigned Manager';
+            default: return 'Manager';
+        }
     }
     
     function createPaginationButtons(totalPages) {

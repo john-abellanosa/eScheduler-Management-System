@@ -86,9 +86,9 @@
 
 .search-box input {
     width: 100%;
-    padding: 8px 12px 8px 36px;
+    padding: 10px 36px 8px 36px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 20px;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
@@ -99,13 +99,41 @@
     box-shadow: 0 0 0 2px rgba(42, 86, 214, 0.1);
 }
 
-.search-box i {
+.search-box i.fa-search {
     position: absolute;
-    left: 12px;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--light-text);
     font-size: 0.9rem;
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+}
+
+.clear-search-btn:hover {
+    background-color: #f0f0f0;
+    color: #666;
+}
+
+.clear-search-btn i {
+    font-size: 14px;
 }
 
 .add-btn {
@@ -396,11 +424,11 @@ td {
 }
 
 .edit-btn {
-    color: var(--secondary-blue);
+    color: #D9910D;
 }
 
 .edit-btn:hover {
-    background-color: rgba(42, 86, 214, 0.1);
+    background-color: rgba(217, 145, 13, 0.15);  
 }
 
 .delete-btn {
@@ -819,14 +847,14 @@ td {
         align-items: center;
         justify-content: center;
         transition: background-color 0.2s;
-    }
+    } 
     
     .mobile-edit-btn {
-        color: var(--secondary-blue);
+        color: #D9910D;
     }
     
     .mobile-edit-btn:hover {
-        background-color: rgba(42, 86, 214, 0.1);
+        background-color: rgba(217, 145, 13, 0.15); 
     }
     
     .mobile-delete-btn {

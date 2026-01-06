@@ -37,6 +37,9 @@
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchManagerInput" placeholder="Search Manager...">
+                    <button class="clear-search-btn" id="clearManagerSearchBtn" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 
                 <button class="add-btn">

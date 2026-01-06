@@ -34,6 +34,9 @@
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchCrewInput" placeholder="Search crew...">
+                    <button class="clear-search-btn" id="clearSearchBtn" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 
                 <button class="add-btn">

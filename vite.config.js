@@ -13,6 +13,10 @@ export default defineConfig({
 
                 'resources/js/Panels/Admin/Pages/Crew/crew.js',
                 'resources/js/Panels/Admin/Pages/Manager/manager.js',
+                'resources/js/Panels/Admin/Pages/Requests/requests.js',
+
+
+                'resources/js/Panels/Scheduler/Pages/Requests/requests.js',
             ],
             refresh: true,
         }),

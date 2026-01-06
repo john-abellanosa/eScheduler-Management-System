@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchCrewInput = document.getElementById('searchCrewInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
     const statusFilterBtns = document.querySelectorAll('.status-filter-btn');
     const totalCount = document.getElementById('totalCount');
     const countText = document.getElementById('countText');
@@ -16,9 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     let itemsPerPage = calculateItemsPerPage();
     let isMobileView = window.innerWidth < 768;
-    
-    // Store scroll position before pagination changes
-    let scrollPositionBeforePagination = 0;
+    let isSearching = false;
     
     // Extract employee data from table rows
     const employeeData = Array.from(allRows).map(row => {
@@ -41,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Get status class
         const statusClass = statusElement.className.split(' ')[1];
+        const statusText = statusElement.textContent;
         
         return {
             element: row,
@@ -48,12 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
             initials: nameElement.textContent.split(' ').map(n => n[0]).join(''),
             id: idElement.textContent.replace('ID: ', ''),
             email: email,
-            phone: phone,
+            phone: phone.replace(/\D/g, ''), // Remove non-numeric characters for better searching
+            phoneDisplay: phone, // Keep formatted version for display
             address: address,
             city: city,
             hireDate: hireDateTd.textContent,
             status: statusClass,
-            statusText: statusElement.textContent
+            statusText: statusText
         };
     });
     
@@ -79,7 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
         filterAndPaginate();
     });
     
-    updateTotalCount();
+    // Initialize count display
+    updateCountDisplay();
     attachEventListeners();
     filterAndPaginate();
     
@@ -100,6 +102,19 @@ document.addEventListener('DOMContentLoaded', function() {
         card.dataset.id = employee.id.toLowerCase();
         card.dataset.email = employee.email.toLowerCase();
         card.dataset.phone = employee.phone;
+        card.dataset.address = (employee.address + ' ' + employee.city).toLowerCase();
+        card.dataset.hiredate = employee.hireDate.toLowerCase();
+        card.dataset.statustext = employee.statusText.toLowerCase();
+        card.dataset.fullsearch = (
+            employee.name.toLowerCase() + ' ' +
+            employee.id.toLowerCase() + ' ' +
+            employee.email.toLowerCase() + ' ' +
+            employee.phone + ' ' +
+            employee.address.toLowerCase() + ' ' +
+            employee.city.toLowerCase() + ' ' +
+            employee.hireDate.toLowerCase() + ' ' +
+            employee.statusText.toLowerCase()
+        ).replace(/\s+/g, ' ').trim();
         
         card.innerHTML = `
             <div class="card-header">
@@ -117,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="detail-label">Contact</span>
                     <div class="detail-value">
                         ${employee.email}
-                        <small>${employee.phone}</small>
+                        <small>${employee.phoneDisplay}</small>
                     </div>
                 </div>
                 <div class="detail-row">
@@ -184,6 +199,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function attachEventListeners() {
         searchCrewInput.addEventListener('input', function() {
             currentSearchTerm = this.value.toLowerCase().trim();
+            isSearching = currentSearchTerm.length > 0;
+            
+            // Show/hide clear button based on input
+            if (currentSearchTerm.length > 0) {
+                clearSearchBtn.style.display = 'flex';
+            } else {
+                clearSearchBtn.style.display = 'none';
+            }
+            
+            currentPage = 1;
+            filterAndPaginate();
+        });
+        
+        // Clear search button functionality
+        clearSearchBtn.addEventListener('click', function() {
+            searchCrewInput.value = '';
+            currentSearchTerm = '';
+            isSearching = false;
+            clearSearchBtn.style.display = 'none';
             currentPage = 1;
             filterAndPaginate();
         });
@@ -194,19 +228,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('active');
                 currentStatusFilter = this.getAttribute('data-status');
                 currentSearchTerm = '';
+                isSearching = false;
                 currentPage = 1;
                 searchCrewInput.value = '';
+                clearSearchBtn.style.display = 'none';
                 filterAndPaginate();
-                updateTotalCount();
+                updateCountDisplay();
             });
         });
         
         pagination.addEventListener('click', function(e) {
-            // Store current scroll position for mobile
-            if (window.innerWidth < 768) {
-                scrollPositionBeforePagination = window.scrollY || document.documentElement.scrollTop;
-            }
-            
             const target = e.target.closest('.page-btn');
             if (!target || target.classList.contains('disabled')) return;
             
@@ -217,59 +248,57 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isPrev) {
                 if (currentPage > 1) {
                     currentPage--;
-                    filterAndPaginate(true); // Pass true to maintain scroll position
+                    filterAndPaginate(true);
                 }
             } else if (isNext) {
                 const visibleRows = getFilteredRows();
                 const totalPages = Math.ceil(visibleRows.length / itemsPerPage);
                 if (currentPage < totalPages) {
                     currentPage++;
-                    filterAndPaginate(true); // Pass true to maintain scroll position
+                    filterAndPaginate(true);
                 }
             } else if (!isNaN(pageNum)) {
                 currentPage = pageNum;
-                filterAndPaginate(true); // Pass true to maintain scroll position
+                filterAndPaginate(true);
+            }
+        });
+        
+        // Add event listener for Enter key in search
+        searchCrewInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                filterAndPaginate();
             }
         });
     }
     
     function getFilteredRows() {
-        if (window.innerWidth < 768) {
-            // Filter mobile cards
-            const cards = mobileCardsContainer.querySelectorAll('.mobile-employee-card');
-            return Array.from(cards).filter(card => {
-                if (currentStatusFilter !== 'all' && card.dataset.status !== currentStatusFilter) {
-                    return false;
-                }
+        const filteredData = employeeData.filter(employee => {
+            // Apply status filter
+            if (currentStatusFilter !== 'all' && employee.status !== currentStatusFilter) {
+                return false;
+            }
+            
+            // Apply search filter if there's a search term
+            if (currentSearchTerm) {
+                const searchIn = currentSearchTerm.toLowerCase();
                 
-                if (currentSearchTerm) {
-                    const searchIn = currentSearchTerm.toLowerCase();
-                    return card.dataset.name.includes(searchIn) || 
-                        card.dataset.id.includes(searchIn) ||
-                        card.dataset.email.includes(searchIn) ||
-                        card.dataset.phone.includes(searchIn);
-                }
-                
-                return true;
-            });
-        } else {
-            // Filter desktop rows
-            return employeeData.filter(employee => {
-                if (currentStatusFilter !== 'all' && employee.status !== currentStatusFilter) {
-                    return false;
-                }
-                
-                if (currentSearchTerm) {
-                    const searchIn = currentSearchTerm.toLowerCase();
-                    return employee.name.toLowerCase().includes(searchIn) || 
-                        employee.id.toLowerCase().includes(searchIn) ||
-                        employee.email.toLowerCase().includes(searchIn) ||
-                        employee.phone.includes(searchIn);
-                }
-                
-                return true;
-            });
-        }
+                // Search in all fields
+                return (
+                    employee.name.toLowerCase().includes(searchIn) || 
+                    employee.id.toLowerCase().includes(searchIn) ||
+                    employee.email.toLowerCase().includes(searchIn) ||
+                    employee.phone.includes(searchIn) ||
+                    employee.address.toLowerCase().includes(searchIn) ||
+                    employee.city.toLowerCase().includes(searchIn) ||
+                    employee.hireDate.toLowerCase().includes(searchIn) ||
+                    employee.statusText.toLowerCase().includes(searchIn)
+                );
+            }
+            
+            return true;
+        });
+        
+        return filteredData;
     }
     
     function filterAndPaginate(maintainScrollPosition = false) {
@@ -292,8 +321,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const allCards = mobileCardsContainer.querySelectorAll('.mobile-employee-card');
             allCards.forEach(card => card.style.display = 'none');
             
-            const visibleCards = filteredRows.slice(startIndex, endIndex);
-            visibleCards.forEach(card => {
+            const visibleCards = Array.from(allCards).filter(card => {
+                // Apply status filter
+                if (currentStatusFilter !== 'all' && card.dataset.status !== currentStatusFilter) {
+                    return false;
+                }
+                
+                // Apply search filter
+                if (currentSearchTerm) {
+                    const searchIn = currentSearchTerm.toLowerCase();
+                    // Search in the combined data attribute
+                    return card.dataset.fullsearch.includes(searchIn);
+                }
+                
+                return true;
+            });
+            
+            visibleCards.slice(startIndex, endIndex).forEach(card => {
                 card.style.display = 'block';
             });
             
@@ -304,28 +348,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 removeNoResultsMessage(true);
             }
             
-            // If we're changing pages on mobile, scroll to show the cards
-            if (maintainScrollPosition && visibleCards.length > 0) {
-                // Wait for DOM to update
-                setTimeout(() => {
-                    if (window.innerWidth < 768) {
-                        // For mobile, scroll to the first card of the current page
-                        // or maintain previous scroll position relative to content
-                        const firstVisibleCard = visibleCards[0];
-                        if (firstVisibleCard) {
-                            // Calculate position relative to the mobile container
-                            const containerTop = mobileCardsContainer.getBoundingClientRect().top;
-                            const cardTop = firstVisibleCard.getBoundingClientRect().top;
-                            const scrollToPosition = window.scrollY + (cardTop - containerTop) - 20;
-                            
-                            window.scrollTo({
-                                top: scrollToPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                }, 50);
-            }
         } else {
             // Handle desktop table
             if (totalItems === 0) {
@@ -358,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         updatePaginationInfo(totalItems, startIndex, endIndex);
-        updateCountDisplay(totalItems);
+        updateCountDisplay();
         createPaginationButtons(totalPages);
         updateTableHeight();
     }
@@ -373,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <i class="fas fa-search"></i>
                 <p>No results found</p>
                 <p class="small-text">
-                    ${currentSearchTerm ? 'Try adjusting your search or filter to find what you\'re looking for.' : 'No crew members match the selected filter.'}
+                    ${currentSearchTerm ? `No crew members found for "${currentSearchTerm}". Try adjusting your search or filter.` : 'No crew members match the selected filter.'}
                 </p>
             `;
             
@@ -387,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-search" style="font-size: 2.5rem; margin-bottom: 12px; color: var(--border-color); display: block;"></i>
                         <p style="font-size: 1rem; margin-bottom: 4px; font-weight: 500;">No results found</p>
                         <p style="font-size: 0.85rem; color: var(--light-text);">
-                            ${currentSearchTerm ? 'Try adjusting your search or filter to find what you\'re looking for.' : 'No crew members match the selected filter.'}
+                            ${currentSearchTerm ? `No crew members found for "${currentSearchTerm}". Try adjusting your search or filter.` : 'No crew members match the selected filter.'}
                         </p>
                     </div>
                 </td>
@@ -427,38 +449,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function updateCountDisplay(totalItems) {
+    function updateCountDisplay() {
+        const filteredRows = getFilteredRows();
+        const totalItems = filteredRows.length;
         let countDisplay = '';
         
-        if (currentStatusFilter === 'all') {
-            countDisplay = `${totalItems} Total Crew`;
-        } else if (currentStatusFilter === 'active') {
-            countDisplay = `${totalItems} Active Crew`;
-        } else if (currentStatusFilter === 'inactive') {
-            countDisplay = `${totalItems} Inactive Crew`;
-        } else if (currentStatusFilter === 'terminated') {
-            countDisplay = `${totalItems} Terminated Crew`;
-        } else if (currentStatusFilter === 'resigned') {
-            countDisplay = `${totalItems} Resigned Crew`;
-        }
-        
-        if (currentSearchTerm && totalItems > 0) {
-            countDisplay += ' (Search Results)';
+        if (isSearching) {
+            // When searching, always show "Search Results" first
+            countDisplay = `${totalItems} Search Results`;
+            
+            // Add status information if not showing all statuses
+            if (currentStatusFilter !== 'all') {
+                const statusText = getStatusText(currentStatusFilter);
+                countDisplay += ` (${statusText})`;
+            }
+        } else {
+            // When not searching, show status-based count
+            if (currentStatusFilter === 'all') {
+                countDisplay = `${totalItems} Total Crew`;
+            } else {
+                const statusText = getStatusText(currentStatusFilter);
+                countDisplay = `${totalItems} ${statusText}`;
+            }
         }
         
         countText.textContent = countDisplay;
     }
     
-    function updateTotalCount() {
-        const statusCounts = {
-            all: employeeData.length,
-            active: employeeData.filter(emp => emp.status === 'active').length,
-            inactive: employeeData.filter(emp => emp.status === 'inactive').length,
-            terminated: employeeData.filter(emp => emp.status === 'terminated').length,
-            resigned: employeeData.filter(emp => emp.status === 'resigned').length
-        };
-        
-        countText.textContent = `${statusCounts.all} Total Crew`;
+    function getStatusText(statusFilter) {
+        switch(statusFilter) {
+            case 'all': return 'Total Crew';
+            case 'active': return 'Active Crew';
+            case 'inactive': return 'Inactive Crew';
+            case 'terminated': return 'Terminated Crew';
+            case 'resigned': return 'Resigned Crew';
+            default: return 'Crew';
+        }
     }
     
     function createPaginationButtons(totalPages) {

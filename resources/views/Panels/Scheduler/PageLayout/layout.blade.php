@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
     <title></title>
 </head>
 <body>
