@@ -119,6 +119,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1rem;
+    border: 1px solid #bfdbfe;
 }
 
 .stat-icon.pending {
@@ -432,6 +433,7 @@
     height: 48px;
     border-radius: 50%;
     background-color: var(--light-blue);
+    border: 1px solid #bfdbfe;
     display: flex;
     align-items: center;
     justify-content: center;

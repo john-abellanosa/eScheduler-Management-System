@@ -10,11 +10,9 @@
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>@yield('title')</title>
-        <style>
-            /* ... (keep all existing CSS styles) ... */
-            /* All your existing CSS remains exactly the same */
+        <style> 
             .page-header {
                 background: linear-gradient(135deg, #1a3a8f 0%, #2a56d6 100%);
                 color: white;
@@ -114,7 +112,7 @@
                 min-width: 180px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 overflow: hidden;
-                border: 1px solid #e5e7eb;
+                border: 1px solid #e5e7eb; 
             }
 
             .week-arrow {
@@ -151,7 +149,7 @@
 
             .week-date {
                 font-size: 12px;
-                color: #374151;
+                color: #000;
                 font-weight: 500;
                 display: flex;
                 align-items: center;
@@ -178,7 +176,7 @@
             .selected-date {
                 font-size: 12px;
                 font-weight: 600;
-                color: #1a3a8f;
+                color: #000;
                 display: flex;
                 align-items: center;
                 gap: 3px;
@@ -230,16 +228,17 @@
                 border: 1px solid #b1bef0;
             }
 
+            /* Stats-bar  */
             .stats-bar {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 12px;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
                 margin-bottom: 10px;
             }
 
             .stat-card {
                 background: white;
-                padding: 16px;
+                padding: 12px 16px;
                 border-radius: 6px;
                 border: 1px solid #d1d5db;
                 border-left: 4px solid #1a3a8f;
@@ -247,7 +246,7 @@
             }
 
             .stat-card-label {
-                font-size: 12px;
+                font-size: 11px;
                 color: #000;
                 font-weight: 500;
                 text-transform: uppercase;
@@ -255,22 +254,111 @@
             }
 
             .stat-card-value {
-                font-size: 24px;
+                font-size: 20px;
                 font-weight: 700;
                 color: #1a3a8f;
             }
 
             .stat-card-subtitle {
-                font-size: 12px;
+                font-size: 11px;
                 color: #444;
                 margin-top: 4px;
+            }
+
+            /* Shift Statistics Bar*/
+            .shift-stats-bar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            .shift-stat-card {
+                background: white;
+                padding: 12px 16px;
+                border-radius: 6px;
+                border: 1px solid #d1d5db;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+            }
+ 
+            .shift-stat-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                flex-shrink: 0;
+            }
+ 
+            .shift-stat-icon {
+                background-color: #eef2ff;  
+                color: #1e3a8a;        
+                border: 1px solid #c7d2fe;
+            }
+ 
+            .shift-stat-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+ 
+            .shift-stat-meta {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                margin-top: 4px;
+            }
+  
+            .shift-stat-label {
+                font-size: 11px;
+                color: #374151;
+                font-weight: 600;
+                text-transform: uppercase;
+                line-height: 1;
+            }
+ 
+            .shift-stat-dot {
+                font-size: 12px;
+                color: #333;
+                line-height: 1;
+            }
+ 
+            .shift-stat-subtitle {
+                font-size: 11px;
+                color: #333;
+                line-height: 1;
+            }
+
+            .shift-stat-value {
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 2px;
+                line-height: 1;
+            }
+
+            .shift-stat-value-wrapper {
+                display: flex;
+                align-items: baseline;  
+                gap: 6px;
+            }
+
+            .shift-stat-small-label {
+                font-size: 11px;        
+                font-weight: 500;
+                color: #333;         
+                text-transform: uppercase;
             }
 
             .departments-container {
                 margin: 0 auto;
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 5px;
             }
 
             .modal {
@@ -294,8 +382,8 @@
                 background-color: white;
                 border-radius: 8px;
                 box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
-                width: 90%;
-                max-width: 600px;
+                width: 100%;
+                max-width: 500px;
                 animation: slideIn 0.3s ease;
                 max-height: 90vh;
                 overflow-y: auto;
@@ -343,22 +431,12 @@
                 background-color: #f3f4f6;
                 color: #374151;
             }
-
+ 
             .modal-form {
                 display: flex;
                 flex-direction: column;
                 padding: 20px 24px;
                 gap: 16px;
-            }
-
-            .form-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-            }
-
-            .form-grid.full {
-                grid-template-columns: 1fr;
             }
 
             .form-group {
@@ -374,34 +452,65 @@
             }
 
             .form-group input,
-            .form-group select,
-            .form-group textarea {
+            .form-group select {
                 padding: 10px 12px;
                 border: 1px solid #d1d5db;
                 border-radius: 6px;
                 font-size: 14px;
                 transition: all 0.2s;
                 font-family: inherit;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .form-group input:focus,
-            .form-group select:focus,
-            .form-group textarea:focus {
+            .form-group select:focus {
                 outline: none;
                 border-color: #3b82f6;
                 box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
             }
 
+            .form-group select {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background-color: #fff;
+            }
+
+            .form-group select {
+                padding: 10px 36px 10px 12px;
+                border: 1px solid #d1d5db;
+                border-radius: 6px;
+                font-size: 14px;
+                font-family: inherit;
+                width: 100%;
+                box-sizing: border-box;
+                background-color: #ffffff; 
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none; 
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%236b7280'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 12px center;
+                background-size: 10px 6px; 
+                transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            }
+ 
             .time-inputs {
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                width: 100%;
+            }
+
+            .time-inputs input {
+                flex: 1;
             }
 
             .time-separator {
                 color: #6b7280;
                 font-weight: 600;
-                margin-top: 8px;
+                padding: 0 5px;
             }
 
             .modal-actions {
@@ -459,12 +568,13 @@
                 margin-bottom: 0;  
                 flex-wrap: wrap;
                 background: white;
-                padding: 10px 8px;
-                border: 1px solid #ddd;
+                padding: 6px 8px;
+                border: 1px solid #d1d5db;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
                 border-radius: 6px 6px 0 0;  
                 border-bottom: none;  
                 position: sticky;
-                top: 70px;
+                /* top: 70px; */
                 z-index: 10;  
             }
 
@@ -472,14 +582,14 @@
                 display: flex;
                 align-items: center;
                 gap: 12px;
-                flex: 1; /* Take available space */
+                flex: 1;  
             }
 
             .header-content-right {
                 display: flex;
                 align-items: center;
                 gap: 12px;
-                margin-left: auto; /* Push to the right */
+                margin-left: auto;  
             }
 
             .empty-message-inline {
@@ -500,15 +610,15 @@
             }
 
             .department-title {
-                color: #000;
+                color: #000000;
                 font-weight: 700;
-                font-size: 16px;
+                font-size: 14px;
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                padding: 8px 16px;
+                padding: 6px 12px;
                 background-color: #f9fafb;
-                border-radius: 6px;
+                border-radius: 4px;
                 border: 1px solid #d1d5db;
                 white-space: nowrap;
             }
@@ -530,17 +640,16 @@
                 align-items: center;
                 gap: 6px;
                 background: #f0f4ff;
-                padding: 8px 16px;
-                border-radius: 20px;
-                border: 1px solid #dbe4ff;
+                padding: 4px 12px;
+                border-radius: 20px; 
                 font-size: 13px;
-                color: #1a3a8f;
+                color: #0D2440;
                 font-weight: 600;
                 white-space: nowrap;
             }
 
             .dept-stat-item i {
-                color: #2a56d6;
+                color: #0D2440;
                 font-size: 12px;
             }
 
@@ -572,6 +681,7 @@
                 background: white; 
                 margin-top: 0;  
                 border-top: none;  
+                min-width: 1100px;
             }
 
             .table-wrapper::-webkit-scrollbar {
@@ -604,7 +714,7 @@
 
             th {
                 border: 1px solid #e5e7eb;
-                padding: 12px 10px;
+                padding: 0 6px;
                 text-align: left;
                 font-weight: 600;
                 color: #000;
@@ -613,30 +723,28 @@
 
             td {
                 border: 1px solid #e5e5e5;
-                padding: 10px;
-                background-color: #ffffff;
+                padding: 0 6px;
+                background-color: #ffffff; 
             }
 
             th.hour-header {
-                width: 28px;
-                min-width: 28px;
-                max-width: 28px;
+                width: 25px;
+                min-width: 25px;
+                max-width: 25px;
                 text-align: center;
-                padding: 8px 0;
+                padding: 6px 0;
                 font-weight: 600;
                 background-color: #e0e7ff;
                 color: #000;
                 border: 1px solid #c7d2fe;
                 font-size: 11px;
             }
-
-            /* Updated Schedule Cell Design */
+ 
             td.schedule-cell {
-                width: 28px;
-                min-width: 28px;
-                max-width: 28px;
-                text-align: center;
-                padding: 0;
+                width: 25px;
+                min-width: 25px;
+                max-width: 25px;
+                text-align: center; 
                 background-color: #fbfcfe;
                 position: relative;
             }
@@ -659,7 +767,7 @@
 
             .action-cell {
                 text-align: center;
-                padding: 4px;
+                padding: 3px;
                 width: 40px;
                 min-width: 40px;
             }
@@ -668,7 +776,7 @@
                 background: none;
                 border: none;
                 cursor: pointer;
-                padding: 6px;
+                padding: 5px;
                 border-radius: 4px;
                 font-size: 14px;
                 transition: all 0.2s;
@@ -694,37 +802,30 @@
             }
 
             .row-total-hours {
-                font-weight: 700;
-                color: #1a3a8f;
+                font-weight: 600;
+                color: #000;
                 background-color: transparent;
             }
 
-            .conflict-badge {
-                background-color: #fecaca;
-                color: #991b1b;
-                padding: 2px 6px;
-                border-radius: 3px;
-                font-size: 11px;
-                font-weight: 600;
-                margin-left: 6px;
-            }
-
             .shift-indicator {
-                display: inline-flex;
+                display: flex;
                 align-items: center;
                 gap: 4px;
-                font-size: 11px;
-                padding: 4px 8px;
-                border-radius: 3px;
-                background-color: #f0f4ff;
+                font-size: 11px;  
+                color: #000;
+            }
+
+            .shift-indicator i {
                 color: #1a3a8f;
+                font-size: 12px;
             }
 
             .filter-section {
                 background: white;
                 padding: 12px 16px;
                 border-radius: 6px;
-                border: 1px solid #e5e7eb;
+                border: 1px solid #d1d5db;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
                 display: flex;
                 gap: 12px;
                 margin-bottom: 20px;
@@ -749,6 +850,23 @@
                 border: 1px solid #d1d5db;
                 border-radius: 4px;
                 font-size: 13px;
+            }
+
+            .filter-group select {
+                padding: 6px 28px 6px 10px;
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+                font-size: 13px;
+                background-color: #ffffff;
+                font-family: inherit; 
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none; 
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%236b7280'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 8px center;
+                background-size: 9px 5px; 
+                box-sizing: border-box;
             }
 
             .export-btn {
@@ -776,7 +894,6 @@
     <body>
 
         <div style="margin: 1% auto;">
-
             <div class="page-header">
                 <div class="header-top">
                     <div class="days-selector">
@@ -790,11 +907,8 @@
                     </div>
                     <div class="header-buttons">
                         <button class="header-btn" onclick="printSchedule()">
-                            <i class="fas fa-print"></i> Print
-                        </button>
-                        <button class="header-btn" onclick="showAvailability()">
-                            <i class="fas fa-calendar-alt"></i> Crew Availability
-                        </button>
+                            <i class="fas fa-print"></i> Print Schedule
+                        </button> 
                     </div>
                 </div>
                 <div class="header-bottom">
@@ -830,29 +944,37 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Statistics Bar -->
+ 
             <div class="stats-bar">
-                <div class="stat-card">
-                    <div class="stat-card-label">Total Crew Members</div>
-                    <div class="stat-card-value" id="totalCrew">8</div>
-                    <div class="stat-card-subtitle">Across all departments</div>
-                </div>
                 <div class="stat-card">
                     <div class="stat-card-label">Total Hours This Week</div>
                     <div class="stat-card-value" id="totalHours">240</div>
-                    <div class="stat-card-subtitle">All departments combined</div>
+                    <div class="stat-card-subtitle">Total scheduled hours for all departments on the selected week</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-label">Total Hours for Selected Date</div>
+                    <div class="stat-card-label">Total Hours for This Day</div>
                     <div class="stat-card-value" id="selectedDateHours">0</div>
-                    <div class="stat-card-subtitle">Hours scheduled on selected day</div>
+                    <div class="stat-card-subtitle">Total hours of all the plotted crew on the selected date</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">Total Crew Members Plotted</div>
+                    <div class="stat-card-value" id="totalCrew">8</div>
+                    <div class="stat-card-subtitle">Number of crew members plotted across all departments today</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-card-label">Stations Covered</div>
                     <div class="stat-card-value" id="stationsCovered">8</div>
-                    <div class="stat-card-subtitle">Out of required stations</div>
+                    <div class="stat-card-subtitle">Stations that currently have crew members plotted</div>
+                </div> 
+                <div class="stat-card">
+                    <div class="stat-card-label">Departments Covered</div>
+                    <div class="stat-card-value" id="departmentsCovered">5</div>
+                    <div class="stat-card-subtitle">Departments that currently have crew members plotted</div>
                 </div>
+            </div>
+ 
+            <div class="shift-stats-bar" id="shiftStats">
+                 
             </div>
 
             <!-- Filters -->
@@ -862,18 +984,27 @@
                     <select id="deptFilter" onchange="filterSchedule()">
                         <option value="">All Departments</option>
                         <option value="KITCHEN">Kitchen</option>
+                        <option value="BEVERAGE CELL">Beverage Cell</option>
+                        <option value="FRENCH FRIES">French Fries</option>
                         <option value="FRONT COUNTER">Front Counter</option>
+                        <option value="CUSTOMER AREA">Customer Area</option>
                         <option value="DRIVE THRU">Drive Thru</option>
+                        <option value="DELIVERY SYSTEM">Delivery System</option>
+                        <option value="RECEIVING DELIVERY">Receiving Delivery</option>
                         <option value="MAINTENANCE">Maintenance</option>
+                        <option value="LOBBY">Lobby</option>
+                        <option value="MARKETING">Marketing</option>
+                        <option value="TRAINING">Training</option>
                     </select>
                 </div>
                 <div class="filter-group">
                     <label for="shiftFilter">Filter by Shift:</label>
                     <select id="shiftFilter" onchange="filterSchedule()">
                         <option value="">All Shifts</option>
-                        <option value="morning">Morning (6AM-2PM)</option>
-                        <option value="afternoon">Afternoon (2PM-10PM)</option>
-                        <option value="night">Night (10PM-6AM)</option>
+                        <option value="graveyard">Graveyard (12AM-6AM)</option>
+                        <option value="morning">Morning (6AM-12PM)</option>
+                        <option value="afternoon">Afternoon (12PM-6PM)</option>
+                        <option value="evening">Evening (6PM-12AM)</option>
                     </select>
                 </div>
                 <button class="export-btn" onclick="exportSchedule()">
@@ -881,7 +1012,7 @@
                 </button>
             </div>
 
-            <!-- Modal for Adding/Editing Crew -->
+            <!-- Modal for Adding/Editing Crew --> 
             <div id="crewModal" class="modal">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -889,53 +1020,43 @@
                         <button class="close-btn" onclick="closeModal()">×</button>
                     </div>
                     <div class="modal-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="modalDept">Department</label>
-                                <select id="modalDept" disabled>
-                                    <option value="KITCHEN">KITCHEN</option>
-                                    <option value="FRONT COUNTER">FRONT COUNTER</option>
-                                    <option value="DRIVE THRU">DRIVE THRU</option>
-                                    <option value="MAINTENANCE">MAINTENANCE</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="modalName">Crew Name</label>
-                                <select id="modalName">
-                                    <option value="">Select Crew Member</option>
-                                    <option value="John Sindicato">John Sindicato</option>
-                                    <option value="Michael Myers">Michael Myers</option>
-                                    <option value="John Wick">John Wick</option>
-                                    <option value="Jason Statham">Jason Statham</option>
-                                    <option value="Sarah Johnson">Sarah Johnson</option>
-                                    <option value="Emily Davis">Emily Davis</option>
-                                    <option value="Robert Brown">Robert Brown</option>
-                                    <option value="Lisa Anderson">Lisa Anderson</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="modalName">Crew Name</label>
+                            <select id="modalName">
+                                <option value="">Select Crew Member</option>
+                                <option value="John Sindicato">John Sindicato</option>
+                                <option value="Michael Myers">Michael Myers</option>
+                                <option value="John Wick">John Wick</option>
+                                <option value="Jason Statham">Jason Statham</option>
+                                <option value="Sarah Johnson">Sarah Johnson</option>
+                                <option value="Emily Davis">Emily Davis</option>
+                                <option value="Robert Brown">Robert Brown</option>
+                                <option value="Lisa Anderson">Lisa Anderson</option>
+                            </select>
                         </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="modalStation">Station</label>
-                                <select id="modalStation">
-                                    <option value="">Select Station</option>
-                                    <option value="INITIATOR">INITIATOR</option>
-                                    <option value="ASM/GRILL">ASM/GRILL</option>
-                                    <option value="FRY STATION">FRY STATION</option>
-                                    <option value="CASHIER1">CASHIER1</option>
-                                    <option value="CASHIER2">CASHIER2</option>
-                                    <option value="WINDOW1">WINDOW1</option>
-                                    <option value="WINDOW2">WINDOW2</option>
-                                    <option value="RUNNER">RUNNER</option>
-                                    <option value="MAINTENANCE">MAINTENANCE</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="modalBreak">Break Time</label>
-                                <input type="time" id="modalBreak">
-                            </div>
+                        
+                        <div class="form-group">
+                            <label for="modalStation">Station</label>
+                            <select id="modalStation">
+                                <option value="">Select Station</option>
+                                <option value="INITIATOR">INITIATOR</option>
+                                <option value="ASM/GRILL">ASM/GRILL</option>
+                                <option value="FRY STATION">FRY STATION</option>
+                                <option value="CASHIER1">CASHIER1</option>
+                                <option value="CASHIER2">CASHIER2</option>
+                                <option value="WINDOW1">WINDOW1</option>
+                                <option value="WINDOW2">WINDOW2</option>
+                                <option value="RUNNER">RUNNER</option>
+                                <option value="MAINTENANCE">MAINTENANCE</option>
+                            </select>
                         </div>
-                        <div class="form-group full">
+                        
+                        <div class="form-group">
+                            <label for="modalBreak">Break Time</label>
+                            <input type="time" id="modalBreak">
+                        </div>
+                        
+                        <div class="form-group">
                             <label>Working Hours</label>
                             <div class="time-inputs">
                                 <input type="time" id="modalStartTime">
@@ -946,7 +1067,7 @@
                     </div>
                     <div class="modal-actions">
                         <button class="btn-modal-secondary" onclick="closeModal()">Cancel</button>
-                        <button class="btn-modal-primary" onclick="saveCrew()" id="modalSaveBtn">Save Crew</button>
+                        <button class="btn-modal-primary" onclick="saveCrew()" id="modalSaveBtn">Add Crew</button>
                     </div>
                 </div>
             </div>
@@ -959,24 +1080,24 @@
         <script>
             const crews = {
                 'KITCHEN': [
-                    // { name: 'John Sindicato', station: 'INITIATOR', break: '03:00', hours: '00:00-06:00', notes: 'Opening cook' },
-                    // { name: 'Michael Myers', station: 'ASM / GRILL', break: '09:00', hours: '06:00-12:00', notes: 'Grill lead' },
-                    // { name: 'Carlos Mendoza', station: 'FRY STATION', break: '14:00', hours: '12:00-18:00', notes: '' },
-                    // { name: 'Luis Navarro', station: 'ASSEMBLY', break: '19:00', hours: '18:00-00:00', notes: 'Peak support' },
-                    // { name: 'Mark Villanueva', station: 'BACKUP COOK', break: '17:30', hours: '15:00-21:00', notes: 'Covers absent crew' },
-                    // { name: 'Ethan Reyes', station: 'CLOSER COOK', break: '23:00', hours: '18:00-02:00', notes: 'Closing shift' }
+                    { name: 'John Sindicato', station: 'INITIATOR', break: '03:00', hours: '00:00-06:00', notes: 'Opening cook' },
+                    { name: 'Michael Myers', station: 'ASM / GRILL', break: '09:00', hours: '06:00-12:00', notes: 'Grill lead' },
+                    { name: 'Carlos Mendoza', station: 'FRY STATION', break: '14:00', hours: '12:00-18:00', notes: '' },
+                    { name: 'Luis Navarro', station: 'ASSEMBLY', break: '19:00', hours: '18:00-00:00', notes: 'Peak support' },
+                    { name: 'Mark Villanueva', station: 'BACKUP COOK', break: '17:30', hours: '15:00-21:00', notes: 'Covers absent crew' },
+                    { name: 'Ethan Reyes', station: 'CLOSER COOK', break: '23:00', hours: '18:00-02:00', notes: 'Closing shift' }
                 ],
 
                 'BEVERAGE CELL': [
-                    // { name: 'Anna Cruz', station: 'BEVERAGE DISPENSER', break: '10:00', hours: '08:00-14:00', notes: '' },
-                    // { name: 'Marie Santos', station: 'ICE CREAM', break: '17:00', hours: '14:00-20:00', notes: 'Dessert specialist' },
-                    // { name: 'Joshua Lim', station: 'FLOATING BEVERAGE', break: '21:00', hours: '18:00-00:00', notes: 'Rush hour support' }
+                    { name: 'Anna Cruz', station: 'BEVERAGE DISPENSER', break: '10:00', hours: '08:00-14:00', notes: '' },
+                    { name: 'Marie Santos', station: 'ICE CREAM', break: '17:00', hours: '14:00-20:00', notes: 'Dessert specialist' },
+                    { name: 'Joshua Lim', station: 'FLOATING BEVERAGE', break: '21:00', hours: '18:00-00:00', notes: 'Rush hour support' }
                 ],
 
                 'FRENCH FRIES': [
-                    { name: 'Kevin Ramos', station: 'FRIES OPENER', break: '11:30', hours: '09:00-15:00', notes: '' },
-                    { name: 'Daniel Cruz', station: 'FRIES PEAK', break: '18:30', hours: '15:00-21:00', notes: 'Peak coverage' },
-                    { name: 'Brian Yu', station: 'FRIES CLOSER', break: '23:30', hours: '18:00-02:00', notes: 'Night shift' }
+                    // { name: 'Kevin Ramos', station: 'FRIES OPENER', break: '11:30', hours: '09:00-15:00', notes: '' },
+                    // { name: 'Daniel Cruz', station: 'FRIES PEAK', break: '18:30', hours: '15:00-21:00', notes: 'Peak coverage' },
+                    // { name: 'Brian Yu', station: 'FRIES CLOSER', break: '23:30', hours: '18:00-02:00', notes: 'Night shift' }
                 ],
 
                 'FRONT COUNTER': [
@@ -987,9 +1108,9 @@
                 ],
 
                 'CUSTOMER AREA': [
-                    { name: 'Peter Johnson', station: 'LOBBY ATTENDANT', break: '12:00', hours: '10:00-16:00', notes: '' },
-                    { name: 'Sarah Nguyen', station: 'DINING ASSIST', break: '18:00', hours: '16:00-22:00', notes: 'Table service' },
-                    { name: 'Noah Kim', station: 'CLOSING LOBBY', break: '23:00', hours: '20:00-02:00', notes: 'Night cleanup' }
+                    // { name: 'Peter Johnson', station: 'LOBBY ATTENDANT', break: '12:00', hours: '10:00-16:00', notes: '' },
+                    // { name: 'Sarah Nguyen', station: 'DINING ASSIST', break: '18:00', hours: '16:00-22:00', notes: 'Table service' },
+                    // { name: 'Noah Kim', station: 'CLOSING LOBBY', break: '23:00', hours: '20:00-02:00', notes: 'Night cleanup' }
                 ],
 
                 'DRIVE THRU': [
@@ -1012,6 +1133,12 @@
                     { name: 'Samuel Ortega', station: 'UTILITY OPENER', break: '11:00', hours: '09:00-15:00', notes: '' },
                     { name: 'Brian Lee', station: 'CLOSING CLEANER', break: '23:00', hours: '17:00-01:00', notes: '' },
                     { name: 'Ralph Tan', station: 'DEEP CLEAN', break: '03:00', hours: '00:00-06:00', notes: 'Weekly task' }
+                ],
+
+                'LOBBY': [
+                    { name: 'Ethan Nguyen', station: 'LOBBY ATTENDANT', break: '12:00', hours: '10:00-16:00', notes: '' },  
+                    { name: 'Grace Kim', station: 'DINING ASSIST', break: '18:00', hours: '16:00-22:00', notes: 'Table service' },
+                    { name: 'Aiden Lee', station: 'CLOSING LOBBY', break: '23:00', hours: '20:00-02:00', notes: 'Night cleanup' }
                 ],
 
                 'MARKETING': [
@@ -1130,13 +1257,149 @@
                 return schedule;
             }
 
-            function getShiftType(hours) {
-                const [startTime] = hours.split('-');
+            // UPDATED: Get shift types that overlap with the given hours
+            function getShiftTypes(hours) {
+                const [startTime, endTime] = hours.split('-');
                 const [startHour] = startTime.split(':').map(Number);
+                let [endHour] = endTime.split(':').map(Number);
+                
+                // Handle overnight shifts
+                if (endHour <= startHour) {
+                    endHour += 24;
+                }
+                
+                const shifts = [];
+                
+                // Define shift time ranges (24-hour format)
+                const shiftRanges = {
+                    graveyard: { start: 0, end: 6 },      // 12AM-6AM
+                    morning: { start: 6, end: 12 },       // 6AM-12PM
+                    afternoon: { start: 12, end: 18 },    // 12PM-6PM
+                    evening: { start: 18, end: 24 }       // 6PM-12AM
+                };
+                
+                // Check each shift for overlap
+                Object.keys(shiftRanges).forEach(shift => {
+                    const range = shiftRanges[shift];
+                    
+                    // Check for overlap between shift range and work hours
+                    // For morning shift (6-12) and work hours 11-17:
+                    // Math.max(6, 11) = 11, Math.min(12, 17) = 12, 11 < 12 = true (overlap)
+                    
+                    // Check regular hours
+                    if (Math.max(range.start, startHour) < Math.min(range.end, endHour)) {
+                        shifts.push(shift);
+                    }
+                    
+                    // Check for overnight shifts (if work hours cross midnight)
+                    if (endHour > 24) {
+                        const overnightEndHour = endHour - 24;
+                        // Check if shift overlaps with the overnight portion
+                        if (Math.max(range.start, 0) < Math.min(range.end, overnightEndHour)) {
+                            shifts.push(shift);
+                        }
+                    }
+                });
+                
+                return shifts;
+            }
 
-                if (startHour >= 6 && startHour < 14) return 'morning';
-                if (startHour >= 14 && startHour < 22) return 'afternoon';
-                return 'night';
+            // NEW: Get primary shift classification based on majority hours rule
+            function getPrimaryShift(hours) {
+                const [startTime, endTime] = hours.split('-');
+                const [startHour] = startTime.split(':').map(Number);
+                let [endHour] = endTime.split(':').map(Number);
+                
+                // Handle overnight shifts
+                if (endHour <= startHour) {
+                    endHour += 24;
+                }
+                
+                // Define shift time ranges (24-hour format)
+                const shiftRanges = {
+                    graveyard: { start: 0, end: 6 },      // 12AM-6AM
+                    morning: { start: 6, end: 12 },       // 6AM-12PM
+                    afternoon: { start: 12, end: 18 },    // 12PM-6PM
+                    evening: { start: 18, end: 24 }       // 6PM-12AM
+                };
+                
+                // Calculate hours in each shift
+                const shiftHours = {};
+                
+                Object.keys(shiftRanges).forEach(shift => {
+                    const range = shiftRanges[shift];
+                    shiftHours[shift] = 0;
+                    
+                    // Calculate overlap between work hours and shift range
+                    const overlapStart = Math.max(range.start, startHour);
+                    const overlapEnd = Math.min(range.end, endHour);
+                    
+                    if (overlapStart < overlapEnd) {
+                        shiftHours[shift] = overlapEnd - overlapStart;
+                    }
+                    
+                    // Check for overnight portion
+                    if (endHour > 24) {
+                        const overnightEndHour = endHour - 24;
+                        const overnightOverlapStart = Math.max(range.start, 0);
+                        const overnightOverlapEnd = Math.min(range.end, overnightEndHour);
+                        
+                        if (overnightOverlapStart < overnightOverlapEnd) {
+                            shiftHours[shift] += (overnightOverlapEnd - overnightOverlapStart);
+                        }
+                    }
+                });
+                
+                // Find shift with maximum hours
+                let maxHours = 0;
+                let primaryShift = null;
+                let tieShifts = [];
+                
+                Object.keys(shiftHours).forEach(shift => {
+                    if (shiftHours[shift] > maxHours) {
+                        maxHours = shiftHours[shift];
+                        primaryShift = shift;
+                        tieShifts = [shift];
+                    } else if (shiftHours[shift] === maxHours && maxHours > 0) {
+                        tieShifts.push(shift);
+                    }
+                });
+                
+                // If tie (equal hours in multiple shifts), use start time rule
+                if (tieShifts.length > 1) {
+                    // Example: 9AM-3PM (morning: 3h, afternoon: 3h) -> use start time (morning)
+                    // Determine which tied shift contains the start time
+                    for (const shift of tieShifts) {
+                        const range = shiftRanges[shift];
+                        if (startHour >= range.start && startHour < range.end) {
+                            return shift;
+                        }
+                    }
+                    
+                    // For overnight shifts, check if start hour is in overnight portion
+                    if (endHour > 24) {
+                        const overnightStartHour = startHour < 24 ? startHour : startHour - 24;
+                        for (const shift of tieShifts) {
+                            const range = shiftRanges[shift];
+                            if (overnightStartHour >= range.start && overnightStartHour < range.end) {
+                                return shift;
+                            }
+                        }
+                    }
+                    
+                    // Fallback: return first tied shift
+                    return tieShifts[0];
+                }
+                
+                return primaryShift;
+            }
+
+            // UPDATED: Check if crew matches filtered shift (uses primary shift classification)
+            function crewMatchesShift(crew, selectedShift) {
+                if (!selectedShift) return true;
+                
+                const primaryShift = getPrimaryShift(crew.hours);
+                return primaryShift === selectedShift;
             }
 
             function updateStats() {
@@ -1144,17 +1407,33 @@
                 let totalHours = 0;
                 let selectedDateHours = 0;
                 const stations = new Set();
+                const activeDepartments = new Set();
+                const shiftCounts = {
+                    graveyard: 0,
+                    morning: 0,
+                    afternoon: 0,
+                    evening: 0
+                };
 
-                Object.values(crews).forEach(dept => {
-                    dept.forEach(crew => {
+                Object.entries(crews).forEach(([dept, crewList]) => {
+                    if (crewList.length > 0) {
+                        activeDepartments.add(dept);
+                    }
+                    
+                    crewList.forEach(crew => {
                         totalMembers++;
                         const hours = calculateNumericHours(crew.hours);
                         totalHours += hours;
                         stations.add(crew.station);
+                        
+                        // Count by primary shift classification
+                        const primaryShift = getPrimaryShift(crew.hours);
+                        if (primaryShift) {
+                            shiftCounts[primaryShift]++;
+                        }
 
                         // Calculate hours for the selected date
                         const schedule = parseTimeRange(crew.hours);
-                        // Add all hours from the schedule (already correctly parsed)
                         selectedDateHours += schedule.filter(hour => hour === 1).length;
                     });
                 });
@@ -1163,6 +1442,80 @@
                 document.getElementById('totalHours').textContent = Math.round(totalHours);
                 document.getElementById('selectedDateHours').textContent = Math.round(selectedDateHours);
                 document.getElementById('stationsCovered').textContent = stations.size;
+                document.getElementById('departmentsCovered').textContent = activeDepartments.size;
+                
+                // Update shift statistics
+                updateShiftStats(shiftCounts);
+            }
+
+            function updateShiftStats(shiftCounts) {
+                const shiftStatsContainer = document.getElementById('shiftStats');
+                shiftStatsContainer.innerHTML = `
+                    <div class="shift-stat-card">
+                        <div class="shift-stat-icon graveyard">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="shift-stat-content">
+                            <div class="shift-stat-value-wrapper">
+                                <span class="shift-stat-value graveyard">${shiftCounts.graveyard}</span>
+                                <span class="shift-stat-small-label">Total Crew</span>
+                            </div>
+                            <div class="shift-stat-meta">
+                                <span class="shift-stat-label">Graveyard</span>
+                                <span class="shift-stat-dot">•</span>
+                                <span class="shift-stat-subtitle">12:00 AM – 6:00 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shift-stat-card">
+                        <div class="shift-stat-icon morning">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="shift-stat-content">
+                            <div class="shift-stat-value-wrapper">
+                                <span class="shift-stat-value graveyard">${shiftCounts.morning}</span>
+                                <span class="shift-stat-small-label">Total Crew</span>
+                            </div>
+                            <div class="shift-stat-meta">
+                                <span class="shift-stat-label">Morning</span>
+                                <span class="shift-stat-dot">•</span>
+                                <span class="shift-stat-subtitle">6:00 AM - 12:00 PM</span>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="shift-stat-card">
+                        <div class="shift-stat-icon afternoon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="shift-stat-content">
+                            <div class="shift-stat-value-wrapper">
+                                <span class="shift-stat-value graveyard">${shiftCounts.afternoon}</span>
+                                <span class="shift-stat-small-label">Total Crew</span>
+                            </div>
+                            <div class="shift-stat-meta">
+                                <span class="shift-stat-label">Afternoon</span>
+                                <span class="shift-stat-dot">•</span>
+                                <span class="shift-stat-subtitle">12:00 PM - 6:00 PM</span>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="shift-stat-card">
+                        <div class="shift-stat-icon evening">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="shift-stat-content">
+                            <div class="shift-stat-value-wrapper">
+                                <span class="shift-stat-value graveyard">${shiftCounts.evening}</span>
+                                <span class="shift-stat-small-label">Total Crew</span>
+                            </div>
+                            <div class="shift-stat-meta">
+                                <span class="shift-stat-label">Evening</span>
+                                <span class="shift-stat-dot">•</span>
+                                <span class="shift-stat-subtitle">6:00 PM - 12:00 AM</span>
+                            </div>  
+                        </div>
+                    </div>
+                `;
             }
 
             function isCurrentWeek(date) {
@@ -1180,7 +1533,7 @@
 
                 const dayName = days[selectedDay];
                 const monthName = months[selectedDate.getMonth()];
-                const dateNumber = selectedDate.getDate();
+                const dateNumber = selectedDate.getDate() + 1;
                 const year = selectedDate.getFullYear();
 
                 document.getElementById('selectedDateText').textContent = `${dayName}, ${monthName} ${dateNumber}, ${year}`;
@@ -1190,7 +1543,7 @@
                 saturday.setDate(sunday.getDate() + 6);
 
                 const formatWeekDate = (date) => {
-                    return `${shortMonths[date.getMonth()]} ${date.getDate()}`;
+                    return `${shortMonths[date.getMonth()]} ${date.getDate() + 1}`;
                 };
 
                 const weekDisplay = `Week: ${formatWeekDate(sunday)} - ${formatWeekDate(saturday)}, ${sunday.getFullYear()}`;
@@ -1285,10 +1638,10 @@
                         stats.className = 'dept-stats';
                         stats.innerHTML = `
                             <div class="dept-stat-item">
-                                <i class="fas fa-users"></i> ${deptCrewCount} staff
+                                <i class="fas fa-users"></i> ${deptCrewCount} Total Crew
                             </div>
                             <div class="dept-stat-item">
-                                <i class="fas fa-clock"></i> ${Math.round(deptHours)}h total
+                                <i class="fas fa-clock"></i> ${Math.round(deptHours)}h Total
                             </div>
                         `;
                         rightContainer.appendChild(stats);
@@ -1312,7 +1665,6 @@
                         const table = document.createElement('table');
                         const thead = document.createElement('thead');
                         const headerRow = document.createElement('tr');
-
                         const headers = ['Crew Name', 'Station', 'Break', 'Hours', 'Total'];
                         headers.forEach(h => {
                             const th = document.createElement('th');
@@ -1351,7 +1703,8 @@
                         const tbody = document.createElement('tbody');
 
                         crews[dept].forEach((crew, idx) => {
-                            if (filteredShift && getShiftType(crew.hours) !== filteredShift) return;
+                            // UPDATED: Filter by primary shift classification
+                            if (filteredShift && !crewMatchesShift(crew, filteredShift)) return;
 
                             const schedule = parseTimeRange(crew.hours);
                             const row = document.createElement('tr');
@@ -1370,17 +1723,19 @@
                             row.appendChild(stationCell);
 
                             const breakCell = document.createElement('td');
-                            breakCell.innerHTML = `<i class="fas fa-coffee"></i> ${crew.break}`;
+                            breakCell.innerHTML = `<i class="fas fa-coffee" style="color: #4B2E2B;"></i> ${crew.break}`;
                             row.appendChild(breakCell);
 
                             const hoursCell = document.createElement('td');
-                            hoursCell.textContent = crew.hours;
+                            hoursCell.innerHTML = `<i class="far fa-clock" style="color: #006400;"></i> ${crew.hours}`;
                             row.appendChild(hoursCell);
 
                             const totalCell = document.createElement('td');
                             totalCell.textContent = calculateTotalHours(crew.hours);
                             totalCell.className = 'row-total-hours';
                             row.appendChild(totalCell);
+
+                            // REMOVED: Primary shift cell removed from table
 
                             for (let hour = 0; hour < 24; hour++) {
                                 const scheduleCell = document.createElement('td');
@@ -1456,7 +1811,6 @@
 
                     const [startTime, endTime] = crew.hours.split('-');
 
-                    document.getElementById('modalDept').value = dept;
                     document.getElementById('modalName').value = crew.name;
                     document.getElementById('modalStation').value = crew.station;
                     document.getElementById('modalBreak').value = crew.break;
@@ -1464,8 +1818,7 @@
                     document.getElementById('modalEndTime').value = endTime;
                 } else {
                     title.textContent = 'Add Crew';
-                    saveBtn.textContent = 'Save Crew';
-                    document.getElementById('modalDept').value = dept;
+                    saveBtn.textContent = 'Add Crew';
                     document.getElementById('modalName').value = '';
                     document.getElementById('modalStation').value = '';
                     document.getElementById('modalBreak').value = '';
@@ -1485,7 +1838,6 @@
             }
 
             function saveCrew() {
-                const dept = document.getElementById('modalDept').value;
                 const name = document.getElementById('modalName').value.trim();
                 const station = document.getElementById('modalStation').value.trim();
                 const breakTime = document.getElementById('modalBreak').value.trim();
@@ -1508,9 +1860,9 @@
                 };
 
                 if (currentEditIndex !== undefined) {
-                    crews[dept][currentEditIndex] = crewData;
+                    crews[currentDept][currentEditIndex] = crewData;
                 } else {
-                    crews[dept].push(crewData);
+                    crews[currentDept].push(crewData);
                 }
 
                 closeModal();
@@ -1535,13 +1887,14 @@
             }
 
             function exportSchedule() {
-                let csv = 'Department,Crew Name,Station,Break Time,Working Hours,Total Hours,Notes\n';
+                let csv = 'Department,Crew Name,Station,Break Time,Working Hours,Total Hours,Primary Shift,Notes\n';
 
                 Object.keys(crews).forEach(dept => {
                     crews[dept].forEach(crew => {
                         const totalHours = calculateTotalHours(crew.hours);
+                        const primaryShift = getPrimaryShift(crew.hours);
                         csv +=
-                            `"${dept}","${crew.name}","${crew.station}","${crew.break}","${crew.hours}","${totalHours}","${crew.notes || ''}"\n`;
+                            `"${dept}","${crew.name}","${crew.station}","${crew.break}","${crew.hours}","${totalHours}","${primaryShift || 'N/A'}","${crew.notes || ''}"\n`;
                     });
                 });
 
@@ -1569,14 +1922,9 @@
                 }
             });
 
-            function printSchedule() {
-                alert('Print functionality would open print dialog here');
+            function printSchedule() { 
                 window.print();
-            }
-
-            function showAvailability() {
-                alert('Crew Availability view would show available times for crew members');
-            }
+            } 
 
             // Initialize day selector
             document.querySelectorAll('.day-item').forEach((day, idx) => {

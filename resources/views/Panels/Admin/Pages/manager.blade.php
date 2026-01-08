@@ -1,4 +1,5 @@
 @extends('Panels.Admin.PageLayout.layout')
+@section('tab-manager-active', 'active')
 
 @section('title', 'Employee Management')
 
@@ -13,20 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/Pages/Manager/manager.js'])
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/Pages/manager.css') }}">
-    <title>@yield('title')</title>
-    <style> 
-
-    </style>
+    <title>@yield('title')</title> 
 </head>
 <body>
-    <div class="container">
-        <!-- Tab Navigation -->
-        <div class="tab-navigation">
-            <button class="tab-btn" onclick="window.location.href='{{ route('Panels.Admin.PageLayout.crew') }}'">Crew</button>
-            <button class="tab-btn active">Managers</button>
-        </div>
-
-        <!-- Managers Tab Content -->
+    <div class="container"> 
         <div id="managers-tab">
             <div class="control-panel">
                 <div class="page-title">

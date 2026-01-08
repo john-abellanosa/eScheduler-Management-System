@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
+    @vite(['resources/js/Panels/Scheduler/PageLayout/notifications.js'])
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/notifications.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
     <title></title>
 </head>
@@ -57,6 +59,22 @@
                 <span class="nav-text">Crew Schedule</span>
             </a>
 
+            <a href="{{ route('Panels.Scheduler.PageLayout.crew_availability') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.PageLayout.crew_availability') ? 'active' : '' }}">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days-icon lucide-calendar-days">
+                    <path d="M8 2v4"/>
+                    <path d="M16 2v4"/>
+                    <rect width="18" height="18" x="3" y="4" rx="2"/>
+                    <path d="M3 10h18"/>
+                    <path d="M8 14h.01"/>
+                    <path d="M12 14h.01"/>
+                    <path d="M16 14h.01"/>
+                    <path d="M8 18h.01"/>
+                    <path d="M12 18h.01"/>
+                    <path d="M16 18h.01"/>
+                </svg>
+                <span class="nav-text">Crew Availability</span>
+            </a>
+
             <a href="{{ route('Panels.Scheduler.PageLayout.requests') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.PageLayout.requests') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -85,12 +103,12 @@
                 </div>
             </div>
             <div class="top-bar-actions">
-                <button class="notification-btn">
+                <button class="notification-btn" id="notificationBtn" aria-label="Notifications">
                     <svg class="notification-icon" viewBox="0 0 24 24">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                     </svg>
-                    <span class="notification-badge">3</span>
+                    <span class="notification-badge" id="notifBadge">3</span>
                 </button>
                 <button class="user-btn">
                     <svg class="user-icon" viewBox="0 0 24 24">
@@ -98,6 +116,43 @@
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                 </button>
+            </div>
+        </div>
+
+        <div class="notification-overlay" id="notificationOverlay"></div>
+
+        <!-- Notification Panel -->
+        <div class="notification-panel" id="notificationPanel">
+            <!-- Panel Header -->
+            <div class="panel-header">
+                <div class="panel-header-top">
+                    <div class="panel-title">Notifications</div>
+                    <button class="close-panel" id="closePanel">×</button>
+                </div>
+                <div class="filter-notification-section">
+                    <div class="filter-links">
+                        <span class="filter-link active" data-tab="all">All</span>
+                        <span class="filter-link" data-tab="unread">Unread</span>
+                    </div>
+                    <span class="mark-all-link" id="markAllRead">
+                        <svg class="mark-all-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M18 6 7 17l-5-5"/>
+                            <path d="m22 10-7.5 7.5L13 16"/>
+                        </svg>
+                        <span class="mark-all-text">Mark all as read</span>
+                    </span>
+                </div>
+            </div>
+ 
+            <div class="notifications-list" id="notificationsList">
+                <p class="loading-text">Loading notifications...</p>
             </div>
         </div>
 

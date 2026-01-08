@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
+    @vite(['resources/js/Panels/Admin/PageLayout/notifications.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/notifications.css') }}">
 </head>
 <body>
     <div class="overlay" id="overlay"></div>
@@ -101,12 +103,12 @@
                 </div>
             </div>
             <div class="top-bar-actions">
-                <button class="notification-btn">
+                <button class="notification-btn" id="notificationBtn" aria-label="Notifications">
                     <svg class="notification-icon" viewBox="0 0 24 24">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                     </svg>
-                    <span class="notification-badge">3</span>
+                    <span class="notification-badge" id="notifBadge">3</span>
                 </button>
                 <button class="user-btn">
                     <svg class="user-icon" viewBox="0 0 24 24">
@@ -116,6 +118,67 @@
                 </button>
             </div>
         </div>
+
+        <div class="notification-overlay" id="notificationOverlay"></div>
+
+        <!-- Notification Panel -->
+        <div class="notification-panel" id="notificationPanel">
+            <!-- Panel Header -->
+            <div class="panel-header">
+                <div class="panel-header-top">
+                    <div class="panel-title">Notifications</div>
+                    <button class="close-panel" id="closePanel">×</button>
+                </div>
+                <div class="filter-notification-section">
+                    <div class="filter-links">
+                        <span class="filter-link active" data-tab="all">All</span>
+                        <span class="filter-link" data-tab="unread">Unread</span>
+                    </div>
+                    <span class="mark-all-link" id="markAllRead">
+                        <svg class="mark-all-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M18 6 7 17l-5-5"/>
+                            <path d="m22 10-7.5 7.5L13 16"/>
+                        </svg>
+                        <span class="mark-all-text">Mark all as read</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="notifications-list" id="notificationsList">
+                <p class="loading-text">Loading notifications...</p>
+            </div>
+        </div>
+
+        @if (
+            request()->routeIs(
+                'Panels.Admin.PageLayout.crew',
+                'Panels.Admin.PageLayout.manager'
+            )
+        )
+            <div class="sub-top-bar">
+                <div class="tab-navigation">
+                    <button
+                        class="tab-btn @yield('tab-crew-active')"
+                        onclick="window.location.href='{{ route('Panels.Admin.PageLayout.crew') }}'">
+                        Crew
+                    </button>
+
+                    <button
+                        class="tab-btn @yield('tab-manager-active')"
+                        onclick="window.location.href='{{ route('Panels.Admin.PageLayout.manager') }}'">
+                        Managers
+                    </button>
+                </div>
+            </div>
+        @endif
 
         <div class="content-area">
             @yield('content')

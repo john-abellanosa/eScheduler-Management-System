@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 const colors = {
     primaryBlue: '#1a3a8f',
     secondaryBlue: '#2a56d6',
@@ -176,6 +177,7 @@ let currentPage = 1;
 let totalPages = 1;
 let filteredRequests = [];
 let isGridView = false;
+let isMobile = false;
 
 let filters = {
     status: 'all',
@@ -184,39 +186,51 @@ let filters = {
 };
 
 // DOM Elements
-const listViewBtn = document.getElementById('listViewBtn');
-const gridViewBtn = document.getElementById('gridViewBtn');
-const requestsList = document.getElementById('requestsList');
-const requestsGrid = document.getElementById('requestsGrid');
-const desktopSearchInput = document.getElementById('desktopSearchInput');
-const desktopSearchClear = document.getElementById('desktopSearchClear');
-const mobileSearchInput = document.getElementById('mobileSearchInput');
-const mobileSearchClear = document.getElementById('mobileSearchClear');
-const paginationInfo = document.getElementById('paginationInfo');
-const pagination = document.getElementById('pagination');
+let listViewBtn, gridViewBtn, requestsList, requestsGrid;
+let desktopSearchInput, desktopSearchClear, mobileSearchInput, mobileSearchClear;
+let paginationInfo, pagination;
+
+// Initialize DOM elements
+function initializeDOMElements() {
+    listViewBtn = document.getElementById('listViewBtn');
+    gridViewBtn = document.getElementById('gridViewBtn');
+    requestsList = document.getElementById('requestsList');
+    requestsGrid = document.getElementById('requestsGrid');
+    desktopSearchInput = document.getElementById('desktopSearchInput');
+    desktopSearchClear = document.getElementById('desktopSearchClear');
+    mobileSearchInput = document.getElementById('mobileSearchInput');
+    mobileSearchClear = document.getElementById('mobileSearchClear');
+    paginationInfo = document.getElementById('paginationInfo');
+    pagination = document.getElementById('pagination');
+}
 
 // Calculate items per page based on viewport and view type
 function calculateItemsPerPage() {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
     
-    if (screenWidth <= 768) {
-        // Mobile - always 5 items for list view
-        return 5;
+    // Update mobile detection
+    isMobile = screenWidth <= 768;
+    
+    if (isMobile) {
+        // Mobile - calculate based on screen height
+        const cardHeight = isGridView ? 320 : 180; // Grid cards are taller than list cards
+        const headerHeight = 350; // Approximate header height
+        const paginationHeight = 70;
+        const availableHeight = screenHeight - headerHeight - paginationHeight - 50;
+        const items = Math.floor(availableHeight / cardHeight);
+        
+        // Return reasonable range for mobile
+        return Math.max(4, Math.min(items, 8));
     } else if (isGridView) {
         // Desktop Grid View - Calculate based on available space
-        const gridCardHeight = 280; // Approximate height of grid card
-        const gridCardWidth = 320; // Approximate width of grid card
-        const headerHeight = 250; // Approximate height of headers and filters
+        const gridCardHeight = 280;
+        const headerHeight = 250;
         const paginationHeight = 70;
         
-        // Calculate available height
         const availableHeight = screenHeight - headerHeight - paginationHeight - 50;
-        
-        // Calculate rows that can fit
         const rows = Math.floor(availableHeight / gridCardHeight);
         
-        // Calculate columns based on screen width
         let columns;
         if (screenWidth >= 1200) {
             columns = 3;
@@ -226,10 +240,7 @@ function calculateItemsPerPage() {
             columns = 1;
         }
         
-        // Calculate total items that can fit
         const items = rows * columns;
-        
-        // Return at least 6 items to fill space, but not more than 12
         return Math.max(6, Math.min(items, 12));
     } else {
         // Desktop List View - Fixed at 5 items
@@ -246,7 +257,7 @@ const VIEW_PREFERENCE_KEY = 'request-management-view-preference';
 // Get saved view preference or default to 'list'
 function getSavedViewPreference() {
     const savedPreference = localStorage.getItem(VIEW_PREFERENCE_KEY);
-    return savedPreference === 'grid' ? 'grid' : 'list'; // Default to 'list'
+    return savedPreference === 'grid' ? 'grid' : 'list';
 }
 
 // Save view preference to localStorage
@@ -256,8 +267,19 @@ function saveViewPreference(viewType) {
 
 // View Switching with persistence
 function switchView(isGrid) {
+    // Save current scroll position
+    const scrollPosition = window.scrollY;
+    const oldPage = currentPage;
+    
     isGridView = isGrid;
-    itemsPerPage = calculateItemsPerPage(); // Recalculate items per page
+    const oldItemsPerPage = itemsPerPage;
+    itemsPerPage = calculateItemsPerPage();
+    
+    // Recalculate current page to maintain approximate position
+    if (oldItemsPerPage !== itemsPerPage) {
+        const firstItemIndex = (oldPage - 1) * oldItemsPerPage;
+        currentPage = Math.max(1, Math.floor(firstItemIndex / itemsPerPage) + 1);
+    }
     
     if (isGridView) {
         requestsList.style.display = 'none';
@@ -274,8 +296,14 @@ function switchView(isGrid) {
         gridViewBtn.classList.remove('active');
         saveViewPreference('list');
     }
+    
     // Re-render requests when switching views
     renderRequests();
+    
+    // Restore scroll position after render
+    setTimeout(() => {
+        window.scrollTo(0, scrollPosition);
+    }, 50);
 }
 
 // Initialize view based on saved preference
@@ -367,14 +395,14 @@ function createListCard(req) {
                 
                     <div class="list-actions">
                         ${req.status === 'pending' ? `
-                            <button class="list-btn approve" onclick="handleApprove(${req.id})" title="Approve Request">
+                            <button class="list-btn approve" onclick="window.requestManager.handleApprove(${req.id})" title="Approve Request">
                                 <i class="fas fa-check"></i>
                             </button>
-                            <button class="list-btn reject" onclick="handleReject(${req.id})" title="Reject Request">
+                            <button class="list-btn reject" onclick="window.requestManager.handleReject(${req.id})" title="Reject Request">
                                 <i class="fas fa-times"></i>
                             </button>
                         ` : ''}
-                        <button class="list-btn view" onclick="viewRequestDetails(${req.id})" title="View Details">
+                        <button class="list-btn view" onclick="window.requestManager.viewRequestDetails(${req.id})" title="View Details">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -420,14 +448,14 @@ function createGridCard(req) {
             <div class="card-actions-container">
                 <div class="card-actions">
                     ${req.status === 'pending' ? `
-                        <button class="card-btn approve" onclick="handleApprove(${req.id})" title="Approve Request">
+                        <button class="card-btn approve" onclick="window.requestManager.handleApprove(${req.id})" title="Approve Request">
                             <i class="fas fa-check"></i>
                         </button>
-                        <button class="card-btn reject" onclick="handleReject(${req.id})" title="Reject Request">
+                        <button class="card-btn reject" onclick="window.requestManager.handleReject(${req.id})" title="Reject Request">
                             <i class="fas fa-times"></i>
                         </button>
                     ` : ''}
-                    <button class="card-btn view" onclick="viewRequestDetails(${req.id})" title="View Details">
+                    <button class="card-btn view" onclick="window.requestManager.viewRequestDetails(${req.id})" title="View Details">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
@@ -516,10 +544,14 @@ function updatePagination() {
     prevButton.className = 'page-btn' + (currentPage === 1 ? ' disabled' : '');
     prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
     prevButton.disabled = currentPage === 1;
-    prevButton.addEventListener('click', () => {
+    prevButton.addEventListener('click', (e) => {
+        e.preventDefault();
         if (currentPage > 1) {
             currentPage--;
             renderRequests();
+            if (isMobile) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
     });
     pagination.appendChild(prevButton);
@@ -529,11 +561,11 @@ function updatePagination() {
     let maxVisiblePages;
     
     if (screenWidth <= 768) {
-        maxVisiblePages = 3; // Mobile - show fewer pages
+        maxVisiblePages = 3;
     } else if (screenWidth <= 1024) {
-        maxVisiblePages = 5; // Tablet
+        maxVisiblePages = 5;
     } else {
-        maxVisiblePages = 7; // Desktop
+        maxVisiblePages = 7;
     }
     
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
@@ -581,10 +613,14 @@ function updatePagination() {
     nextButton.className = 'page-btn' + (currentPage === totalPages ? ' disabled' : '');
     nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
     nextButton.disabled = currentPage === totalPages;
-    nextButton.addEventListener('click', () => {
+    nextButton.addEventListener('click', (e) => {
+        e.preventDefault();
         if (currentPage < totalPages) {
             currentPage++;
             renderRequests();
+            if (isMobile) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
     });
     pagination.appendChild(nextButton);
@@ -594,9 +630,17 @@ function createPageButton(pageNumber) {
     const button = document.createElement('button');
     button.className = 'page-btn' + (currentPage === pageNumber ? ' active' : '');
     button.textContent = pageNumber;
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const oldPage = currentPage;
         currentPage = pageNumber;
-        renderRequests();
+        
+        if (oldPage !== pageNumber) {
+            renderRequests();
+            if (isMobile) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
     });
     return button;
 }
@@ -609,7 +653,6 @@ function renderRequests() {
     updatePagination();
     
     if (filteredRequests.length === 0) {
-        // Create full-width empty state for list view
         requestsList.innerHTML = `
             <div class="empty-state full-width">
                 <i class="fas fa-inbox"></i>
@@ -618,7 +661,6 @@ function renderRequests() {
             </div>
         `;
         
-        // Create full-width empty state for grid view
         requestsGrid.innerHTML = `
             <div class="empty-state full-width">
                 <i class="fas fa-inbox"></i>
@@ -631,11 +673,9 @@ function renderRequests() {
         return;
     }
     
-    // Clear existing content
     requestsList.innerHTML = '';
     requestsGrid.innerHTML = '';
     
-    // Add paginated requests to both views
     paginated.forEach(req => {
         const listCard = createListCard(req);
         const gridCard = createGridCard(req);
@@ -653,11 +693,15 @@ function updateStats() {
     const swapCount = requests.filter(r => r.type === 'swap').length;
     const giveCount = requests.filter(r => r.type === 'give').length;
     
-    // Update total counts in stats cards
-    document.querySelector('[data-type="pending"] .stat-value').textContent = pendingCount;
-    document.querySelector('[data-type="leave"] .stat-value').textContent = leaveCount;
-    document.querySelector('[data-type="swap"] .stat-value').textContent = swapCount;
-    document.querySelector('[data-type="give"] .stat-value').textContent = giveCount;
+    const pendingElement = document.querySelector('[data-type="pending"] .stat-value');
+    const leaveElement = document.querySelector('[data-type="leave"] .stat-value');
+    const swapElement = document.querySelector('[data-type="swap"] .stat-value');
+    const giveElement = document.querySelector('[data-type="give"] .stat-value');
+    
+    if (pendingElement) pendingElement.textContent = pendingCount;
+    if (leaveElement) leaveElement.textContent = leaveCount;
+    if (swapElement) swapElement.textContent = swapCount;
+    if (giveElement) giveElement.textContent = giveCount;
 }
 
 // Action Handlers
@@ -691,8 +735,12 @@ function viewRequestDetails(id) {
 }
 
 function showToast(message, type = 'info') {
-    // Simple toast notification
+    // Remove existing toasts
+    const existingToasts = document.querySelectorAll('.request-toast');
+    existingToasts.forEach(toast => toast.remove());
+    
     const toast = document.createElement('div');
+    toast.className = 'request-toast';
     toast.style.cssText = `
         position: fixed;
         bottom: 20px;
@@ -718,37 +766,12 @@ function showToast(message, type = 'info') {
     setTimeout(() => {
         toast.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => {
-            document.body.removeChild(toast);
+            if (toast.parentNode) {
+                document.body.removeChild(toast);
+            }
         }, 300);
     }, 3000);
 }
-
-// Add CSS for animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
 
 // Filter button click handler
 function handleFilterClick(e, isMobile = false) {
@@ -757,7 +780,6 @@ function handleFilterClick(e, isMobile = false) {
 
     if (!filterType || !value) return;
 
-    // Update active state for both desktop and mobile buttons
     const desktopSelector = isMobile ? '.mobile-filter-btn' : '.filter-btn';
     const allButtons = document.querySelectorAll(`${desktopSelector}[data-filter="${filterType}"]`);
     
@@ -766,13 +788,10 @@ function handleFilterClick(e, isMobile = false) {
     });
     e.target.classList.add('active');
 
-    // Update filter
     filters[filterType] = value;
-    currentPage = 1; // Reset to first page when filter changes
+    currentPage = 1;
     
-    // Sync between desktop and mobile filters
     if (!isMobile) {
-        // Update mobile buttons
         const mobileButtons = document.querySelectorAll(`.mobile-filter-btn[data-filter="${filterType}"]`);
         mobileButtons.forEach(b => {
             b.classList.remove('active');
@@ -781,7 +800,6 @@ function handleFilterClick(e, isMobile = false) {
             }
         });
     } else {
-        // Update desktop buttons
         const desktopButtons = document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`);
         desktopButtons.forEach(b => {
             b.classList.remove('active');
@@ -794,95 +812,192 @@ function handleFilterClick(e, isMobile = false) {
     renderRequests();
 }
 
-// Event Listeners
-listViewBtn.addEventListener('click', () => switchView(false));
-gridViewBtn.addEventListener('click', () => switchView(true));
-
-// Desktop search events
-desktopSearchInput.addEventListener('input', () => {
-    handleSearchInput(desktopSearchInput, desktopSearchClear);
+// Set up event listeners
+function setupEventListeners() {
+    if (!listViewBtn || !gridViewBtn) return;
     
-    // Sync with mobile search
-    mobileSearchInput.value = desktopSearchInput.value;
-    updateClearButton(mobileSearchInput, mobileSearchClear);
-});
+    listViewBtn.addEventListener('click', () => switchView(false));
+    gridViewBtn.addEventListener('click', () => switchView(true));
 
-desktopSearchClear.addEventListener('click', () => {
-    clearSearch(desktopSearchInput, desktopSearchClear);
-    
-    // Sync with mobile search
-    mobileSearchInput.value = '';
-    updateClearButton(mobileSearchInput, mobileSearchClear);
-});
+    if (desktopSearchInput && desktopSearchClear) {
+        desktopSearchInput.addEventListener('input', () => {
+            handleSearchInput(desktopSearchInput, desktopSearchClear);
+            if (mobileSearchInput) {
+                mobileSearchInput.value = desktopSearchInput.value;
+                updateClearButton(mobileSearchInput, mobileSearchClear);
+            }
+        });
 
-// Mobile search events
-mobileSearchInput.addEventListener('input', () => {
-    handleSearchInput(mobileSearchInput, mobileSearchClear);
-    
-    // Sync with desktop search
-    desktopSearchInput.value = mobileSearchInput.value;
-    updateClearButton(desktopSearchInput, desktopSearchClear);
-});
-
-mobileSearchClear.addEventListener('click', () => {
-    clearSearch(mobileSearchInput, mobileSearchClear);
-    
-    // Sync with desktop search
-    desktopSearchInput.value = '';
-    updateClearButton(desktopSearchInput, desktopSearchClear);
-});
-
-// Desktop filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => handleFilterClick(e, false));
-});
-
-// Mobile filter buttons
-document.querySelectorAll('.mobile-filter-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => handleFilterClick(e, true));
-});
-
-// Handle window resize
-function handleResize() {
-    // Recalculate items per page on resize
-    itemsPerPage = calculateItemsPerPage();
-    currentPage = 1; // Reset to first page on resize
-    
-    // Check if mobile view
-    const isMobile = window.innerWidth <= 768;
-    const savedView = getSavedViewPreference();
-    const shouldBeGridView = savedView === 'grid';
-    
-    if (isMobile) {
-        // Force grid view on mobile
-        requestsList.style.display = 'none';
-        requestsGrid.style.display = 'grid';
-        requestsGrid.classList.add('active');
-        listViewBtn.classList.remove('active');
-        gridViewBtn.classList.add('active');
-        isGridView = true;
-    } else {
-        // Use saved preference on desktop
-        switchView(shouldBeGridView);
+        desktopSearchClear.addEventListener('click', () => {
+            clearSearch(desktopSearchInput, desktopSearchClear);
+            if (mobileSearchInput) {
+                mobileSearchInput.value = '';
+                updateClearButton(mobileSearchInput, mobileSearchClear);
+            }
+        });
     }
-    
-    renderRequests();
+
+    if (mobileSearchInput && mobileSearchClear) {
+        mobileSearchInput.addEventListener('input', () => {
+            handleSearchInput(mobileSearchInput, mobileSearchClear);
+            if (desktopSearchInput) {
+                desktopSearchInput.value = mobileSearchInput.value;
+                updateClearButton(desktopSearchInput, desktopSearchClear);
+            }
+        });
+
+        mobileSearchClear.addEventListener('click', () => {
+            clearSearch(mobileSearchInput, mobileSearchClear);
+            if (desktopSearchInput) {
+                desktopSearchInput.value = '';
+                updateClearButton(desktopSearchInput, desktopSearchClear);
+            }
+        });
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => handleFilterClick(e, false));
+    });
+
+    document.querySelectorAll('.mobile-filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => handleFilterClick(e, true));
+    });
+}
+
+// Handle window resize with debounce
+let resizeTimeout;
+function handleResize() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Save current state
+        const scrollPosition = window.scrollY;
+        const oldPage = currentPage;
+        const oldItemsPerPage = itemsPerPage;
+        
+        // Recalculate items per page
+        itemsPerPage = calculateItemsPerPage();
+        
+        // Recalculate current page to maintain viewing position
+        if (oldItemsPerPage !== itemsPerPage) {
+            const firstItemIndex = (oldPage - 1) * oldItemsPerPage;
+            currentPage = Math.max(1, Math.floor(firstItemIndex / itemsPerPage) + 1);
+        }
+        
+        // Re-render with new calculations
+        renderRequests();
+        
+        // Restore scroll position
+        setTimeout(() => {
+            window.scrollTo(0, scrollPosition);
+        }, 100);
+    }, 250);
 }
 
 // Initialize everything
-window.addEventListener('load', () => {
-    initializeView(); // Set view based on saved preference
+function initialize() {
+    initializeDOMElements();
+    setupEventListeners();
+    initializeView();
     renderRequests();
-    
-    // Initialize clear buttons
-    updateClearButton(desktopSearchInput, desktopSearchClear);
-    updateClearButton(mobileSearchInput, mobileSearchClear);
-});
 
-window.addEventListener('resize', handleResize);
-
-// Optional: Clear view preference on logout (if needed)
-// You can call this function when user logs out
-function clearViewPreference() {
-    localStorage.removeItem(VIEW_PREFERENCE_KEY);
+    if (desktopSearchInput && desktopSearchClear) {
+        updateClearButton(desktopSearchInput, desktopSearchClear);
+    }
+    if (mobileSearchInput && mobileSearchClear) {
+        updateClearButton(mobileSearchInput, mobileSearchClear);
+    }
 }
+
+// Add CSS for animations if not already present
+function addAnimationStyles() {
+    if (!document.getElementById('request-animation-styles')) {
+        const style = document.createElement('style');
+        style.id = 'request-animation-styles';
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Public API for the module
+const requestManager = {
+    init: function() {
+        // Wait for DOM to be fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                addAnimationStyles();
+                initialize();
+            });
+        } else {
+            addAnimationStyles();
+            initialize();
+        }
+    },
+    
+    handleApprove,
+    handleReject,
+    viewRequestDetails,
+    
+    switchView: function(isGrid) {
+        switchView(isGrid);
+    },
+    
+    clearViewPreference: function() {
+        localStorage.removeItem(VIEW_PREFERENCE_KEY);
+    },
+    
+    getState: function() {
+        return {
+            currentPage,
+            totalPages,
+            itemsPerPage,
+            filteredRequests,
+            isGridView,
+            filters,
+            isMobile
+        };
+    }
+};
+
+// Make it available globally for onclick events
+window.requestManager = requestManager;
+
+// Initialize when script loads if DOM is already ready
+if (document.readyState !== 'loading') {
+    requestManager.init();
+} else {
+    document.addEventListener('DOMContentLoaded', () => {
+        requestManager.init();
+    });
+}
+
+// Export for ES modules (Vite compatibility)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = requestManager;
+} else if (typeof define === 'function' && define.amd) {
+    define([], function() {
+        return requestManager;
+    });
+}
+});

@@ -1,10 +1,4 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
-*/
-
+ 
 * {
     margin: 0;
     padding: 0;
@@ -232,6 +226,56 @@ body {
     transition: left 0.3s ease;
 }
 
+.sub-top-bar {
+    position: fixed;
+    top: 70px;  
+    left: 255px;
+    right: 0;
+    height: 50px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 99; 
+    display: flex;
+    align-items: flex-end;
+    padding: 0 18px; 
+    transition: left 0.3s ease;
+}
+
+.tab-navigation {
+    display: flex;  
+}
+
+.tab-btn {
+    padding: 10px 24px;
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--light-text);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    color: var(--primary-blue);
+}
+
+.tab-btn.active {
+    color: var(--primary-blue);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3.5px;
+    background-color: var(--primary-blue);
+    border-radius: 2px 2px 0 0;
+}
+
 .menu-toggle {
     display: none;
     width: 40px;
@@ -325,25 +369,6 @@ body {
     fill: none;
 }
 
-.notification-badge {
-    position: absolute;
-    top: 1px;
-    right: 4px;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 6px;
-    background-color: #d91414;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: #ffffff;
-    line-height: 1;
-    white-space: nowrap;
-}
-
 .user-btn {
     width: 40px;
     height: 40px;
@@ -378,7 +403,7 @@ body {
 }
 
 .content-area {
-    padding: 80px 25px 20px 25px;
+    padding: 75px 15px 10px 15px;
     background-color: #f5f5f5;
     min-height: 100vh;
 }
@@ -415,10 +440,12 @@ body.sidebar-open-mobile {
         margin-left: 220px;
     }
 
+    .sub-top-bar,
     .top-bar {
         left: 220px;
         padding: 0 20px;
     }
+
 
     .content-area {
         padding: 100px 24px 24px 24px;
@@ -427,6 +454,40 @@ body.sidebar-open-mobile {
     .logo-image {
         width: 140px;
     }
+}
+
+@media (max-width: 768px) {
+    .sub-top-bar {
+        top: 70px;              
+        height: 38px;
+        padding: 0 12px;
+    }
+    
+    .sub-top-bar {
+        left: 0;             
+        padding: 0 16px;
+    }
+
+    .tab-navigation {
+        display: flex; 
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-btn {
+        padding: 10px 14px;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        flex: 1;
+        text-align: center; 
+        width: 50%;
+    }
+
+    .tab-navigation::-webkit-scrollbar {
+        display: none;
+    } 
 }
 
 /* Mobile styles (below 768px) */
@@ -462,7 +523,7 @@ body.sidebar-open-mobile {
 
     .top-bar {
         left: 0;
-        padding: 0 15px;  
+        padding: 0 15px;   
     }
 
     .menu-toggle {
@@ -493,6 +554,11 @@ body.sidebar-open-mobile {
     .top-bar {
         height: 60px;
         padding: 0 10px;
+    }
+
+    .tab-btn {
+        font-size: 0.9rem;
+        padding: 10px 0;
     }
 
     .page-title {

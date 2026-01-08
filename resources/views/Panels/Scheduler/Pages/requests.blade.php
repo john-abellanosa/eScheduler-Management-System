@@ -8,15 +8,17 @@
 @section('content')
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite(['resources/js/Panels/Scheduler/Pages/Requests/requests.js'])
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/requests.css') }}">
-        <title>@yield('title')</title> 
+        <title>@yield('title')</title>
     </head>
+
     <body>
-        <div class="container"> 
+        <div class="container">
             <div class="stats-container">
                 <div class="stat-card">
                     <div class="stat-icon pending">
@@ -27,17 +29,17 @@
                         <div class="stat-label">Pending Requests</div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon leave">
                         <i class="fas fa-umbrella-beach"></i>
                     </div>
                     <div class="stat-info">
                         <div class="stat-value">8</div>
-                        <div class="stat-label">Leave Requests</div>
+                        <div class="stat-label">Request Off</div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon swap">
                         <i class="fas fa-exchange-alt"></i>
@@ -47,7 +49,7 @@
                         <div class="stat-label">Swap Requests</div>
                     </div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon give">
                         <i class="fas fa-calendar-plus"></i>
@@ -84,14 +86,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Desktop search and filters row -->
                 <div class="filters-row-2">
                     <div class="filter-group">
                         <label class="filter-label">Request Type:</label>
                         <div class="filter-buttons">
                             <button class="filter-btn active" data-filter="type" data-value="all">All</button>
-                            <button class="filter-btn" data-filter="type" data-value="leave">Leave Request</button>
+                            <button class="filter-btn" data-filter="type" data-value="request_off">Request Off</button>
                             <button class="filter-btn" data-filter="type" data-value="swap">Schedule Swap</button>
                             <button class="filter-btn" data-filter="type" data-value="give">Give Schedule</button>
                         </div>
@@ -107,7 +109,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div class="view-toggle-container">
                             <div class="view-toggle">
                                 <button class="view-btn active" id="listViewBtn" title="List View">
@@ -128,8 +130,10 @@
                         <div class="mobile-filter-buttons">
                             <button class="mobile-filter-btn active" data-filter="status" data-value="all">All</button>
                             <button class="mobile-filter-btn" data-filter="status" data-value="pending">Pending</button>
-                            <button class="mobile-filter-btn" data-filter="status" data-value="approved">Approved</button>
-                            <button class="mobile-filter-btn" data-filter="status" data-value="rejected">Rejected</button>
+                            <button class="mobile-filter-btn" data-filter="status"
+                                data-value="approved">Approved</button>
+                            <button class="mobile-filter-btn" data-filter="status"
+                                data-value="rejected">Rejected</button>
                         </div>
                     </div>
 
@@ -137,7 +141,8 @@
                         <label class="mobile-filter-label">Request Type:</label>
                         <div class="mobile-filter-buttons">
                             <button class="mobile-filter-btn active" data-filter="type" data-value="all">All</button>
-                            <button class="mobile-filter-btn" data-filter="type" data-value="leave">Leave</button>
+                            <button class="mobile-filter-btn" data-filter="type" data-value="request_off">Request
+                                Off</button>
                             <button class="mobile-filter-btn" data-filter="type" data-value="swap">Swap</button>
                             <button class="mobile-filter-btn" data-filter="type" data-value="give">Give</button>
                         </div>
@@ -154,7 +159,7 @@
             <div class="requests-grid" id="requestsGrid">
                 <!-- Requests will be loaded here -->
             </div>
-    
+
             <div class="pagination-container">
                 <div class="pagination-info" id="paginationInfo">
                     Showing 1 to 8 of 8 entries
@@ -168,7 +173,9 @@
                     <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-        </div> 
+        </div>
+ 
     </body>
+
     </html>
 @endsection

@@ -1,4 +1,5 @@
 @extends('Panels.Admin.PageLayout.layout')
+@section('tab-crew-active', 'active')
 
 @section('title', 'Employee Management')
 
@@ -16,14 +17,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <div class="container">
-        <!-- Tab Navigation -->
-        <div class="tab-navigation">
-            <button class="tab-btn active">Crew</button>
-            <button class="tab-btn" onclick="window.location.href='{{ route('Panels.Admin.PageLayout.manager') }}'">Managers</button>
-        </div>
-
-        <!-- Crew Tab Content -->
+    <div class="container">  
         <div id="crew-tab">
             <div class="control-panel">
                 <div class="page-title">

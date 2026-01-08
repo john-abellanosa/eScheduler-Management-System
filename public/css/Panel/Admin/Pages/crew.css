@@ -15,45 +15,10 @@
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 } 
 
-/* Tab Navigation */
-.tab-navigation {
-    display: flex;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 20px;
-}
-
-.tab-btn {
-    padding: 10px 24px;
-    background: none;
-    border: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--light-text);
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s;
-}
-
-.tab-btn:hover {
-    color: var(--primary-blue);
-}
-
-.tab-btn.active {
-    color: var(--primary-blue);
-}
-
-.tab-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-blue);
-    border-radius: 2px 2px 0 0;
-}
-
-/* Control Panel Styles */
+.container{  
+    padding-top: 60px; 
+} 
+ 
 .control-panel {
     display: flex;
     justify-content: space-between;
@@ -593,29 +558,14 @@ td {
     box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.15);
     border-color: var(--primary-blue);
 }
-
-/* =========================================== */
-/* RESPONSIVE STYLES FOR MOBILE AND TABLET ONLY */
-/* Desktop styles remain completely unchanged */
-/* =========================================== */
         
 /* =========================================== */
 /* RESPONSIVE STYLES - Mobile Cards Design */
 /* =========================================== */
 
-@media (max-width: 768px) {
-    /* 1. Tab Navigation - Full width */
-    .tab-navigation {
-        display: flex;
-        width: 100%;
-    }
-    
-    .tab-btn {
-        flex: 1;
-        text-align: center;
-        padding: 12px 0;
-        font-size: 0.9rem;
-        width: 50%;
+@media (max-width: 768px) { 
+    .container {
+        padding-top: 50px;
     }
     
     /* 2. Control Panel - Mobile grid layout */
@@ -910,12 +860,7 @@ td {
 }
 
 /* Extra small devices */
-@media (max-width: 480px) {
-    .tab-btn {
-        font-size: 0.85rem;
-        padding: 10px 0;
-    }
-    
+@media (max-width: 480px) {    
     .page-title h2 {
         font-size: 1rem;
     }

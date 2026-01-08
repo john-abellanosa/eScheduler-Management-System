@@ -10,4 +10,4 @@ Route::get('/admin/agency', [AdminPageController::class, 'agency'])->name('Panel
 Route::get('/admin/manager_schedule', [AdminPageController::class, 'manager_schedule'])->name('Panels.Admin.PageLayout.manager_schedule');
 Route::get('/admin/requests', [AdminPageController::class, 'requests'])->name('Panels.Admin.PageLayout.requests');
 Route::get('/admin/crew', [AdminPageController::class, 'crew'])->name('Panels.Admin.PageLayout.crew');
-Route::get('/admin/manager', [AdminPageController::class, 'manager'])->name('Panels.Admin.PageLayout.manager');
+Route::get('/admin/managers', [AdminPageController::class, 'manager'])->name('Panels.Admin.PageLayout.manager');

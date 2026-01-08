@@ -14,6 +14,10 @@ class SchedulerPageController extends Controller
     public function crew_schedule(){
         return view('Panels.Scheduler.Pages.crew_schedule');
     }
+    
+    public function crew_availability(){
+        return view('Panels.Scheduler.Pages.crew_availability');
+    }
 
     public function requests(){
         return view('Panels.Scheduler.Pages.requests');
