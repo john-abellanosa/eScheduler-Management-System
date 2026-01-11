@@ -14,14 +14,28 @@ export default defineConfig({
                 'resources/js/Panels/Admin/PageLayout/notifications.js',
 
                 'resources/js/Panels/Admin/Pages/Crew/crew.js',
+                'resources/js/Panels/Admin/Pages/Crew/add_crew_modal.js',
+
                 'resources/js/Panels/Admin/Pages/Manager/manager.js',
+                'resources/js/Panels/Admin/Pages/Manager/add_manager_modal.js',
+
                 'resources/js/Panels/Admin/Pages/Requests/requests.js',
+
+                'resources/js/Panels/Admin/Pages/Manager_Schedule/responsive_table.js',
+                'resources/js/Panels/Admin/Pages/Manager_Schedule/modal.js',
+                'resources/js/Panels/Admin/Pages/Manager_Schedule/dates.js',
 
 
                 // SCHEDULER 
                 'resources/js/Panels/Scheduler/PageLayout/notifications.js',
 
                 'resources/js/Panels/Scheduler/Pages/Requests/requests.js',
+                'resources/js/Panels/Scheduler/Pages/Crew_Schedule/responsive_table.js',
+                'resources/js/Panels/Scheduler/Pages/Crew_Schedule/modal.js',
+                'resources/js/Panels/Scheduler/Pages/Crew_Schedule/dates.js',
+
+                'resources/js/Panels/Scheduler/Pages/Crew_Availability/crew_availability.js',
+                'resources/js/Panels/Scheduler/Pages/Crew_Availability/add_availability_modal.js',
 
 
                 // AGENCY 

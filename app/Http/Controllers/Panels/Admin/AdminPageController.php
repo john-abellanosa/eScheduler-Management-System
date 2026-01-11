@@ -30,4 +30,8 @@ class AdminPageController extends Controller
     public function manager () {
         return view('Panels.Admin.Pages.manager');
     }
+
+    public function admin_login () {
+        return view ('Panels.Admin.Auth.login');
+    }
 }

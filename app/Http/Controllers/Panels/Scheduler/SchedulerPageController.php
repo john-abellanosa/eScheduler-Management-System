@@ -22,4 +22,8 @@ class SchedulerPageController extends Controller
     public function requests(){
         return view('Panels.Scheduler.Pages.requests');
     }
+
+    public function scheduler_login () {
+        return view('Panels.Scheduler.Auth.login');
+    }
 }

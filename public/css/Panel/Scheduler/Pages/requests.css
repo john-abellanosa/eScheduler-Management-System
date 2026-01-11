@@ -510,7 +510,7 @@
 
 .request-reason {
     font-size: 0.85rem;
-    color: var(--light-text);
+    color: var(--dark-text);
     line-height: 1.4;
     max-width: 800px;      
     white-space: normal;   
@@ -520,7 +520,7 @@
 .request-meta {
     display: flex;
     font-size: 0.8rem;
-    color: var(--light-text); 
+    color: var(--dark-text); 
     gap: 16px;
     align-items: center; 
     flex-wrap: wrap;
@@ -674,17 +674,21 @@
 
 .card-reason {
     font-size: 0.85rem;
-    color: var(--light-text);
+    color: var(--dark-text);
     margin-bottom: 10px;
     line-height: 1.4;
 }
 
 .card-meta {
     font-size: 0.8rem;
-    color: var(--light-text);
+    color: var(--dark-text);
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+}
+
+.card-meta i {
+    margin-right: 5px;
 }
 
 /* Grid View Actions - Updated to icons only with borderline */

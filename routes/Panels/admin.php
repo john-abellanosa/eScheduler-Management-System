@@ -11,3 +11,5 @@ Route::get('/admin/manager_schedule', [AdminPageController::class, 'manager_sche
 Route::get('/admin/requests', [AdminPageController::class, 'requests'])->name('Panels.Admin.PageLayout.requests');
 Route::get('/admin/crew', [AdminPageController::class, 'crew'])->name('Panels.Admin.PageLayout.crew');
 Route::get('/admin/managers', [AdminPageController::class, 'manager'])->name('Panels.Admin.PageLayout.manager');
+
+Route::get('/admin/login', [AdminPageController::class, 'admin_login'])->name('Panels.Admin.Auth.login');

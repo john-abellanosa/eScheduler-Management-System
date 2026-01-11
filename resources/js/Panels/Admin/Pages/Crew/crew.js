@@ -540,3 +540,4 @@ document.addEventListener('DOMContentLoaded', function() {
         pagination.innerHTML = paginationHTML;
     }
 });
+

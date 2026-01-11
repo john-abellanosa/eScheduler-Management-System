@@ -13,7 +13,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/Pages/Manager/manager.js'])
-    <link rel="stylesheet" href="{{ asset('css/Panel/Admin/Pages/manager.css') }}">
+    @vite(['resources/js/Panels/Admin/Pages/Manager/add_manager_modal.js'])
+    <link rel="stylesheet" href="{{ asset('css/Panel/Admin/Pages/Manager/manager.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Panel/Admin/Pages/Manager/modal.css') }}">
     <title>@yield('title')</title> 
 </head>
 <body>
@@ -33,7 +35,7 @@
                     </button>
                 </div>
                 
-                <button class="add-btn">
+                <button class="add-btn" id="addEmployeeBtn">
                     <i class="fas fa-plus"></i>
                     Add Manager
                 </button>
@@ -391,6 +393,95 @@
             </div>
         </div>
     </div> 
+
+        <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Manager</h2>
+                <button class="close-btn">×</button>
+            </div>
+            
+            <form id="employeeForm" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" placeholder="Enter first name" required>
+                        <div class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" placeholder="Enter last name" required>
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" placeholder="employee@company.com" required>
+                        <div class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" placeholder="0912-345-6789" required>
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="street">Street Address <span class="required">*</span></label>
+                    <input type="text" id="street" placeholder="Enter street address" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="barangay">Barangay <span class="required">*</span></label>
+                        <input type="text" id="barangay" placeholder="Enter barangay" required>
+                        <div class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city">City <span class="required">*</span></label>
+                        <input type="text" id="city" placeholder="Enter city" required>
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="province">Province <span class="required">*</span></label>
+                        <select id="province" required>
+                            <option value="">Select Province</option>
+                            <option value="Metro Manila">Metro Manila</option>
+                            <option value="Bulacan">Bulacan</option>
+                            <option value="Cavite">Cavite</option>
+                            <option value="Laguna">Laguna</option>
+                            <option value="Rizal">Rizal</option>
+                            <option value="Batangas">Batangas</option>
+                            <option value="Pampanga">Pampanga</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hireDate">Hire Date <span class="required">*</span></label>
+                        <input type="date" id="hireDate" required>
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="modal-actions">
+                <button type="button" class="btn-modal-secondary" id="cancelBtn">Cancel</button>
+                <button type="submit" class="btn-modal-primary" id="submitBtn">Add Manager</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
 @endsection

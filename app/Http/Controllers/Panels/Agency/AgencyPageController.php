@@ -11,8 +11,8 @@ class AgencyPageController extends Controller
         return view('Panels.Agency.Pages.dashboard');
     }
 
-    public function crew_management (){
-        return view('Panels.Agency.Pages.crew_management');
+    public function applicant_management (){
+        return view('Panels.Agency.Pages.applicant_management');
     }
 
     public function deployment (){

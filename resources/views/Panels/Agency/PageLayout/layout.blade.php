@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
     @vite(['resources/js/Panels/Agency/PageLayout/notifications.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/notifications.css') }}">
     <title></title>
@@ -49,13 +50,13 @@
                 <span class="nav-text">Dashboard</span>
             </a>
 
-            <a href="{{ route('Panels.Agency.PageLayout.crew_management') }}" class="nav-item {{ request()->routeIs('Panels.Agency.PageLayout.crew_management') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Agency.PageLayout.applicant_management') }}" class="nav-item {{ request()->routeIs('Panels.Agency.PageLayout.applicant_management') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                     <circle cx="9" cy="7" r="4"></circle>
                     <circle cx="17" cy="7" r="3"></circle>
                 </svg>
-                <span class="nav-text">Crew Management</span>
+                <span class="nav-text">Applicant Management</span>
             </a>
 
             <a href="{{ route('Panels.Agency.PageLayout.deployment') }}" class="nav-item {{ request()->routeIs('Panels.Agency.PageLayout.deployment') ? 'active' : '' }}">

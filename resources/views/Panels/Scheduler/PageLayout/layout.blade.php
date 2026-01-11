@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
     @vite(['resources/js/Panels/Scheduler/PageLayout/notifications.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/notifications.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
@@ -40,7 +41,7 @@
         </div>
 
         <nav class="nav-menu">
-            <a href="{{ route('Panels.Scheduler.PageLayout.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.PageLayout.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Scheduler.Pages.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.dashboard') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard">
                     <rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/>
                     <rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>
@@ -48,7 +49,7 @@
                 <span class="nav-text">Dashboard</span>
             </a>
 
-            <a href="{{ route('Panels.Scheduler.PageLayout.crew_schedule') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.PageLayout.crew_schedule') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Scheduler.Pages.crew_schedule') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.crew_schedule') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check-icon lucide-calendar-check">
                     <path d="M8 2v4"/>
                         <path d="M16 2v4"/>
@@ -59,7 +60,7 @@
                 <span class="nav-text">Crew Schedule</span>
             </a>
 
-            <a href="{{ route('Panels.Scheduler.PageLayout.crew_availability') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.PageLayout.crew_availability') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Scheduler.Pages.crew_availability') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.crew_availability') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days-icon lucide-calendar-days">
                     <path d="M8 2v4"/>
                     <path d="M16 2v4"/>
@@ -75,7 +76,7 @@
                 <span class="nav-text">Crew Availability</span>
             </a>
 
-            <a href="{{ route('Panels.Scheduler.PageLayout.requests') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.PageLayout.requests') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Scheduler.Pages.requests') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.requests') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>

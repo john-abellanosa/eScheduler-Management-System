@@ -1,0 +1,567 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease;
+    margin: 20px auto;
+    position: relative;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background-color: #f9fafb;
+    border-bottom: 2px solid #e5e7eb;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 4px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.close-modal:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.modal-body {
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: #bdbdbd;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background-color: #9e9e9e;
+}
+
+.modal-body::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    flex-shrink: 0;
+}
+
+/* Rest of the CSS remains the same... */
+/* Modal Form Styles */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #374151;
+    font-size: 14px;
+}
+
+.form-group label.required::after {
+    content: " *";
+    color: #dc2626;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #1a3a8f;
+    box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.1);
+}
+
+/* Custom select styling */
+select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%236b7280'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px 6px;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+select.form-control:hover {
+    border-color: #93c5fd;
+}
+
+select.form-control:focus {
+    border-color: #1a3a8f;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%231a3a8f'/%3E%3C/svg%3E");
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.quick-action-btn {
+    padding: 8px 16px;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #374151;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.quick-action-btn:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+.quick-action-btn i {
+    font-size: 14px;
+}
+
+/* Days Column */
+.days-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.day-input-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    transition: border-color 0.2s;
+}
+
+.day-input-row:hover {
+    border-color: #d1d5db;
+}
+
+.day-label {
+    min-width: 90px;
+    font-weight: 500;
+    color: #374151;
+    font-size: 14px;
+    padding-top: 4px;
+}
+
+.time-input-group {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Time Toggle */
+.time-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.time-option {
+    padding: 8px 16px;
+    background: #FFF;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #374151;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    flex: 1;
+    justify-content: center;
+}
+
+.time-option:hover {
+    background: #f4f5f7;
+    border-color: #c7c9d1;
+}
+
+.time-option.active {
+    background: #1a3a8f;
+    border-color: #1a3a8f;
+    color: white;
+}
+
+.time-option.active:hover {
+    background: #15307a;
+    border-color: #15307a;
+}
+
+.time-option i {
+    font-size: 14px;
+}
+
+/* Custom Time Inputs */
+.custom-time-wrapper {
+    padding: 12px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.time-field {
+    position: relative;
+    flex: 1;
+}
+
+.time-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.time-input:focus {
+    outline: none;
+    border-color: #1a3a8f;
+    box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.1);
+}
+
+.time-separator {
+    color: #6b7280;
+    font-weight: 600;
+    padding: 0 5px;
+}
+
+.time-format-hint {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+/* Time Suggestions */
+.time-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.time-suggestion {
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.time-suggestion:hover {
+    background: #f3f4f6;
+}
+
+/* Modal Buttons */
+.btn {
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.btn-primary {
+    background-color: #1a3a8f;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2a56d6;
+}
+
+/* Modal Responsive Styles */
+@media (max-width: 768px) { 
+    .modal-content {
+        width: 100%;
+        max-width: 600px;
+        max-height: 90vh;
+        border-radius: 8px;
+        margin: 0;
+        align-self: center;
+    }
+    
+    .modal-header {
+        padding: 20px 24px;
+    }
+    
+    .modal-header h3 {
+        font-size: 18px;
+    }
+    
+    .modal-body {
+        padding: 20px 24px;
+    }
+    
+    .modal-footer {
+        padding: 16px 24px;
+        gap: 12px;
+    }
+    
+    .btn {
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .day-input-row {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .day-label {
+        min-width: 100%;
+        font-size: 14px;
+    }
+    
+    .time-input-group {
+        width: 100%;
+    }
+    
+    .time-toggle {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+    
+    .time-option {
+        width: 100%;
+        padding: 8px 16px;
+        font-size: 13px;
+        justify-content: center;
+    }
+    
+    .custom-time-wrapper {
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+    
+    .time-inputs {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 10px;
+    }
+    
+    .time-field {
+        width: 100%;
+    }
+    
+    .time-input {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .time-separator {
+        text-align: center;
+        margin: 0;
+    }
+    
+    .quick-actions {
+        gap: 8px;
+    }
+    
+    .quick-action-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {  
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 85vh;
+        border-radius: 8px;
+        margin: 0;
+        align-self: center;
+    }
+    
+    .modal-header {
+        padding: 18px 20px;
+    }
+    
+    .modal-header h3 {
+        font-size: 16px;
+    }
+    
+    .close-modal {
+        font-size: 22px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .modal-body {
+        padding: 18px 20px;
+    }
+    
+    .modal-footer {
+        padding: 14px 20px;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .form-group {
+        margin-bottom: 16px;
+        gap: 6px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+    }
+    
+    .form-control {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .days-column {
+        gap: 10px;
+    }
+    
+    .day-input-row {
+        padding: 12px;
+    }
+    
+    .time-format-hint {
+        font-size: 12px;
+    }
+}

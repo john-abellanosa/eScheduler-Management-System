@@ -21,11 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "pending",
             type: "request_off",
             title: "Annual Off Request",
-            reason: "I am requesting annual off for a planned family vacation. My shifts have been reviewed and I am open to adjustments if needed.",
+            reason: "Planned family vacation",
             period: "Jan 20 - Jan 25, 2024",
             related: "Shift A1 - Morning",
             submitted: "2 hours ago",
             employeeId: "FF012",
+            // New fields for request off
+            leaveType: "Annual Leave", // For leave requests
+            requestOffDate: "Jan 20 - Jan 25, 2024", // For request off
+            dateRequested: "Jan 18, 2024", // Common for all
         },
         {
             id: 2,
@@ -34,11 +38,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "pending",
             type: "swap",
             title: "Schedule Swap Request",
-            reason: "I am requesting a schedule swap due to an urgent family matter. The employee involved has already agreed to the change.",
+            reason: "Urgent family matter",
             period: "Jan 22, 2024",
             related: "Swap with John Doe (Shift B2 ↔ B3)",
             submitted: "1 day ago",
             employeeId: "MG003",
+            // New fields for swap
+            swapPartner: "John Doe", // For swap requests
+            swapDate: "Jan 22, 2024", // For swap requests
+            dateRequested: "Jan 17, 2024",
         },
         {
             id: 3,
@@ -47,11 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "pending",
             type: "give",
             title: "Give Schedule",
-            reason: "I would like to give my assigned shift to another employee due to a prior personal commitment on that date.",
+            reason: "Prior personal commitment",
             period: "Jan 25, 2024",
             related: "Saturday Morning Shift",
             submitted: "2 days ago",
             employeeId: "MG005",
+            // New fields for give away
+            giveTo: "Alex Thompson", // Person to give schedule to
+            shiftDate: "Jan 25, 2024", // Shift date
+            dateRequested: "Jan 16, 2024",
         },
         {
             id: 4,
@@ -60,11 +72,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "approved",
             type: "request_off",
             title: "Medical Off Request",
-            reason: "I am requesting medical off as advised by my doctor. Supporting documents have been submitted for verification.",
+            reason: "Doctor's appointment",
             period: "Feb 1 - Feb 10, 2024",
             related: "Shift C2 - Afternoon",
             submitted: "3 days ago",
             employeeId: "FF015",
+            // New fields for request off
+            leaveType: "Sick Leave",
+            requestOffDate: "Feb 1 - Feb 10, 2024",
+            dateRequested: "Jan 15, 2024",
         },
         {
             id: 5,
@@ -73,11 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "rejected",
             type: "swap",
             title: "Weekend Shift Swap",
-            reason: "I requested a weekend shift swap due to a personal obligation. However, I understand the operational constraints that led to this request being declined.",
+            reason: "Personal obligation",
             period: "Jan 15, 2024",
             related: "Swap with Tom Brown (Weekend A)",
             submitted: "1 week ago",
             employeeId: "MG007",
+            // New fields for swap
+            swapPartner: "Tom Brown",
+            swapDate: "Jan 15, 2024",
+            dateRequested: "Jan 8, 2024",
         },
         {
             id: 6,
@@ -86,11 +106,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "pending",
             type: "request_off",
             title: "Emergency Off",
-            reason: "I am requesting emergency off due to an unexpected family situation. I will provide any required documentation as soon as possible.",
+            reason: "Unexpected family situation",
             period: "Jan 18 - Jan 20, 2024",
             related: "Shift D3 - Night",
             submitted: "5 hours ago",
             employeeId: "FF018",
+            // New fields for request off
+            leaveType: "Emergency Leave",
+            requestOffDate: "Jan 18 - Jan 20, 2024",
+            dateRequested: "Jan 18, 2024",
         },
         {
             id: 7,
@@ -99,11 +123,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "approved",
             type: "give",
             title: "Give Schedule",
-            reason: "I am offering my scheduled shift to another employee who is available and willing to take additional hours.",
+            reason: "Available to cover additional hours",
             period: "Dec 24, 2024",
             related: "Night Shift Coverage",
             submitted: "2 weeks ago",
             employeeId: "FF022",
+            // New fields for give away
+            giveTo: "Maria Garcia",
+            shiftDate: "Dec 24, 2024",
+            dateRequested: "Dec 10, 2024",
         },
         {
             id: 8,
@@ -112,11 +140,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "pending",
             type: "swap",
             title: "Department Swap",
-            reason: "I am requesting a temporary department swap to support cross-training and operational needs during the specified period.",
+            reason: "Cross-training and operational needs",
             period: "Mar 1 - Mar 15, 2024",
             related: "Cross-department training",
             submitted: "Yesterday",
             employeeId: "MG012",
+            // New fields for swap
+            swapPartner: "Department B Team",
+            swapDate: "Mar 1 - Mar 15, 2024",
+            dateRequested: "Jan 17, 2024",
         },
         {
             id: 9,
@@ -125,11 +157,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "pending",
             type: "request_off",
             title: "Family Emergency",
-            reason: "Need to attend to a family emergency out of town.",
+            reason: "Family emergency out of town",
             period: "Feb 5 - Feb 7, 2024",
             related: "Shift E4 - Evening",
             submitted: "3 hours ago",
             employeeId: "FF025",
+            // New fields for request off
+            leaveType: "Emergency Leave",
+            requestOffDate: "Feb 5 - Feb 7, 2024",
+            dateRequested: "Feb 4, 2024",
         },
         {
             id: 10,
@@ -138,11 +174,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "approved",
             type: "swap",
             title: "Shift Exchange",
-            reason: "Exchanging shifts with coworker for personal appointment.",
+            reason: "Personal appointment",
             period: "Feb 10, 2024",
             related: "Swap with Jim Halpert",
             submitted: "2 days ago",
             employeeId: "MG015",
+            // New fields for swap
+            swapPartner: "Jim Halpert",
+            swapDate: "Feb 10, 2024",
+            dateRequested: "Feb 8, 2024",
         },
         {
             id: 11,
@@ -151,11 +191,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "pending",
             type: "give",
             title: "Offer Shift",
-            reason: "Available to cover additional shifts this weekend.",
+            reason: "Available to cover additional shifts",
             period: "Feb 11-12, 2024",
             related: "Weekend Coverage",
             submitted: "1 day ago",
             employeeId: "FF028",
+            // New fields for give away
+            giveTo: "Any available crew member",
+            shiftDate: "Feb 11-12, 2024",
+            dateRequested: "Feb 10, 2024",
         },
         {
             id: 12,
@@ -164,11 +208,15 @@ document.addEventListener("DOMContentLoaded", function () {
             status: "rejected",
             type: "request_off",
             title: "Personal Day",
-            reason: "Requesting personal day for important errands.",
+            reason: "Important errands",
             period: "Feb 15, 2024",
             related: "Day Shift",
             submitted: "4 days ago",
             employeeId: "FF030",
+            // New fields for request off
+            leaveType: "Personal Leave",
+            requestOffDate: "Feb 15, 2024",
+            dateRequested: "Feb 11, 2024",
         },
     ];
 
@@ -371,13 +419,61 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Card Creation Functions
-    function createListCard(req) {
-        const statusClass = getStatusBadgeClass(req.status);
+function createListCard(req) {
+    const statusClass = getStatusBadgeClass(req.status);
+    
+    // Create dynamic meta content based on request type
+    let dynamicMetaContent = '';
+    
+    if (req.type === 'request_off') {
+        dynamicMetaContent = `
+            <span class="meta-item">
+                <i class="fas fa-file-medical"></i>
+                Leave Type: ${req.leaveType}
+            </span>
+            <span class="meta-item">
+                <i class="fas fa-calendar-check"></i>
+                Off Date: ${req.requestOffDate}
+            </span>
+        `;
+    } else if (req.type === 'swap') {
+        dynamicMetaContent = `
+            <span class="meta-item">
+                <i class="fas fa-user-friends"></i>
+                Swap with: ${req.swapPartner}
+            </span>
+            <span class="meta-item">
+                <i class="fas fa-exchange-alt"></i>
+                Swap Date: ${req.swapDate}
+            </span>
+        `;
+    } else if (req.type === 'give') {
+        dynamicMetaContent = `
+            <span class="meta-item">
+                <i class="fas fa-handshake"></i>
+                Give to: ${req.giveTo}
+            </span>
+            <span class="meta-item">
+                <i class="fas fa-calendar-day"></i>
+                Shift Date: ${req.shiftDate}
+            </span>
+        `;
+    }
+    
+    // Common meta for all types
+    const commonMeta = `
+        <span class="meta-item">
+            <i class="far fa-calendar-alt"></i>
+            Date Requested: ${req.dateRequested}
+        </span> 
+        <span class="meta-item">
+            <i class="fas fa-id-card"></i>
+            ID: ${req.employeeId}
+        </span>
+    `;
 
-        return `
-<div class="request-card-list" data-id="${
-            req.id
-        }" data-status="${req.status}" data-type="${req.type}">
+    return `
+<div class="request-card-list" data-id="${req.id}" data-status="${req.status}" data-type="${req.type}">
     <div class="request-card-header">
         <div class="user-info-section">
             <div class="avatar">${getInitials(req.name)}</div>
@@ -404,26 +500,15 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </div>
         
-        <p class="request-reason">${req.reason}</p>
+        <p class="request-reason"><strong>Reason:</strong> ${req.reason}</p>
         
         <div class="request-meta">
-            <span class="meta-item">
-                <i class="far fa-calendar"></i>
-                ${req.period}
-            </span>
-            <span class="meta-item">
-                <i class="far fa-clock"></i>
-                ${req.submitted}
-            </span>
-            <span class="meta-item">
-                <i class="fas fa-id-card"></i>
-                ID: ${req.employeeId}
-            </span>
-        
+            ${dynamicMetaContent}
+            ${commonMeta}
+            
             <div class="list-actions">
-                ${
-                    req.status === "pending"
-                        ? `
+                ${req.status === "pending"
+                    ? `
                     <button class="list-btn approve" onclick="window.requestManagement.handleApprove(${req.id})" title="Approve Request">
                         <i class="fas fa-check"></i>
                     </button>
@@ -431,78 +516,104 @@ document.addEventListener("DOMContentLoaded", function () {
                         <i class="fas fa-times"></i>
                     </button>
                     `
-                        : ""
+                    : ""
                 }
-                <button class="list-btn view" onclick="window.requestManagement.viewRequestDetails(${
-                    req.id
-                })" title="View Details">
+                <!--
+                <button class="list-btn view" onclick="window.requestManagement.viewRequestDetails(${req.id})" title="View Details">
                     <i class="fas fa-eye"></i>
                 </button>
+                -->
             </div>
         </div>
     </div>
 </div>
 `;
-    }
+}
 
     function createGridCard(req) {
         const statusClass = getStatusBadgeClass(req.status);
+        
+        // Create dynamic meta content based on request type
+        let dynamicMetaContent = '';
+        
+        if (req.type === 'request_off') {
+            dynamicMetaContent = `
+            <div class="card-meta">
+                <div><i class="fas fa-file-medical"></i> Leave Type: ${req.leaveType}</div>
+                <div><i class="fas fa-calendar-check"></i> Off Date: ${req.requestOffDate}</div>
+            `;
+        } else if (req.type === 'swap') {
+            dynamicMetaContent = `
+            <div class="card-meta">
+                <div><i class="fas fa-user-friends"></i> Swap with: ${req.swapPartner}</div>
+                <div><i class="fas fa-exchange-alt"></i> Swap Date: ${req.swapDate}</div>
+            `;
+        } else if (req.type === 'give') {
+            dynamicMetaContent = `
+            <div class="card-meta">
+                <div><i class="fas fa-handshake"></i> Give to: ${req.giveTo}</div>
+                <div><i class="fas fa-calendar-day"></i> Shift Date: ${req.shiftDate}</div>
+            `;
+        }
+        
+        // Common meta for all types
+        const commonMeta = `
+        <div class="card-meta">
+            <div><i class="far fa-calendar-alt"></i> Date Requested: ${req.dateRequested}</div> 
+            <div><i class="fas fa-id-card"></i> ID: ${req.employeeId}</div>
+        `;
 
         return `
-<div class="request-card-grid" data-id="${
-            req.id
-        }" data-status="${req.status}" data-type="${req.type}">
-    <div class="card-header-grid">
-        <div class="card-avatar-section">
-            <div class="avatar">${getInitials(req.name)}</div>
-            <div class="card-details">
-                <p class="request-name">${req.name}</p>
-                <span class="request-role">${req.role}</span>
+        <div class="request-card-grid" data-id="${req.id}" data-status="${req.status}" data-type="${req.type}">
+            <div class="card-header-grid">
+                <div class="card-avatar-section">
+                    <div class="avatar">${getInitials(req.name)}</div>
+                    <div class="card-details">
+                        <p class="request-name">${req.name}</p>
+                        <span class="request-role">${req.role}</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="badge ${statusClass}">${req.status.toUpperCase()}</span>
+                </div>
+            </div>
+            
+            <div class="card-content">
+                <div class="card-type">
+                    ${getTypeIcon(req.type)}
+                    <span>${req.title}</span>
+                </div>
+                
+                <p class="card-reason"><strong>Reason:</strong> ${req.reason}</p>
+                
+                <div class="card-meta">
+                    ${dynamicMetaContent}
+                    ${commonMeta}
+                </div>
+            </div>
+            
+            <div class="card-actions-container">
+                <div class="card-actions">
+                    ${req.status === "pending"
+                        ? `
+                        <button class="card-btn approve" onclick="window.requestManagement.handleApprove(${req.id})" title="Approve Request">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="card-btn reject" onclick="window.requestManagement.handleReject(${req.id})" title="Reject Request">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        `
+                        : ""
+                    }
+                    <!--
+                    <button class="card-btn view" onclick="window.requestManagement.viewRequestDetails(${req.id})" title="View Details">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    -->
+                </div>
             </div>
         </div>
-        <div>
-            <span class="badge ${statusClass}">${req.status.toUpperCase()}</span>
-        </div>
-    </div>
-    
-    <div class="card-content">
-        <div class="card-type">
-            ${getTypeIcon(req.type)}
-            <span>${req.title}</span>
-        </div>
-        
-        <p class="card-reason">${req.reason}</p>
-        
-        <div class="card-meta">
-            <div><i class="far fa-calendar"></i> ${req.period}</div>
-            <div><i class="far fa-clock"></i> ${req.submitted}</div>
-            <div><i class="fas fa-id-card"></i> ID: ${req.employeeId}</div>
-        </div>
-    </div>
-    
-    <div class="card-actions-container">
-        <div class="card-actions">
-            ${
-                req.status === "pending"
-                    ? `
-                <button class="card-btn approve" onclick="window.requestManagement.handleApprove(${req.id})" title="Approve Request">
-                    <i class="fas fa-check"></i>
-                </button>
-                <button class="card-btn reject" onclick="window.requestManagement.handleReject(${req.id})" title="Reject Request">
-                    <i class="fas fa-times"></i>
-                </button>
-                `
-                    : ""
-            }
-            <button class="card-btn view" onclick="window.requestManagement.viewRequestDetails(${
-                req.id
-            })" title="View Details">
-                <i class="fas fa-eye"></i>
-            </button>
-        </div>
-    </div>
-</div>
-`;
+        `;
     }
 
     // Search Functions

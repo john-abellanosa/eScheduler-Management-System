@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Auto-refresh runs but does NOT change notification data
             // It only maintains the interval functionality
             console.log(`Auto-refresh at ${new Date().toLocaleTimeString()}`);
-        }, 10000); // 10 seconds
+        }, 900000); // 10 seconds - 10000
     }
 
     // Initial load
