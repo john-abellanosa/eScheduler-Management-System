@@ -1,5 +1,4 @@
-@extends('Panels.Admin.PageLayout.layout')
-@section('tab-crew-active', 'active')
+@extends('Panels.Admin.PageLayout.layout') 
 
 @section('title', 'Employee Management')
 
@@ -62,7 +61,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Employee</th>
+                            <th>Name</th>
                             <th>Contact</th>
                             <th>Address</th>
                             <th>Hire Date</th>

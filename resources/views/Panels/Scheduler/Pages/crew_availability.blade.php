@@ -1425,7 +1425,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
-                        <button class="btn btn-primary" id="submitBtn">Save Availability</button>
+                        <button class="btn btn-primary" id="submitBtn">Add</button>
                     </div>
                 </div>
             </div>

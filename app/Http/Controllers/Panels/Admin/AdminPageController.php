@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AdminPageController extends Controller
 {
+    public function admin_login () {
+        return view ('Panels.Admin.Auth.login');
+    }
+
     public function dashboard () {
         return view('Panels.Admin.Pages.dashboard');
     }
@@ -24,14 +28,26 @@ class AdminPageController extends Controller
     }
 
     public function crew () {
-        return view('Panels.Admin.Pages.crew');
+        return view('Panels.Admin.Pages.Employee_Management.crew');
     }
 
     public function manager () {
-        return view('Panels.Admin.Pages.manager');
+        return view('Panels.Admin.Pages.Employee_Management.manager');
     }
 
-    public function admin_login () {
-        return view ('Panels.Admin.Auth.login');
+    public function crew_shift_history () {
+        return view ('Panels.Admin.Pages.Shift_History.crew');
+    }
+
+    public function manager_shift_history () {
+        return view ('Panels.Admin.Pages.Shift_History.manager');
+    }
+
+    public function max_crew_management () {
+        return view ('Panels.Admin.Pages.max_crew_management');
+    }
+
+    public function schedule_overview () {
+        return view ('Panels.Admin.Pages.schedule_overview');
     }
 }

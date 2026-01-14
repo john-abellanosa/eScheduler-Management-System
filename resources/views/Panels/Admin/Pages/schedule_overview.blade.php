@@ -1,25 +1,23 @@
-@extends('Panels.Scheduler.PageLayout.layout')
+@extends('Panels.Admin.PageLayout.layout')
 
-@section('title', 'Crew Schedule')
+@section('title', 'Schedule Overview')
 
-@section('page-title', 'Crew Schedule')
-@section('page-subtitle', 'Manage weekly crew schedules')
+@section('page-title', 'Schedule Overview')
+@section('page-subtitle', 'Overview Schedules for Crew and Managers')
 
 @section('content')
-    <!DOCTYPE html>
+        <!DOCTYPE html>
     <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        @vite(['resources/js/Panels/Scheduler/Pages/Crew_Schedule/responsive_table.js'])
-        @vite(['resources/js/Panels/Scheduler/Pages/Crew_Schedule/modal.js'])
+        @vite(['resources/js/Panels/Scheduler/Pages/Crew_Schedule/responsive_table.js']) 
         @vite(['resources/js/Panels/Scheduler/Pages/Crew_Schedule/dates.js'])
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/page_header.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/stats_card.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/shift_stats_card.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/filter_section.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/modal.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/table.css') }}">
         <title>@yield('title')</title>
     </head>
@@ -79,12 +77,6 @@
             </div>
 
             <div class="stats-bar">
-                <div class="stat-card">
-                    <i class="fas fa-users-slash stat-icon"></i>
-                    <div class="stat-card-label">Maximum Crew</div>
-                    <div class="stat-card-value">65</div>
-                    <div class="stat-card-subtitle">Maximum number of crew that can be scheduled on selected date</div>
-                </div>
                 <div class="stat-card">
                     <i class="fas fa-chart-line stat-icon"></i>
                     <div class="stat-card-label">Total Hours This Week</div>
@@ -231,66 +223,6 @@
                 </div>
             </div>
 
-            {{-- MODAL --}}
-            <div id="crewModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Add Crew to <span id="modalDeptName"></span></h2>
-                        <button class="close-btn">×</button>
-                    </div>
-                    <div class="modal-form">
-                        <div class="form-group">
-                            <label for="modalName">Crew Name</label>
-                            <select id="modalName">
-                                <option value="">Select Crew Member</option>
-                                <option value="John Sindicato">John Sindicato</option>
-                                <option value="Michael Myers">Michael Myers</option>
-                                <option value="John Wick">John Wick</option>
-                                <option value="Jason Statham">Jason Statham</option>
-                                <option value="Sarah Johnson">Sarah Johnson</option>
-                                <option value="Emily Davis">Emily Davis</option>
-                                <option value="Robert Brown">Robert Brown</option>
-                                <option value="Lisa Anderson">Lisa Anderson</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="modalStation">Station</label>
-                            <select id="modalStation">
-                                <option value="">Select Station</option>
-                                <option value="INITIATOR">INITIATOR</option>
-                                <option value="ASM/GRILL">ASM/GRILL</option>
-                                <option value="FRY STATION">FRY STATION</option>
-                                <option value="CASHIER1">CASHIER1</option>
-                                <option value="CASHIER2">CASHIER2</option>
-                                <option value="WINDOW1">WINDOW1</option>
-                                <option value="WINDOW2">WINDOW2</option>
-                                <option value="RUNNER">RUNNER</option>
-                                <option value="MAINTENANCE">MAINTENANCE</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Working Hours</label>
-                            <div class="time-inputs">
-                                <input type="time" id="modalStartTime">
-                                <span class="time-separator">to</span>
-                                <input type="time" id="modalEndTime">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="modalBreak">Break Time</label>
-                            <input type="time" id="modalBreak">
-                        </div>
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn-modal-secondary">Cancel</button>
-                        <button class="btn-modal-primary">Add Crew</button>
-                    </div>
-                </div>
-            </div>
-
             <div class="departments-container manager-section">
                 {{-- MANAGER --}}
                 <div class="department-section">
@@ -301,7 +233,7 @@
                         <div class="header-content-right">
                             <div class="dept-stats">
                                 <div class="dept-stat-item">
-                                    <i class="fas fa-users"></i> 5 Total Manager
+                                    <i class="fas fa-users"></i> 5 Total Crew
                                 </div>
                                 <div class="dept-stat-item">
                                     <i class="fas fa-clock"></i> 40h Total
@@ -524,10 +456,7 @@
                                 <div class="dept-stat-item">
                                     <i class="fas fa-clock"></i> 48h Total
                                 </div>
-                            </div>
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
+                            </div> 
                         </div>
                     </div>
                     <div class="table-wrapper">
@@ -563,8 +492,7 @@
                                     <th class="hour-header">8</th>
                                     <th class="hour-header">9</th>
                                     <th class="hour-header">10</th>
-                                    <th class="hour-header">11</th>
-                                    <th>Action</th>
+                                    <th class="hour-header">11</th> 
                                 </tr>
                             </thead>
                             <tbody>
@@ -597,15 +525,7 @@
                                     <td class="schedule-cell"></td>
                                     <td class="schedule-cell"></td>
                                     <td class="schedule-cell"></td>
-                                    <td class="schedule-cell"></td>
-                                    <td class="action-cell">
-                                        <div style="display: flex; gap: 4px; justify-content: center;">
-                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                            <button class="action-btn delete-btn">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="schedule-cell"></td> 
                                 </tr>
                                 <tr>
                                     <td>Michael Myers</td>
@@ -636,13 +556,7 @@
                                     <td class="schedule-cell"></td>
                                     <td class="schedule-cell"></td>
                                     <td class="schedule-cell"></td>
-                                    <td class="schedule-cell"></td>
-                                    <td class="action-cell">
-                                        <div style="display: flex; gap: 4px; justify-content: center;">
-                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                            <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
+                                    <td class="schedule-cell"></td> 
                                 </tr>
                                 <!-- ... other rows ... -->
                             </tbody>
@@ -665,10 +579,7 @@
                                 <div class="dept-stat-item">
                                     <i class="fas fa-clock"></i> 24h Total
                                 </div>
-                            </div>
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
+                            </div> 
                         </div>
                     </div>
                     <div class="table-wrapper">
@@ -704,8 +615,7 @@
                                     <th class="hour-header">8</th>
                                     <th class="hour-header">9</th>
                                     <th class="hour-header">10</th>
-                                    <th class="hour-header">11</th>
-                                    <th>Action</th>
+                                    <th class="hour-header">11</th> 
                                 </tr>
                             </thead>
                             <tbody>
@@ -738,13 +648,7 @@
                                     <td class="schedule-cell"></td>
                                     <td class="schedule-cell"></td>
                                     <td class="schedule-cell"></td>
-                                    <td class="schedule-cell"></td>
-                                    <td class="action-cell">
-                                        <div style="display: flex; gap: 4px; justify-content: center;">
-                                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                            <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
+                                    <td class="schedule-cell"></td> 
                                 </tr>
                                 <!-- ... other rows ... -->
                             </tbody>
@@ -759,12 +663,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">FRONT COUNTER</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -775,12 +674,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">DRIVE THRU</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -790,12 +684,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">DELIVERY SYSTEM</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -805,12 +694,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">RECEIVING DELIVERY</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -820,12 +704,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">MAINTENANCE</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -835,12 +714,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">LOBBY</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -850,12 +724,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">MARKETING</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -865,12 +734,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">TRAINING</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -880,12 +744,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">FRENCH FRIES</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
@@ -895,12 +754,7 @@
                             <i class="fas fa-circle blue-dot"></i>
                             <div class="department-title">CUSTOMER AREA</div>
                             <div class="empty-message-inline"><i class="fas fa-inbox"></i>NO CREW PLOTTED</div>
-                        </div>
-                        <div class="header-content-right">
-                            <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
-                            </button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>

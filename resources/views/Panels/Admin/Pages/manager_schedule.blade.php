@@ -109,17 +109,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="modalBreak">Break Time</label>
-                            <input type="time" id="modalBreak">
-                        </div>
-
-                        <div class="form-group">
                             <label>Working Hours</label>
                             <div class="time-inputs">
                                 <input type="time" id="modalStartTime">
                                 <span class="time-separator">to</span>
                                 <input type="time" id="modalEndTime">
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modalBreak">Break Time</label>
+                            <input type="time" id="modalBreak">
                         </div>
                     </div>
                     <div class="modal-actions">

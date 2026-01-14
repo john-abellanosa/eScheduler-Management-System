@@ -7,23 +7,27 @@ use Illuminate\Http\Request;
 
 class SchedulerPageController extends Controller
 {
-    public function dashboard(){
+    public function scheduler_login () {
+        return view('Panels.Scheduler.Auth.login');
+    }
+
+    public function dashboard () {
         return view('Panels.Scheduler.Pages.dashboard');
     }
 
-    public function crew_schedule(){
+    public function crew_schedule () {
         return view('Panels.Scheduler.Pages.crew_schedule');
     }
     
-    public function crew_availability(){
+    public function crew_availability () {
         return view('Panels.Scheduler.Pages.crew_availability');
     }
 
-    public function requests(){
+    public function requests () {
         return view('Panels.Scheduler.Pages.requests');
     }
 
-    public function scheduler_login () {
-        return view('Panels.Scheduler.Auth.login');
+    public function shift_history () {
+        return view('Panels.Scheduler.Pages.shift_history');
     }
 }

@@ -37,7 +37,7 @@
         </div>
 
         <nav class="nav-menu">
-            <a href="{{ route('Panels.Admin.PageLayout.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Admin.Pages.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.dashboard') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard">
                     <rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/>
                     <rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>
@@ -45,7 +45,18 @@
                 <span class="nav-text">Dashboard</span>
             </a>
 
-            <a href="{{ route('Panels.Admin.PageLayout.manager_schedule') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.manager_schedule') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Admin.Pages.schedule_overview') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.schedule_overview') ? 'active' : '' }}">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check-icon lucide-calendar-check">
+                    <path d="M8 2v4"/>
+                        <path d="M16 2v4"/>
+                            <rect width="18" height="18" x="3" y="4" rx="2"/>
+                        <path d="M3 10h18"/>
+                    <path d="m9 16 2 2 4-4"/>
+                </svg>
+                <span class="nav-text">Schedule Overview</span>
+            </a>
+
+            <a href="{{ route('Panels.Admin.Pages.manager_schedule') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.manager_schedule') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="3" y1="9" x2="21" y2="9"></line>
@@ -55,7 +66,16 @@
                 <span class="nav-text">Manager Schedule</span>
             </a>
 
-            <a href="{{ route('Panels.Admin.PageLayout.crew') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.crew', 'Panels.Admin.PageLayout.manager') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Admin.Pages.max_crew_management') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.max_crew_management') ? 'active' : '' }}">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M6 20v-2a6 6 0 0 1 12 0v2"/> 
+                    <line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/>
+                </svg>
+                <span class="nav-text">Max Crew Management</span>
+            </a>
+
+            <a href="{{ route('Panels.Admin.Pages.Employee_Management.crew') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.Employee_Management.crew', 'Panels.Admin.Pages.Employee_Management.manager') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
                     <path d="M16 3.128a4 4 0 0 1 0 7.744"/>
@@ -65,7 +85,7 @@
                 <span class="nav-text">Employee Management</span>
             </a>
 
-            <a href="{{ route('Panels.Admin.PageLayout.requests') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.requests') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Admin.Pages.requests') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.requests') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
@@ -73,6 +93,15 @@
                     <line x1="9" y1="15" x2="15" y2="15"></line>
                 </svg>
                 <span class="nav-text">Requests</span>
+            </a>
+
+            <a href="{{ route('Panels.Admin.Pages.Shift_History.crew') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.Shift_History.crew', 'Panels.Admin.Pages.Shift_History.manager') ? 'active' : '' }}">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history-icon lucide-history">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                    <path d="M3 3v5h5"/>
+                    <path d="M12 7v5l4 2"/>
+                </svg>
+                <span class="nav-text">Shift History</span>
             </a>
 
             {{-- <a href="{{ route('Panels.Admin.PageLayout.agency') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.agency') ? 'active' : '' }}">
@@ -157,23 +186,40 @@
             </div>
         </div>
 
-        @if (
-            request()->routeIs(
-                'Panels.Admin.PageLayout.crew',
-                'Panels.Admin.PageLayout.manager'
-            )
-        )
+        @php
+            $isEmployee = request()->routeIs(
+                'Panels.Admin.Pages.Employee_Management.crew',
+                'Panels.Admin.Pages.Employee_Management.manager'
+            );
+
+            $isShiftHistory = request()->routeIs(
+                'Panels.Admin.Pages.Shift_History.crew',
+                'Panels.Admin.Pages.Shift_History.manager'
+            );
+        @endphp
+
+        @if ($isEmployee || $isShiftHistory)
             <div class="sub-top-bar">
                 <div class="tab-navigation">
                     <button
-                        class="tab-btn @yield('tab-crew-active')"
-                        onclick="window.location.href='{{ route('Panels.Admin.PageLayout.crew') }}'">
+                        class="tab-btn {{ request()->routeIs(
+                            'Panels.Admin.Pages.Employee_Management.crew',
+                            'Panels.Admin.Pages.Shift_History.crew'
+                        ) ? 'active' : '' }}"
+                        onclick="window.location.href='{{ $isEmployee
+                            ? route('Panels.Admin.Pages.Employee_Management.crew')
+                            : route('Panels.Admin.Pages.Shift_History.crew') }}'">
                         Crew
                     </button>
 
                     <button
-                        class="tab-btn @yield('tab-manager-active')"
-                        onclick="window.location.href='{{ route('Panels.Admin.PageLayout.manager') }}'">
+                        class="tab-btn {{ request()->routeIs(
+                            'Panels.Admin.Pages.Employee_Management.manager',
+                            'Panels.Admin.Pages.Shift_History.manager'
+                        ) ? 'active' : '' }}"
+                        onclick="window.location.href='{{ $isEmployee
+                            ? route('Panels.Admin.Pages.Employee_Management.manager')
+                            : route('Panels.Admin.Pages.Shift_History.manager') }}'">
                         Managers
                     </button>
                 </div>
