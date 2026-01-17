@@ -25,9 +25,14 @@ export default defineConfig({
                 'resources/js/Panels/Admin/Pages/Manager_Schedule/modal.js',
                 'resources/js/Panels/Admin/Pages/Manager_Schedule/dates.js',
 
+                'resources/js/Panels/Admin/Pages/Units&Position_Setup/units&position_setup.js',
+                'resources/js/Panels/Admin/Pages/Schedule_Overview/responsive_table.js',
+                'resources/js/Panels/Admin/Pages/Schedule_Overview/dates.js',
+
 
                 // SCHEDULER 
                 'resources/js/Panels/Scheduler/PageLayout/notifications.js',
+                'resources/js/Panels/Scheduler/PageLayout/dropdown.js',
 
                 'resources/js/Panels/Scheduler/Pages/Requests/requests.js',
                 'resources/js/Panels/Scheduler/Pages/Crew_Schedule/responsive_table.js',
@@ -36,6 +41,8 @@ export default defineConfig({
 
                 'resources/js/Panels/Scheduler/Pages/Crew_Availability/crew_availability.js',
                 'resources/js/Panels/Scheduler/Pages/Crew_Availability/add_availability_modal.js',
+
+                'resources/js/Panels/Scheduler/Pages/Settings/settings.js',
 
 
                 // AGENCY 
@@ -55,7 +62,7 @@ export default defineConfig({
         },
 
         hmr: {
-            host: '192.168.1.14',
+            host: '10.226.161.49',
             protocol: 'ws',
         },
     },

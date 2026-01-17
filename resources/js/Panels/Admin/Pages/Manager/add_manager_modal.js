@@ -4,22 +4,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelBtn = document.getElementById("cancelBtn");
     const submitBtn = document.getElementById("submitBtn");
     const employeeForm = document.getElementById("employeeForm");
-    const addEmployeeBtn = document.getElementById("addEmployeeBtn"); // NEW
+    const addEmployeeBtn = document.getElementById("addEmployeeBtn");
+    const roleOptions = modal.querySelectorAll(".role-option");
 
     // Get all form inputs
-    const formInputs = modal.querySelectorAll("input, select");
+    const formInputs = modal.querySelectorAll("input[type='text'], input[type='email'], input[type='tel'], input[type='date'], select");
 
-    // OPEN MODAL FUNCTION - REMOVED from window object
+    // OPEN MODAL
     const openEmployeeModal = function () {
         modal.classList.add("active");
     };
 
-    // ADD EVENT LISTENER TO THE BUTTON - NEW
     if (addEmployeeBtn) {
         addEmployeeBtn.addEventListener("click", openEmployeeModal);
     }
 
-    // CLOSE MODAL (X button) - NO CLEAR
+    // CLOSE MODAL (X button)
     closeBtn.addEventListener("click", () => {
         modal.classList.remove("active");
     });
@@ -44,12 +44,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // MANAGER TYPE SELECTION
+    roleOptions.forEach((option) => {
+        option.addEventListener("click", (e) => {
+            e.preventDefault();
+            roleOptions.forEach((btn) => btn.classList.remove("active"));
+            option.classList.add("active");
+            document.getElementById("managerType").value = option.dataset.role;
+            
+            // Clear error message for manager type when selection is made
+            const errorElement = option.closest(".form-group").querySelector(".error-message");
+            if (errorElement) {
+                errorElement.textContent = "";
+            }
+        });
+    });
+
     // FORM SUBMISSION
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
         if (validateForm()) {
-            // If validation passes, submit the form
             submitForm();
         }
     });
@@ -61,6 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear previous error messages
         const errorMessages = modal.querySelectorAll(".error-message");
         errorMessages.forEach((error) => (error.textContent = ""));
+
+        // Validate manager type selection
+        const managerType = document.getElementById("managerType").value;
+        if (!managerType) {
+            isValid = false;
+            const typeGroup = modal.querySelector(".role-toggle").closest(".form-group");
+            const typeError = typeGroup.querySelector(".error-message");
+            typeError.textContent = "Please select a manager type";
+        }
 
         // Validate each required field
         formInputs.forEach((input) => {
@@ -105,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function submitForm() {
         // Collect form data
         const formData = {
+            managerType: document.getElementById("managerType").value,
             firstName: document.getElementById("firstName").value,
             lastName: document.getElementById("lastName").value,
             email: document.getElementById("email").value,
@@ -118,9 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("Form submitted with data:", formData);
 
-        // Here you would typically send the data to a server
-        // For now, we'll just show an alert and clear the form
-        alert("Employee added successfully!");
+        alert("Manager added successfully!\nType: " + (formData.managerType === "scheduler" ? "Scheduler Manager" : "Regular Manager"));
         clearForm();
         modal.classList.remove("active");
     }
@@ -134,6 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 input.value = "";
             }
         });
+
+        // Reset manager type
+        document.getElementById("managerType").value = "";
+        roleOptions.forEach((btn) => btn.classList.remove("active"));
 
         // Clear error messages
         const errorMessages = modal.querySelectorAll(".error-message");

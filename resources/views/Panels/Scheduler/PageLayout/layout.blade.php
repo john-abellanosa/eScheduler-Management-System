@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
+    @vite(['resources/js/Panels/Scheduler/PageLayout/dropdown.js'])
     @vite(['resources/js/Panels/Scheduler/PageLayout/notifications.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/PageLayout/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/PageLayout/notifications.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
     <title></title>
@@ -41,7 +42,7 @@
         </div>
 
         <nav class="nav-menu">
-            <a href="{{ route('Panels.Scheduler.Pages.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Scheduler.Pages.Dashboard.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.Dashboard.dashboard', 'Panels.Scheduler.Pages.Dashboard.announcement') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard">
                     <rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/>
                     <rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>
@@ -50,14 +51,15 @@
             </a>
 
             <a href="{{ route('Panels.Scheduler.Pages.crew_schedule') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.crew_schedule') ? 'active' : '' }}">
-                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check-icon lucide-calendar-check">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-plus-icon lucide-calendar-plus">
+                    <path d="M16 19h6"/>
+                    <path d="M16 2v4"/>
+                    <path d="M19 16v6"/>
+                    <path d="M21 12.598V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8.5"/>
+                    <path d="M3 10h18"/>
                     <path d="M8 2v4"/>
-                        <path d="M16 2v4"/>
-                            <rect width="18" height="18" x="3" y="4" rx="2"/>
-                        <path d="M3 10h18"/>
-                    <path d="m9 16 2 2 4-4"/>
                 </svg>
-                <span class="nav-text">Crew Schedule</span>
+                <span class="nav-text">Schedule</span>
             </a>
 
             <a href="{{ route('Panels.Scheduler.Pages.crew_availability') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.crew_availability') ? 'active' : '' }}">
@@ -73,7 +75,7 @@
                     <path d="M12 18h.01"/>
                     <path d="M16 18h.01"/>
                 </svg>
-                <span class="nav-text">Crew Availability</span>
+                <span class="nav-text">Time Availability</span>
             </a>
 
             <a href="{{ route('Panels.Scheduler.Pages.requests') }}" class="nav-item {{ request()->routeIs('Panels.Scheduler.Pages.requests') ? 'active' : '' }}">
@@ -120,12 +122,53 @@
                     </svg>
                     <span class="notification-badge" id="notifBadge">3</span>
                 </button>
-                <button class="user-btn">
+                <button class="user-btn" id="userBtn">
                     <svg class="user-icon" viewBox="0 0 24 24">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                 </button>
+
+                <div class="dropdown-backdrop" id="backdrop"></div>
+
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="user-info">
+                        <div class="user-initials">JA</div>
+                        <div class="user-details">
+                            <span class="user-name">John Lloyd Abellanosa</span>
+                            <span class="user-email">johnlloydabellanosa1@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <button class="dropdown-item" id="settingsBtn" onclick="window.location.href='{{ route('Panels.Scheduler.Pages.settings') }}'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cog-icon lucide-cog">
+                            <path d="M11 10.27 7 3.34"/>
+                            <path d="m11 13.73-4 6.93"/>
+                            <path d="M12 22v-2"/>
+                            <path d="M12 2v2"/>
+                            <path d="M14 12h8"/>
+                            <path d="m17 20.66-1-1.73"/>
+                            <path d="m17 3.34-1 1.73"/>
+                            <path d="M2 12h2"/>
+                            <path d="m20.66 17-1.73-1"/>
+                            <path d="m20.66 7-1.73 1"/>
+                            <path d="m3.34 17 1.73-1"/>
+                            <path d="m3.34 7 1.73 1"/>
+                            <circle cx="12" cy="12" r="2"/>
+                            <circle cx="12" cy="12" r="8"/>
+                        </svg>
+                        Settings
+                    </button>
+
+                    <button class="dropdown-item" id="logoutBtn" onclick="window.location.href='{{ route('Panels.Scheduler.Auth.login') }}'">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Log out
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -169,6 +212,6 @@
         <div class="content-area">
             @yield('content')
         </div>
-    </div>
+    </div> 
 </body>
 </html>

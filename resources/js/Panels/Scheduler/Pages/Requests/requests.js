@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 1,
             name: "Sarah Johnson",
-            role: "Crew Member",
+            role: "Crew",
             status: "pending",
             type: "request_off",
             title: "Annual Off Request",
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 4,
             name: "John Davis",
-            role: "Crew Member",
+            role: "Crew",
             status: "approved",
             type: "request_off",
             title: "Medical Off Request",
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 6,
             name: "David Miller",
-            role: "Crew Member",
+            role: "Crew",
             status: "pending",
             type: "request_off",
             title: "Emergency Off",
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 7,
             name: "Robert Taylor",
-            role: "Crew Member",
+            role: "Crew",
             status: "approved",
             type: "give",
             title: "Give Schedule",
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 9,
             name: "Michael Scott",
-            role: "Crew Member",
+            role: "Crew",
             status: "pending",
             type: "request_off",
             title: "Family Emergency",
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 11,
             name: "Dwight Schrute",
-            role: "Crew Member",
+            role: "Crew",
             status: "pending",
             type: "give",
             title: "Offer Shift",
@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 12,
             name: "Jim Halpert",
-            role: "Crew Member",
+            role: "Crew",
             status: "rejected",
             type: "request_off",
             title: "Personal Day",

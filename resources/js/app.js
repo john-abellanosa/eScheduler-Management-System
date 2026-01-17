@@ -16,9 +16,15 @@ import './Panels/Admin/Pages/Manager_Schedule/responsive_table.js';
 import './Panels/Admin/Pages/Manager_Schedule/modal.js';
 import './Panels/Admin/Pages/Manager_Schedule/dates.js';
 
+import './Panels/Admin/Pages/Units&Position_Setup/units&position_setup.js';
+
+import './Panels/Admin/Pages/Schedule_Overview/responsive_table.js';
+import './Panels/Admin/Pages/Schedule_Overview/dates.js';
+
 
 // SCHEDULER 
 import './Panels/Scheduler/PageLayout/notifications.js';
+import './Panels/Scheduler/PageLayout/dropdown.js';
 
 import './Panels/Scheduler/Pages/Requests/requests.js';
 import './Panels/Scheduler/Pages/Crew_Schedule/responsive_table.js';
@@ -27,6 +33,8 @@ import './Panels/Scheduler/Pages/Crew_Schedule/dates.js';
 
 import './Panels/Scheduler/Pages/Crew_Availability/crew_availability.js';
 import './Panels/Scheduler/Pages/Crew_Availability/add_availability_modal.js';
+
+import './Panels/Scheduler/Pages/Settings/settings.js';
 
 
 // AGENCY 

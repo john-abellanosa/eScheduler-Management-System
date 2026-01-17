@@ -12,7 +12,11 @@ class SchedulerPageController extends Controller
     }
 
     public function dashboard () {
-        return view('Panels.Scheduler.Pages.dashboard');
+        return view('Panels.Scheduler.Pages.Dashboard.dashboard');
+    }
+
+    public function announcement () {
+        return view('Panels.Scheduler.Pages.Dashboard.announcement');
     }
 
     public function crew_schedule () {
@@ -29,5 +33,9 @@ class SchedulerPageController extends Controller
 
     public function shift_history () {
         return view('Panels.Scheduler.Pages.shift_history');
+    }
+
+    public function settings () {
+        return view('Panels.Scheduler.Pages.settings');
     }
 }

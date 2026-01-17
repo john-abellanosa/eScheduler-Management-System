@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <style>
+    <style> 
         :root {
             --color-primary-dark: #1a1a1a;
             --color-primary-light: #1a3a8f;
@@ -36,70 +36,88 @@
             --color-error-text: #8b3a3a;
             --color-error-border: #f5cccc;
             --color-error-input: #c00;
-        }  
+        } 
 
-        .container {
+        .container { 
             margin: 1% auto;
             background-color: var(--color-bg-white);
             border-radius: 0;
-            border: 1px solid var(--color-border);
+            border: 1px solid var(--color-border); 
         }
 
         .page-header {
             background-color: var(--color-bg-white);
-            padding: 24px;
+            padding: 1.5rem;
             border-bottom: 1px solid var(--color-border);
         }
 
         .page-header h1 {
-            font-size: 20px;
+            font-size: 1.25rem;
             color: var(--color-primary-dark);
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 0.25rem;
         }
 
         .page-header p {
             color: var(--color-text-secondary);
-            font-size: 13px;
+            font-size: 0.8125rem;
         }
 
         .week-display {
             background-color: var(--color-bg-white);
-            padding: 16px 24px;
+            padding: 1rem;
             border-bottom: 1px solid var(--color-border);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .week-display {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 1.5rem;
+                gap: 1.5rem;
+            }
         }
 
         .week-info {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 0.5rem;
+            flex: 1;
         }
 
         .week-range {
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--color-primary-dark);
         }
 
         .week-total {
-            font-size: 13px;
+            font-size: 0.8125rem;
             color: var(--color-text-secondary);
         }
 
         .week-navigation {
             display: flex;
-            gap: 4px;
+            flex-wrap: nowrap;
+            gap: 0.25rem;
             align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .week-navigation {
+                justify-content: flex-end;
+            }
         }
 
         .nav-btn {
-            width: 33px;
-            height: 33px;
-            border-radius: 4px;
+            width: 2.0625rem;
+            height: 2.0625rem;
+            border-radius: 0.25rem;
             background-color: var(--color-bg-light);
             border: 1px solid var(--color-border-dark);
             color: var(--color-text-tertiary);
@@ -108,7 +126,8 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
-            font-size: 16px;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
 
         .nav-btn:hover {
@@ -120,20 +139,35 @@
             background-color: var(--color-active-bg);
         }
 
+        .nav-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
         .week-selector {
             display: flex;
-            gap: 4px;
+            gap: 0.25rem;
+            flex: 0 1 auto;
+            min-width: 0;
         }
 
         .week-btn {
-            padding: 8px 14px;
+            padding: 0.5rem 0.875rem;
             background-color: var(--color-bg-light);
             border: 1px solid var(--color-border-dark);
-            border-radius: 4px;
+            border-radius: 0.25rem;
             cursor: pointer;
             color: var(--color-text-tertiary);
-            font-size: 13px;
+            font-size: 0.8125rem;
             transition: all 0.2s;
+            flex: 0 1 auto;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            .week-btn {
+                flex: 0 1 auto;
+            }
         }
 
         .week-btn:hover {
@@ -148,22 +182,48 @@
         }
 
         .content {
-            padding: 24px;
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .content {
+                padding: 1.5rem;
+            }
         }
 
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 12px;
-            margin-bottom: 24px;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .days-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .days-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 0.75rem;
+            }
         }
 
         .day-card {
             background-color: var(--color-bg-lighter);
             border: 1px solid var(--color-border);
-            border-radius: 4px;
-            padding: 14px;
+            border-radius: 0.25rem;
+            padding: 0.875rem;
             transition: all 0.2s;
+        }
+
+        @media (min-width: 768px) {
+            .day-card {
+                padding: 1rem;
+            }
         }
 
         .day-card:hover {
@@ -172,60 +232,61 @@
         }
 
         .day-header {
-            margin-bottom: 12px;
-            padding-bottom: 8px;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
             border-bottom: 1px solid var(--color-border);
         }
 
         .day-name {
-            font-size: 12px;
+            font-size: 0.75rem;
             color: var(--color-text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.4px;
-            margin-bottom: 4px;
+            letter-spacing: 0.025rem;
+            margin-bottom: 0.25rem;
             font-weight: 500;
         }
 
         .date {
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 600;
             color: var(--color-primary-dark);
             display: flex;
             align-items: baseline;
-            gap: 4px;
+            gap: 0.25rem;
         }
 
         .date-number {
-            font-size: 20px;
+            font-size: 1.25rem;
         }
 
         .date-month {
-            font-size: 14px;
+            font-size: 0.875rem;
             color: var(--color-text-secondary);
             font-weight: 500;
         }
 
         .input-container {
-            margin-top: 10px;
+            margin-top: 0.625rem;
         }
 
         .input-label {
             display: block;
-            font-size: 12px;
+            font-size: 0.75rem;
             color: var(--color-text-secondary);
-            margin-bottom: 6px;
+            margin-bottom: 0.375rem;
         }
 
         .crew-input {
             width: 100%;
-            padding: 8px 10px;
+            padding: 0.5rem 0.625rem;
             border: 1px solid var(--color-border-dark);
-            border-radius: 4px;
-            font-size: 15px;
+            border-radius: 0.25rem;
+            font-size: 0.9375rem;
             font-weight: 500;
             color: var(--color-primary-dark);
             text-align: center;
             background-color: var(--color-bg-white);
+            transition: border-color 0.2s;
         }
 
         .crew-input:focus {
@@ -234,7 +295,6 @@
             background-color: var(--color-bg-white);
         }
 
-        /* Remove number input arrows */
         .crew-input::-webkit-outer-spin-button,
         .crew-input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -247,22 +307,37 @@
 
         .controls {
             display: flex;
-            gap: 12px;
-            padding: 16px 0 0 0;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1rem 0 0 0;
             border-top: 1px solid var(--color-border);
-            margin-top: 20px;
+            margin-top: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .controls {
+                flex-direction: row;
+                gap: 0.75rem;
+            }
         }
 
         .btn {
-            padding: 9px 16px;
-            border-radius: 4px;
-            font-size: 13px;
+            padding: 0.5625rem 1rem;
+            border-radius: 0.25rem;
+            font-size: 0.8125rem;
             font-weight: 500;
             cursor: pointer;
             border: 1px solid var(--color-border-dark);
             background-color: var(--color-bg-light);
             color: var(--color-text-tertiary);
             transition: all 0.2s;
+            flex: 1;
+        }
+
+        @media (min-width: 640px) {
+            .btn {
+                flex: 0 1 auto;
+            }
         }
 
         .btn-primary {
@@ -272,7 +347,7 @@
         }
 
         .btn.btn-primary:hover {
-            background-color: var(--secondary-blue); 
+            background-color: var(--secondary-blue);
         }
 
         .btn:hover {
@@ -280,13 +355,29 @@
             border-color: var(--color-border-hover);
         }
 
+        .btn:active {
+            transform: scale(0.98);
+        }
+
         .status {
-            padding: 12px 14px;
-            border-radius: 4px;
-            margin-top: 16px;
-            font-size: 13px;
+            padding: 0.75rem 0.875rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+            font-size: 0.8125rem;
             display: none;
             border: 1px solid var(--color-border-dark);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-0.5rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .status.success {
@@ -303,101 +394,7 @@
             display: block;
         }
 
-        @media (max-width: 1024px) {
-            .days-grid {
-                grid-template-columns: repeat(7, 1fr);
-            }
-        }
 
-        @media (max-width: 768px) {
-            .week-display {
-                flex-direction: column;
-                gap: 12px;
-                align-items: stretch;
-            }
-
-            .week-navigation {
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 6px;
-            }
-
-            .nav-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
-            }
-
-            .week-selector {
-                gap: 6px;
-            }
-
-            .week-btn {
-                padding: 8px 12px;
-                font-size: 15px;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .week-selector {
-                margin-left: 0;
-            }
-
-            .days-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 10px;
-            }
-        }
-
-        @media (max-width: 480px) { 
-            .week-navigation {
-                justify-content: center;
-                gap: 4px;
-            }
-
-            .nav-btn {
-                width: 33px;
-                height: 33px;
-                font-size: 16px;
-            }
-
-            .nav-btn svg {
-                width: 16px;
-                height: 16px;
-            }
-
-            .week-selector {
-                gap: 4px;
-            }
-
-            .week-btn {
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-
-            .days-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .day-card {
-                padding: 12px;
-            }
-
-            .date {
-                font-size: 16px;
-            }
-
-            .date-number {
-                font-size: 18px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -538,31 +535,25 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Variables
             let limitsData = {};
             let currentWeekOffset = 0;
             let currentWeekDates = [];
 
-            // Constants
             const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
                               'July', 'August', 'September', 'October', 'November', 'December'];
             const monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-            // Initialize
             initializeData();
             updateWeekDisplay();
             setupEventListeners();
             updateTotal();
 
-            // Functions
             function initializeData() {
-                const today = new Date(2026, 0, 4);
+                const today = new Date();
                 generateWeekDates(today);
                 
-                // Initialize limitsData from current HTML inputs
                 const inputs = document.querySelectorAll('.crew-input');
                 inputs.forEach(input => {
                     const dateKey = input.getAttribute('data-date');
@@ -590,7 +581,6 @@
             }
 
             function updateWeekDisplay() {
-                // Update week range display
                 const firstDate = currentWeekDates[0];
                 const lastDate = currentWeekDates[6];
 
@@ -603,31 +593,26 @@
 
                 document.getElementById('weekRangeDisplay').textContent = `Week of ${weekRangeText}`;
 
-                // Update day cards
                 currentWeekDates.forEach((date, index) => {
                     const dateKey = date.toISOString().split('T')[0];
                     const dayCard = document.querySelector(`.day-card[data-day="${index}"]`);
                     
                     if (dayCard) {
-                        // Update day name
                         const dayNameElement = dayCard.querySelector('.day-name');
                         if (dayNameElement) {
                             dayNameElement.textContent = dayNames[date.getDay()];
                         }
                         
-                        // Update date number
                         const dateNumberElement = dayCard.querySelector('.date-number');
                         if (dateNumberElement) {
                             dateNumberElement.textContent = date.getDate();
                         }
                         
-                        // Update month
                         const dateMonthElement = dayCard.querySelector('.date-month');
                         if (dateMonthElement) {
                             dateMonthElement.textContent = monthNamesShort[date.getMonth()];
                         }
                         
-                        // Update input data-date attribute and value
                         const inputElement = dayCard.querySelector('.crew-input');
                         if (inputElement) {
                             inputElement.setAttribute('data-date', dateKey);
@@ -685,7 +670,6 @@
             }
 
             function setupEventListeners() {
-                // Week navigation buttons
                 document.getElementById('prevWeekBtn').addEventListener('click', () => navigateWeek(-1));
                 document.getElementById('nextWeekBtn').addEventListener('click', () => navigateWeek(1));
 
@@ -693,13 +677,11 @@
                 document.getElementById('currentWeekBtn').addEventListener('click', () => navigateToWeek(0));
                 document.getElementById('nextWeekBtnLarge').addEventListener('click', () => navigateToWeek(1));
 
-                // Input change listeners
                 document.querySelectorAll('.crew-input').forEach(input => {
                     input.addEventListener('input', handleInputChange);
                     input.addEventListener('change', handleInputChange);
                 });
 
-                // Action buttons
                 document.getElementById('saveBtn').addEventListener('click', saveLimits);
                 document.getElementById('resetBtn').addEventListener('click', resetDefaults);
             }

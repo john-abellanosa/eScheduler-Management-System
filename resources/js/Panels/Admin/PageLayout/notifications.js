@@ -196,7 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
         notificationPanel.classList.add("open");
         notificationOverlay.classList.add("active");
         panelOpen = true;
-        document.body.style.overflow = "hidden";
+        
+        // REMOVE THIS LINE: document.body.style.overflow = "hidden";
         
         // Add history entry for mobile back button
         if (window.history && window.history.pushState) {
@@ -208,7 +209,8 @@ document.addEventListener("DOMContentLoaded", () => {
         notificationPanel.classList.remove("open");
         notificationOverlay.classList.remove("active");
         panelOpen = false;
-        document.body.style.overflow = "";
+        
+        // REMOVE THIS LINE: document.body.style.overflow = "";
         
         // Remove history entry
         if (window.history && window.history.state && window.history.state.panelOpen) {

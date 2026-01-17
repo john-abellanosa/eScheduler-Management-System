@@ -12,7 +12,11 @@ class AdminPageController extends Controller
     }
 
     public function dashboard () {
-        return view('Panels.Admin.Pages.dashboard');
+        return view('Panels.Admin.Pages.Dashboard.dashboard');
+    }
+
+    public function announcement () {
+        return view('Panels.Admin.Pages.Dashboard.announcement');
     }
 
     public function agency () {
@@ -49,5 +53,9 @@ class AdminPageController extends Controller
 
     public function schedule_overview () {
         return view ('Panels.Admin.Pages.schedule_overview');
+    }
+
+    public function position_setup () {
+        return view ('Panels.Admin.Pages.units&position_setup');
     }
 }

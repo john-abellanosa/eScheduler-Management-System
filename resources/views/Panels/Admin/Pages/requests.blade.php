@@ -24,7 +24,7 @@
                     </div>
                     <div class="stat-info">
                         <div class="stat-value">12</div>
-                        <div class="stat-label">Pending Requests</div>
+                        <div class="stat-label">Total Pending Requests</div>
                     </div>
                 </div>
                 
@@ -33,8 +33,8 @@
                         <i class="fas fa-umbrella-beach"></i>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">8</div>
-                        <div class="stat-label">Leave Requests</div>
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Pending Leave Requests</div>
                     </div>
                 </div>
                 
@@ -44,17 +44,17 @@
                     </div>
                     <div class="stat-info">
                         <div class="stat-value">5</div>
-                        <div class="stat-label">Swap Requests</div>
+                        <div class="stat-label">Pending Swap Requests</div>
                     </div>
                 </div>
                 
                 <div class="stat-card">
                     <div class="stat-icon give">
-                        <i class="fas fa-calendar-plus"></i>
+                        <i class="fa fa-gift"></i>
                     </div>
                     <div class="stat-info">
                         <div class="stat-value">3</div>
-                        <div class="stat-label">Give Schedule</div>
+                        <div class="stat-label">Pending Give Schedule Requests</div>
                     </div>
                 </div>
             </div>

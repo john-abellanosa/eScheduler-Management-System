@@ -37,7 +37,7 @@
         </div>
 
         <nav class="nav-menu">
-            <a href="{{ route('Panels.Admin.Pages.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Admin.Pages.Dashboard.dashboard') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.Dashboard.dashboard', 'Panels.Admin.Pages.Dashboard.announcement') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard">
                     <rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/>
                     <rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>
@@ -57,11 +57,13 @@
             </a>
 
             <a href="{{ route('Panels.Admin.Pages.manager_schedule') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.manager_schedule') ? 'active' : '' }}">
-                <svg class="nav-icon" viewBox="0 0 24 24">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="3" y1="9" x2="21" y2="9"></line>
-                    <line x1="9" y1="4" x2="9" y2="9"></line>
-                    <line x1="15" y1="4" x2="15" y2="9"></line>
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-plus-icon lucide-calendar-plus">
+                    <path d="M16 19h6"/>
+                    <path d="M16 2v4"/>
+                    <path d="M19 16v6"/>
+                    <path d="M21 12.598V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8.5"/>
+                    <path d="M3 10h18"/>
+                    <path d="M8 2v4"/>
                 </svg>
                 <span class="nav-text">Manager Schedule</span>
             </a>
@@ -73,6 +75,14 @@
                     <line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/>
                 </svg>
                 <span class="nav-text">Max Crew Management</span>
+            </a>
+
+            <a href="{{ route('Panels.Admin.Pages.units&position_setup') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.units&position_setup') ? 'active' : '' }}">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bolt-icon lucide-bolt">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <circle cx="12" cy="12" r="4"/>
+                </svg>
+                <span class="nav-text">Units & Position Setup</span>
             </a>
 
             <a href="{{ route('Panels.Admin.Pages.Employee_Management.crew') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.Employee_Management.crew', 'Panels.Admin.Pages.Employee_Management.manager') ? 'active' : '' }}">
@@ -102,17 +112,7 @@
                     <path d="M12 7v5l4 2"/>
                 </svg>
                 <span class="nav-text">Shift History</span>
-            </a>
-
-            {{-- <a href="{{ route('Panels.Admin.PageLayout.agency') }}" class="nav-item {{ request()->routeIs('Panels.Admin.PageLayout.agency') ? 'active' : '' }}">
-                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2-icon lucide-building-2">
-                    <path d="M10 12h4"/><path d="M10 8h4"/>
-                    <path d="M14 21v-3a2 2 0 0 0-4 0v3"/>
-                    <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/>
-                    <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/>
-                </svg>
-                <span class="nav-text">Agencies</span>
-            </a> --}}
+            </a> 
         </nav>
     </div>
 
@@ -139,11 +139,13 @@
                     </svg>
                     <span class="notification-badge" id="notifBadge">3</span>
                 </button>
-                <button class="user-btn">
-                    <svg class="user-icon" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
+                <button class="user-btn" onclick="window.location.href='{{ route('Panels.Admin.Auth.login') }}'">
+                    <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
+                        <path d="m16 17 5-5-5-5"/>
+                        <path d="M21 12H9"/>
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
                     </svg>
+                    <span class="user-text">Logout</span> 
                 </button>
             </div>
         </div>

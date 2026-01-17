@@ -12,8 +12,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        @vite(['resources/js/Panels/Scheduler/Pages/Crew_Schedule/responsive_table.js']) 
-        @vite(['resources/js/Panels/Scheduler/Pages/Crew_Schedule/dates.js'])
+        @vite(['resources/js/Panels/Admin/Pages/Schedule_Overview/responsive_table.js'])  
+        @vite(['resources/js/Panels/Admin/Pages/Schedule_Overview/dates.js'])  
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/page_header.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/stats_card.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/shift_stats_card.css') }}">

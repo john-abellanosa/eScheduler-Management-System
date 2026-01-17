@@ -393,86 +393,102 @@
         </div>
     </div> 
 
-        <div id="employeeModal" class="modal">
+    <div id="employeeModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Add New Manager</h2>
-                <button class="close-btn">×</button>
+                <button type="button" class="close-btn">×</button>
             </div>
             
-            <form id="employeeForm" class="modal-form">
-                <div class="form-row">
+            <div class="modal-form-container">
+                <form id="employeeForm" class="modal-form">
                     <div class="form-group">
-                        <label for="firstName">First Name <span class="required">*</span></label>
-                        <input type="text" id="firstName" placeholder="Enter first name" required>
+                        <label>Manager Type <span class="required">*</span></label>
+                        <div class="role-toggle">
+                            <button type="button" class="role-option" data-role="manager">
+                                Regular Manager
+                            </button>
+                            <button type="button" class="role-option" data-role="scheduler">
+                                Scheduler Manager
+                            </button>
+                        </div>
                         <div class="error-message"></div>
+                        <input type="hidden" id="managerType" value="">
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="lastName">Last Name <span class="required">*</span></label>
-                        <input type="text" id="lastName" placeholder="Enter last name" required>
-                        <div class="error-message"></div>
-                    </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email Address <span class="required">*</span></label>
-                        <input type="email" id="email" placeholder="employee@company.com" required>
-                        <div class="error-message"></div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" placeholder="Enter first name" required>
+                            <div class="error-message"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" placeholder="Enter last name" required>
+                            <div class="error-message"></div>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number <span class="required">*</span></label>
-                        <input type="tel" id="phone" placeholder="0912-345-6789" required>
-                        <div class="error-message"></div>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="street">Street Address <span class="required">*</span></label>
-                    <input type="text" id="street" placeholder="Enter street address" required>
-                    <div class="error-message"></div>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="employee@company.com" required>
+                            <div class="error-message"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" placeholder="0912-345-6789" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
 
-                <div class="form-row">
                     <div class="form-group">
-                        <label for="barangay">Barangay <span class="required">*</span></label>
-                        <input type="text" id="barangay" placeholder="Enter barangay" required>
+                        <label for="street">Street Address <span class="required">*</span></label>
+                        <input type="text" id="street" placeholder="Enter street address" required>
                         <div class="error-message"></div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="city">City <span class="required">*</span></label>
-                        <input type="text" id="city" placeholder="Enter city" required>
-                        <div class="error-message"></div>
-                    </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="province">Province <span class="required">*</span></label>
-                        <select id="province" required>
-                            <option value="">Select Province</option>
-                            <option value="Metro Manila">Metro Manila</option>
-                            <option value="Bulacan">Bulacan</option>
-                            <option value="Cavite">Cavite</option>
-                            <option value="Laguna">Laguna</option>
-                            <option value="Rizal">Rizal</option>
-                            <option value="Batangas">Batangas</option>
-                            <option value="Pampanga">Pampanga</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <div class="error-message"></div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="barangay">Barangay <span class="required">*</span></label>
+                            <input type="text" id="barangay" placeholder="Enter barangay" required>
+                            <div class="error-message"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city">City <span class="required">*</span></label>
+                            <input type="text" id="city" placeholder="Enter city" required>
+                            <div class="error-message"></div>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="hireDate">Hire Date <span class="required">*</span></label>
-                        <input type="date" id="hireDate" required>
-                        <div class="error-message"></div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="province">Province <span class="required">*</span></label>
+                            <select id="province" required>
+                                <option value="">Select Province</option>
+                                <option value="Metro Manila">Metro Manila</option>
+                                <option value="Bulacan">Bulacan</option>
+                                <option value="Cavite">Cavite</option>
+                                <option value="Laguna">Laguna</option>
+                                <option value="Rizal">Rizal</option>
+                                <option value="Batangas">Batangas</option>
+                                <option value="Pampanga">Pampanga</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hireDate">Hire Date <span class="required">*</span></label>
+                            <input type="date" id="hireDate" required>
+                            <div class="error-message"></div>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
             
             <div class="modal-actions">
                 <button type="button" class="btn-modal-secondary" id="cancelBtn">Cancel</button>
