@@ -106,7 +106,7 @@
 
                     <a href="#" class="forgot-password-link">Forgot password?</a>
 
-                    <button type="submit" class="login-btn" id="loginBtn"> 
+                    <button type="button" class="login-btn" id="loginBtn" onclick="window.location.href='{{ route('Panels.Scheduler.Pages.Dashboard.dashboard') }}'"> 
                         <span id="btnText">Login</span>
                     </button>
                 </form>
