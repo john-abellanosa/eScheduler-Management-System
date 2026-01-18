@@ -39,12 +39,12 @@ class AdminPageController extends Controller
         return view('Panels.Admin.Pages.Employee_Management.manager');
     }
 
-    public function crew_shift_history () {
-        return view ('Panels.Admin.Pages.Shift_History.crew');
+    public function crew_shift_records () {
+        return view ('Panels.Admin.Pages.Shift_Records.crew');
     }
 
-    public function manager_shift_history () {
-        return view ('Panels.Admin.Pages.Shift_History.manager');
+    public function manager_shift_records () {
+        return view ('Panels.Admin.Pages.Shift_Records.manager');
     }
 
     public function max_crew_management () {

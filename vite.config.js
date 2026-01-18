@@ -31,6 +31,9 @@ export default defineConfig({
 
                 'resources/js/Panels/Admin/Pages/Dashboard/announcement.js',
 
+                'resources/js/Panels/Admin/Pages/Shift_Records/manager.js',
+                'resources/js/Panels/Admin/Pages/Shift_Records/crew.js',
+
 
                 // SCHEDULER 
                 'resources/js/Panels/Scheduler/PageLayout/notifications.js',
@@ -46,9 +49,9 @@ export default defineConfig({
 
                 'resources/js/Panels/Scheduler/Pages/Settings/settings.js',
 
+                'resources/js/Panels/Scheduler/Pages/Shift_Records/shift_records.js',
 
-                // AGENCY 
-                'resources/js/Panels/Agency/PageLayout/notifications.js',
+ 
             ],
             refresh: true,
         }),

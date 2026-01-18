@@ -10,7 +10,7 @@ Route::get('/scheduler/announcement', [SchedulerPageController::class, 'announce
 Route::get('/scheduler/crew_schedule', [SchedulerPageController::class, 'crew_schedule'])->name('Panels.Scheduler.Pages.crew_schedule');
 Route::get('/scheduler/crew_availability', [SchedulerPageController::class, 'crew_availability'])->name('Panels.Scheduler.Pages.crew_availability');
 Route::get('/scheduler/requests', [SchedulerPageController::class, 'requests'])->name('Panels.Scheduler.Pages.requests');
-Route::get('/scheduler/shift_history', [SchedulerPageController::class, 'shift_history'])->name('Panels.Scheduler.Pages.shift_history');
+Route::get('/scheduler/shift_records', [SchedulerPageController::class, 'shift_records'])->name('Panels.Scheduler.Pages.shift_records');
 Route::get('/scheduler/settings', [SchedulerPageController::class, 'settings'])->name('Panels.Scheduler.Pages.settings');
 
 Route::get('/scheduler/login', [SchedulerPageController::class, 'scheduler_login'])->name('Panels.Scheduler.Auth.login');

@@ -27,7 +27,7 @@
 
         <div class="user-panel">
             <div class="icon-bg">
-                <svg class="logout-icon" viewBox="0 0 24 24">
+                <svg class="user-icon" viewBox="0 0 24 24">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
             </div>
@@ -106,13 +106,13 @@
                 <span class="nav-text">Requests</span>
             </a>
 
-            <a href="{{ route('Panels.Admin.Pages.Shift_History.crew') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.Shift_History.crew', 'Panels.Admin.Pages.Shift_History.manager') ? 'active' : '' }}">
+            <a href="{{ route('Panels.Admin.Pages.Shift_Records.crew') }}" class="nav-item {{ request()->routeIs('Panels.Admin.Pages.Shift_Records.crew', 'Panels.Admin.Pages.Shift_Records.manager') ? 'active' : '' }}">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history-icon lucide-history">
                     <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
                     <path d="M3 3v5h5"/>
                     <path d="M12 7v5l4 2"/>
                 </svg>
-                <span class="nav-text">Shift History</span>
+                <span class="nav-text">Shift Records</span>
             </a> 
         </nav>
     </div>
@@ -196,8 +196,8 @@
             );
 
             $isShiftHistory = request()->routeIs(
-                'Panels.Admin.Pages.Shift_History.crew',
-                'Panels.Admin.Pages.Shift_History.manager'
+                'Panels.Admin.Pages.Shift_Records.crew',
+                'Panels.Admin.Pages.Shift_Records.manager'
             );
         @endphp
 
@@ -207,22 +207,22 @@
                     <button
                         class="tab-btn {{ request()->routeIs(
                             'Panels.Admin.Pages.Employee_Management.crew',
-                            'Panels.Admin.Pages.Shift_History.crew'
+                            'Panels.Admin.Pages.Shift_Records.crew'
                         ) ? 'active' : '' }}"
                         onclick="window.location.href='{{ $isEmployee
                             ? route('Panels.Admin.Pages.Employee_Management.crew')
-                            : route('Panels.Admin.Pages.Shift_History.crew') }}'">
+                            : route('Panels.Admin.Pages.Shift_Records.crew') }}'">
                         Crew
                     </button>
 
                     <button
                         class="tab-btn {{ request()->routeIs(
                             'Panels.Admin.Pages.Employee_Management.manager',
-                            'Panels.Admin.Pages.Shift_History.manager'
+                            'Panels.Admin.Pages.Shift_Records.manager'
                         ) ? 'active' : '' }}"
                         onclick="window.location.href='{{ $isEmployee
                             ? route('Panels.Admin.Pages.Employee_Management.manager')
-                            : route('Panels.Admin.Pages.Shift_History.manager') }}'">
+                            : route('Panels.Admin.Pages.Shift_Records.manager') }}'">
                         Managers
                     </button>
                 </div>

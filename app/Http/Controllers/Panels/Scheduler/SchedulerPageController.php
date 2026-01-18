@@ -31,8 +31,8 @@ class SchedulerPageController extends Controller
         return view('Panels.Scheduler.Pages.requests');
     }
 
-    public function shift_history () {
-        return view('Panels.Scheduler.Pages.shift_history');
+    public function shift_records () {
+        return view('Panels.Scheduler.Pages.shift_records');
     }
 
     public function settings () {

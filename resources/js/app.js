@@ -23,6 +23,9 @@ import './Panels/Admin/Pages/Schedule_Overview/dates.js';
 
 import './Panels/Admin/Pages/Dashboard/announcement.js';
 
+import './Panels/Admin/Pages/Shift_Records/manager.js';
+import './Panels/Admin/Pages/Shift_Records/crew.js';
+
 
 // SCHEDULER 
 import './Panels/Scheduler/PageLayout/notifications.js';
@@ -38,6 +41,6 @@ import './Panels/Scheduler/Pages/Crew_Availability/add_availability_modal.js';
 
 import './Panels/Scheduler/Pages/Settings/settings.js';
 
+import './Panels/Scheduler/Pages/Shift_Records/shift_records.js';
 
-// AGENCY 
-import './Panels/Agency/PageLayout/notifications.js';
+ 

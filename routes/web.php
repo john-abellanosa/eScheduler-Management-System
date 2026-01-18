@@ -1,6 +1,5 @@
 <?php
 
-include 'Panels/agency.php';
 include 'Panels/scheduler.php';
 include 'Panels/admin.php';
 

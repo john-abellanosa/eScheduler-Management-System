@@ -73,7 +73,7 @@
             <div id="managerModal" class="modal">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2>Add Manager</h2>
+                        <h2>Assign Manager</h2>
                         <button class="close-btn">×</button>
                     </div>
                     <div class="modal-form">
@@ -124,7 +124,7 @@
                     </div>
                     <div class="modal-actions">
                         <button class="btn-modal-secondary">Cancel</button>
-                        <button class="btn-modal-primary">Add Manager</button>
+                        <button class="btn-modal-primary">Assign Manager</button>
                     </div>
                 </div>
             </div>
