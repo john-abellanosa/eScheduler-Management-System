@@ -1,7 +1,7 @@
 .page-header {
     background: linear-gradient(135deg, #1a3a8f 0%, #2a56d6 100%);
     color: white;
-    padding: 20px 24px;
+    padding: 15px 16px;
     margin-bottom: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -11,7 +11,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    flex-wrap: wrap; 
 }
 
 .days-selector {
@@ -45,7 +46,7 @@
 .day-item.active::after {
     content: "";
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: 50%;
     transform: translateX(-50%);
     width: 200%;
@@ -64,16 +65,17 @@
     background-color: rgba(255, 255, 255, 0.15);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 16px;
+    padding: 8px 12px;
     border-radius: 6px;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
     transition: all 0.2s;
     backdrop-filter: blur(10px);
+    white-space: nowrap;
 }
 
 .header-btn:hover {
@@ -85,7 +87,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 16px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
@@ -94,22 +96,26 @@
     border-radius: 4px;
     display: flex;
     align-items: center;
-    min-width: 180px;
+    min-width: auto;
+    max-width: 180px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     border: 1px solid #e5e7eb;
+    flex: 1;
+    min-width: 0;
 }
 
 .week-arrow {
     background-color: #f3f4f6;
     border: none;
-    padding: 8px 8px;
+    padding: 6px 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
     color: #374151;
+    flex-shrink: 0;
 }
 
 .week-arrow:hover {
@@ -125,76 +131,116 @@
 }
 
 .week-date-content {
-    padding: 6px 10px;
+    padding: 6px 8px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     flex: 1;
+    min-width: 0;
 }
 
 .week-date {
-    font-size: 12px;
+    font-size: 11px;
     color: #000;
     font-weight: 500;
     display: flex;
     align-items: center;
     gap: 3px;
     padding-left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .week-date i {
     color: #2a56d6;
-    font-size: 12px;
-    margin-right: 5px;
+    font-size: 11px;
+    margin-right: 4px;
+    flex-shrink: 0;
 }
 
 .selected-date-container {
     background: white;
-    padding: 7px 10px;
+    padding: 6px 8px;
     border-radius: 4px;
     display: flex;
     align-items: center;
-    min-width: 10px;
+    min-width: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    border: 1px solid #e5e7eb;
 }
 
 .selected-date {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: #000;
     display: flex;
     align-items: center;
     gap: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .selected-date i {
     color: #2a56d6;
-    font-size: 12px;
-    margin-right: 5px;
+    font-size: 11px;
+    margin-right: 4px;
+    flex-shrink: 0;
+}
+
+.max-hours-container {
+    background: white;
+    padding: 6px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    flex-shrink: 0;
+}
+
+.max-hours {
+    font-size: 11px;
+    font-weight: 600;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+}
+
+.max-hours i {
+    color: #2a56d6;
+    font-size: 11px;
+    margin-right: 4px;
 }
 
 .legend-bar {
     background: white;
-    padding: 6px 10px;
+    padding: 6px 8px;
     border-radius: 4px;
     border: 1px solid #e5e7eb;
     display: flex;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
-    font-size: 11px;
+    font-size: 10px;
     margin-left: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 .legend-box.off-duty {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border-radius: 3px;
     border: 1px solid #d1d5db;
     background-color: #fbfcfe;
@@ -203,11 +249,12 @@
 .legend-item span {
     color: #000;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .legend-box.scheduled {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border-radius: 3px;
     background-color: #eef2ff;
     border: 1px solid #b1bef0;
@@ -222,321 +269,199 @@
     transform: translate(-50%, -50%);
     color: #000000;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 10px;
 }
 
-@media (max-width: 768px) {
+/* Responsive Media Queries */
+@media screen and (max-width: 768px) {
     .page-header {
-        padding: 16px 12px;
-        margin-bottom: 8px;
-        border-radius: 6px;
+        padding: 12px 14px;
     }
-
+    
     .header-top {
         flex-direction: column;
         align-items: stretch;
         gap: 12px;
-        margin-bottom: 12px;
     }
-
+    
     .days-selector {
-        width: 100%;
+        gap: 12px;
         justify-content: space-between;
-        margin-left: 0;
-        gap: 0;
-        padding: 0 2px;
-        order: 1;
+        padding: 0 0 8px 0;
     }
-
+    
     .day-item {
-        font-size: 12px;
-        font-weight: 600;
-        padding: 8px 2px;
-        letter-spacing: 0.3px;
-        flex: 1;
-        min-width: 0;
-        text-align: center;
+        font-size: 11px;
+        min-width: 32px;
+        padding: 4px 0;
     }
-
-    .day-item.active::after {
-        width: 30%;
-        height: 2px;
-        bottom: -3px;
+    
+    .header-buttons {
+        display: none; /* Hide print button on mobile */
     }
-
+    
     .header-bottom {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "week week"
-            "date legend";
-        column-gap: 10px;
-        row-gap: 8px;
-        align-items: stretch;
+        gap: 6px;
     }
-
+    
     .week-date-container {
-        width: 100%;
-        min-width: 0;
-        border-radius: 2px;
-        grid-area: week;
+        order: 1;
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-bottom: 4px;
     }
-
-    .week-date-content {
-        padding: 0 8px;
+    
+    .selected-date-container {
+        order: 2;
         flex: 1;
+        min-width: 0;
+    }
+    
+    .max-hours-container {
+        order: 3;
+        flex-shrink: 0;
+    }
+    
+    .legend-bar {
+        order: 4;
+        flex: 1 1 100%;
+        margin-left: 0;
+        margin-top: 4px;
         justify-content: center;
     }
-
-    .week-date {
-        font-size: 16px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .week-date i {
-        font-size: 10px;
-        margin-right: 4px;
-    }
-
-    .week-arrow {
-        padding: 6px;
-        min-width: 30px;
-    }
-
-    .week-arrow i {
+    
+    .week-date, .selected-date, .max-hours {
         font-size: 10px;
     }
-
-    .header-buttons {
-        display: none;
-    }
-
-    .header-btn {
-        padding: 6px 12px;
-        font-size: 11px;
-        gap: 4px;
-        border-radius: 2px;
-        white-space: nowrap;
-        display: none;
-    }
-
-    .week-row {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .date-row {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        order: 3;
-    }
-
-    .selected-date-container {
-        width: auto;
-        padding: 6px 10px;
-        border-radius: 2px;
-        grid-area: date;
-        justify-self: start;
-    }
-
-    .selected-date {
-        font-size: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .selected-date i {
+    
+    .week-date i, .selected-date i, .max-hours i {
         font-size: 10px;
-        margin-right: 4px;
-    }
-
-    .week-date-container,
-    .legend-bar {
-        display: inline-flex;
-    }
-
-    .legend-bar {
-        width: auto;
-        padding: 4px 6px;
-        gap: 10px;
-        border-radius: 2px;
-        grid-area: legend;
-        justify-self: end;
-        max-width: 180px;
-        margin-left: 0;
-    }
-
-    .legend-item {
-        gap: 5px;
-    }
-
-    .legend-item span {
-        font-size: 10px;
-        white-space: nowrap;
-    }
-
-    .legend-box.off-duty,
-    .legend-box.scheduled {
-        width: 14px;
-        height: 14px;
-        border-radius: 2px;
-    }
-
-    .legend-box.scheduled::after {
-        font-size: 9px;
     }
 }
 
-@media (max-width: 640px) {
+@media screen and (max-width: 480px) {
+    .page-header {
+        padding: 10px 12px;
+        border-radius: 6px;
+    }
+    
+    .days-selector {
+        gap: 8px;
+    }
+    
     .day-item {
-        font-size: 11px;
-        padding: 6px 1px;
-    }
-
-    .week-date {
         font-size: 10px;
+        min-width: 28px;
     }
-
-    .selected-date {
-        font-size: 11px;
+    
+    .day-item.active::after {
+        bottom: -5px;
+        height: 2px;
+        width: 100%;
     }
-
-    .header-btn {
-        padding: 5px 10px;
-        font-size: 10px;
+    
+    .header-bottom {
+        gap: 4px;
     }
-
-    .legend-bar {
-        padding: 3px 4px;
-        gap: 10px;
+    
+    .selected-date-container, .max-hours-container, .legend-bar {
+        padding: 5px 6px;
     }
-
-    .legend-item span {
+    
+    .week-arrow {
+        padding: 4px 4px;
+    }
+    
+    .week-date-content {
+        padding: 4px 6px;
+    }
+    
+    .week-date, .selected-date, .max-hours {
         font-size: 9px;
     }
-
-    .legend-box.off-duty,
-    .legend-box.scheduled {
+    
+    .week-date i, .selected-date i, .max-hours i {
+        font-size: 9px;
+        margin-right: 3px;
+    }
+    
+    .legend-bar {
+        font-size: 9px;
+        gap: 8px;
+        padding: 4px 6px;
+    }
+    
+    .legend-box.off-duty, .legend-box.scheduled {
         width: 12px;
         height: 12px;
     }
+    
+    .legend-box.scheduled::after {
+        font-size: 9px;
+    }
 }
 
-@media (max-width: 480px) {
+@media screen and (min-width: 769px) {
+    /* Desktop specific styles to ensure desktop stays unchanged */
     .page-header {
-        padding: 14px 10px;
+        padding: 20px 24px;
     }
-
+    
+    .days-selector {
+        gap: 40px;
+        margin-left: 15px;
+        overflow-x: visible;
+        padding: 8px 0;
+    }
+    
     .day-item {
-        font-size: 10px;
-        padding: 5px 0;
+        font-size: 14px;
+        padding: 8px 0;
+        flex: 1;
     }
-
-    .day-item.active::after {
-        width: 25%;
-    }
-
-    .week-row,
-    .date-row {
-        gap: 8px;
-    }
-
-    .week-date {
-        font-size: 9px;
-    }
-
-    .week-date i {
-        font-size: 9px;
-    }
-
-    .selected-date {
-        font-size: 10px;
-    }
-
-    .selected-date i {
-        font-size: 9px;
-    }
-
+    
     .header-btn {
-        padding: 4px 8px;
-        font-size: 9px;
-        gap: 3px;
+        padding: 10px 16px;
+        font-size: 13px;
     }
-
-    .week-arrow {
-        padding: 4px;
-        min-width: 26px;
-    }
-
-    .week-arrow i {
-        font-size: 9px;
-    }
-
-    .legend-bar {
-        padding: 3px 4px;
-        gap: 8px;
-    }
-
-    .legend-item span {
-        font-size: 8px;
-    }
-
-    .legend-box.off-duty,
-    .legend-box.scheduled {
-        width: 10px;
-        height: 10px;
-    }
-
-    .legend-box.scheduled::after {
-        font-size: 8px;
-    }
-}
-
-@media (max-width: 360px) {
-    .day-item {
-        font-size: 9px;
-        padding: 4px 0;
-    }
-
-    .week-date {
-        font-size: 10px;
-    }
-
-    .selected-date,
-    .selected-date i {
-        font-size: 9px;
-    }
-
-    .header-btn {
-        padding: 4px 6px;
-        font-size: 8px;
-    }
-
-    .legend-bar {
+    
+    .header-bottom {
         gap: 12px;
-        padding: 3px 4px;
     }
-
-    .legend-item span {
-        font-size: 7px;
+    
+    .week-date-container {
+        min-width: 180px;
+        max-width: none;
+        flex: none;
     }
-
-    .legend-box.off-duty,
-    .legend-box.scheduled {
-        width: 9px;
-        height: 9px;
+    
+    .selected-date-container, .max-hours-container {
+        padding: 7px 10px;
+        flex: none;
     }
-
+    
+    .week-date, .selected-date, .max-hours {
+        font-size: 12px;
+    }
+    
+    .week-date i, .selected-date i, .max-hours i {
+        font-size: 12px;
+        margin-right: 5px;
+    }
+    
+    .legend-bar {
+        font-size: 11px;
+        padding: 6px 10px;
+        gap: 16px;
+        margin-left: auto;
+    }
+    
+    .legend-box.off-duty, .legend-box.scheduled {
+        width: 16px;
+        height: 16px;
+    }
+    
     .legend-box.scheduled::after {
-        font-size: 7px;
+        font-size: 11px;
     }
 }

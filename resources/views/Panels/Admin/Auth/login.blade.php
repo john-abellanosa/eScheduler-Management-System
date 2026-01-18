@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('assets/images/website_icon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/Auth/login.css') }}">
     <title>Admin Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -92,7 +93,7 @@
 
                     <a href="#" class="forgot-password-link">Forgot password?</a>
 
-                    <button type="button" class="login-btn" id="loginBtn" onclick="window.location.href='{{ route('Panels.Scheduler.Pages.Dashboard.dashboard') }}'">
+                    <button type="button" class="login-btn" id="loginBtn" onclick="window.location.href='{{ route('Panels.Admin.Pages.Dashboard.dashboard') }}'">
                         <span class="spinner" id="spinner"></span>
                         <span id="btnText">Login</span>
                     </button>

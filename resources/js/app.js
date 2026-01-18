@@ -21,6 +21,8 @@ import './Panels/Admin/Pages/Units&Position_Setup/units&position_setup.js';
 import './Panels/Admin/Pages/Schedule_Overview/responsive_table.js';
 import './Panels/Admin/Pages/Schedule_Overview/dates.js';
 
+import './Panels/Admin/Pages/Dashboard/announcement.js';
+
 
 // SCHEDULER 
 import './Panels/Scheduler/PageLayout/notifications.js';

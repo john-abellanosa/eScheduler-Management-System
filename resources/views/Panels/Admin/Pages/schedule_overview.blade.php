@@ -14,8 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite(['resources/js/Panels/Admin/Pages/Schedule_Overview/responsive_table.js'])  
         @vite(['resources/js/Panels/Admin/Pages/Schedule_Overview/dates.js'])  
-        <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/page_header.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/stats_card.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/page_header.css') }}"> 
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/shift_stats_card.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/filter_section.css') }}">
         <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Pages/crew_schedule/table.css') }}">
@@ -73,45 +72,6 @@
                             <span>Off Duty</span>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="stats-bar">
-                <div class="stat-card">
-                    <i class="fas fa-chart-line stat-icon"></i>
-                    <div class="stat-card-label">Total Hours This Week</div>
-                    <div class="stat-card-value">240</div>
-                    <div class="stat-card-subtitle">Total scheduled hours for all departments on the selected week</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-clock stat-icon"></i>
-                    <div class="stat-card-label">Total Hours for This Day</div>
-                    <div class="stat-card-value">0</div>
-                    <div class="stat-card-subtitle">Total hours of all the plotted crew on the selected date</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-user-friends stat-icon"></i>
-                    <div class="stat-card-label">Total Crew This Week</div>
-                    <div class="stat-card-value">8</div>
-                    <div class="stat-card-subtitle">Number of crew plotted across all departments on selected week</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-user-friends stat-icon"></i>
-                    <div class="stat-card-label">Total Crew This Day</div>
-                    <div class="stat-card-value">8</div>
-                    <div class="stat-card-subtitle">Number of crew plotted across all departments on selected date</div>
-                </div>
-                {{-- <div class="stat-card">
-                    <i class="fas fa-map-marker-alt stat-icon"></i>
-                    <div class="stat-card-label">Stations Covered</div>
-                    <div class="stat-card-value">8</div>
-                    <div class="stat-card-subtitle">Stations that currently have crew members plotted</div>
-                </div> --}}
-                <div class="stat-card">
-                    <i class="fas fa-sitemap stat-icon"></i>
-                    <div class="stat-card-label">Departments Covered</div>
-                    <div class="stat-card-value">5</div>
-                    <div class="stat-card-subtitle">Departments that currently have crew members plotted</div>
                 </div>
             </div>
 
@@ -233,7 +193,7 @@
                         <div class="header-content-right">
                             <div class="dept-stats">
                                 <div class="dept-stat-item">
-                                    <i class="fas fa-users"></i> 5 Total Crew
+                                    <i class="fas fa-users"></i> 5 Total Manager
                                 </div>
                                 <div class="dept-stat-item">
                                     <i class="fas fa-clock"></i> 40h Total

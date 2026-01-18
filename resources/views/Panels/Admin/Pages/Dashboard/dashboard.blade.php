@@ -11,6 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/website_icon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/Pages/Dashboard/dashboard.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <title>@yield('title')</title>  

@@ -113,7 +113,7 @@ body {
 .user-icon {
     width: 20px;
     height: 20px;
-    stroke: #0d47a1;  
+    stroke: #000;  
     stroke-width: 2;
     fill: none;
 }
@@ -369,7 +369,7 @@ body {
     fill: none;
 }
 
-.user-btn {
+.logout-btn {
     width: auto;
     height: 40px;
     border-radius: 8px;
@@ -393,11 +393,11 @@ body {
     position: relative;
 }
 
-.user-btn:hover {
+.logout-btn:hover {
     background-color: #f5f5f5;
 }
 
-.user-icon {
+.logout-icon {
     width: 18px;
     height: 18px;
     stroke: #000;
@@ -405,20 +405,20 @@ body {
     fill: none;
 }
 
-.user-text {
+.logout-text {
     font-size: 14px;
     font-weight: 500;
     color: #333;
     display: none;
 }
 
-.user-btn::before {
+.logout-btn::before {
     content: '';
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 16px;
+    height: 20px;
     width: 1px;
     background-color: #e0e0e0;
     display: none;
@@ -426,26 +426,26 @@ body {
 
 /* Show text and border on larger screens */
 @media (min-width: 768px) {
-    .user-text {
+    .logout-text {
         display: block;
     }
     
-    .user-btn::before {
+    .logout-btn::before {
         display: block;
     }
     
-    .user-btn {
+    .logout-btn {
         padding-left: 16px;
     }
 }
 
 /* Adjust for smaller screens */
 @media (max-width: 480px) {
-    .user-btn {
+    .logout-btn {
         padding: 0 8px;
     }
     
-    .user-text {
+    .logout-text {
         font-size: 13px;
     }
 }

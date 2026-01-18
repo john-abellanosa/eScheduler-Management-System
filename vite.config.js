@@ -29,6 +29,8 @@ export default defineConfig({
                 'resources/js/Panels/Admin/Pages/Schedule_Overview/responsive_table.js',
                 'resources/js/Panels/Admin/Pages/Schedule_Overview/dates.js',
 
+                'resources/js/Panels/Admin/Pages/Dashboard/announcement.js',
+
 
                 // SCHEDULER 
                 'resources/js/Panels/Scheduler/PageLayout/notifications.js',
@@ -62,7 +64,7 @@ export default defineConfig({
         },
 
         hmr: {
-            host: '10.226.161.49',
+            host: '192.168.1.14',
             protocol: 'ws',
         },
     },

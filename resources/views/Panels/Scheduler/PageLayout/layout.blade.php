@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('assets/images/website_icon.png') }}">
     @vite(['resources/js/Panels/Admin/PageLayout/layout.js'])
     @vite(['resources/js/Panels/Scheduler/PageLayout/dropdown.js'])
     @vite(['resources/js/Panels/Scheduler/PageLayout/notifications.js'])

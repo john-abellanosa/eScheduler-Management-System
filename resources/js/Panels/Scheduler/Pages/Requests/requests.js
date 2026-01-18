@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 2,
             name: "Mike Chen",
-            role: "Manager",
+            role: "Crew",
             status: "pending",
             type: "swap",
             title: "Schedule Swap Request",
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 3,
             name: "Emma Wilson",
-            role: "Manager",
+            role: "Crew",
             status: "pending",
             type: "give",
             title: "Give Schedule",
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 5,
             name: "Lisa Anderson",
-            role: "Manager",
+            role: "Crew",
             status: "rejected",
             type: "swap",
             title: "Weekend Shift Swap",
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 8,
             name: "Jessica Brown",
-            role: "Manager",
+            role: "Crew",
             status: "pending",
             type: "swap",
             title: "Department Swap",
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             id: 10,
             name: "Pam Beesly",
-            role: "Manager",
+            role: "Crew",
             status: "approved",
             type: "swap",
             title: "Shift Exchange",

@@ -65,6 +65,13 @@
                             <span>Sunday, January 5, 2025</span>
                         </div>
                     </div>
+                    <!-- Added Max Hours Container -->
+                    <div class="max-hours-container">
+                        <div class="max-hours">
+                            <i class="fas fa-users"></i>
+                            <span>Max: 45</span>
+                        </div>
+                    </div>
                     <div class="legend-bar">
                         <div class="legend-item">
                             <div class="legend-box scheduled"></div>
@@ -78,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="stats-bar">
+            {{-- <div class="stats-bar">
                 <div class="stat-card">
                     <i class="fas fa-users-slash stat-icon"></i>
                     <div class="stat-card-label">Maximum Crew</div>
@@ -109,19 +116,19 @@
                     <div class="stat-card-value">8</div>
                     <div class="stat-card-subtitle">Number of crew plotted across all departments on selected date</div>
                 </div>
-                {{-- <div class="stat-card">
+                <div class="stat-card">
                     <i class="fas fa-map-marker-alt stat-icon"></i>
                     <div class="stat-card-label">Stations Covered</div>
                     <div class="stat-card-value">8</div>
                     <div class="stat-card-subtitle">Stations that currently have crew members plotted</div>
-                </div> --}}
+                </div>
                 <div class="stat-card">
                     <i class="fas fa-sitemap stat-icon"></i>
                     <div class="stat-card-label">Departments Covered</div>
                     <div class="stat-card-value">5</div>
                     <div class="stat-card-subtitle">Departments that currently have crew members plotted</div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="shift-stats-bar">
                 <div class="shift-stat-card">
@@ -235,7 +242,7 @@
             <div id="crewModal" class="modal">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2>Add Crew to <span id="modalDeptName"></span></h2>
+                        <h2>Assign Crew to <span id="modalDeptName"></span></h2>
                         <button class="close-btn">×</button>
                     </div>
                     <div class="modal-form">
@@ -286,7 +293,7 @@
                     </div>
                     <div class="modal-actions">
                         <button class="btn-modal-secondary">Cancel</button>
-                        <button class="btn-modal-primary">Add Crew</button>
+                        <button class="btn-modal-primary">Assign Crew</button>
                     </div>
                 </div>
             </div>
@@ -526,7 +533,7 @@
                                 </div>
                             </div>
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -667,7 +674,7 @@
                                 </div>
                             </div>
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -762,7 +769,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -778,7 +785,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -793,7 +800,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -808,7 +815,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -823,7 +830,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -838,7 +845,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -853,7 +860,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -868,7 +875,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -883,7 +890,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>
@@ -898,7 +905,7 @@
                         </div>
                         <div class="header-content-right">
                             <button class="btn-add-crew" onclick="openModal(this)">
-                                <i class="fas fa-plus"></i> Add Crew
+                                <i class="fas fa-plus"></i> Assign Crew
                             </button>
                         </div>
                     </div>

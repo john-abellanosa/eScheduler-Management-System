@@ -37,9 +37,8 @@
                         id="searchInput" 
                         class="search-input"
                         placeholder="Search departments or stations..."
-                        onkeyup="handleSearch()"
                     >
-                    <button class="search-clear-btn" id="clearSearchBtn" onclick="clearSearch()">
+                    <button class="search-clear-btn" id="clearSearchBtn">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -65,9 +64,8 @@
                             id="departmentInput" 
                             class="form-input"
                             placeholder="Enter department name"
-                            onkeypress="if(event.key === 'Enter') addNewDepartment()"
                         >
-                        <button class="btn btn-primary" onclick="addNewDepartment()">
+                        <button class="btn btn-primary" id="addDepartmentBtn">
                             <i class="fas fa-plus icon-add"></i>
                             <span>Add Department</span>
                         </button>
@@ -110,9 +108,8 @@
                             id="positionInput" 
                             class="form-input"
                             placeholder="Enter position title"
-                            onkeypress="if(event.key === 'Enter') addNewPosition()"
                         >
-                        <button class="btn btn-primary" onclick="addNewPosition()">
+                        <button class="btn btn-primary" id="addPositionBtn">
                             <i class="fas fa-plus icon-add"></i>
                             <span>Add Position</span>
                         </button>
@@ -139,8 +136,8 @@
             </div>
             <div class="modal-body" id="confirmationMessage"></div>
             <div class="modal-footer">
-                <button class="btn btn-outline btn-md" onclick="closeDeleteConfirmation()">Cancel</button>
-                <button class="btn btn-danger btn-md" onclick="performDelete()">
+                <button class="btn btn-outline btn-md" id="cancelDeleteBtn">Cancel</button>
+                <button class="btn btn-danger btn-md" id="confirmDeleteBtn">
                     <i class="fas fa-trash-alt icon-delete"></i>
                     Delete
                 </button>
@@ -162,14 +159,14 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline btn-md" onclick="closeEditModal()">Cancel</button>
-                <button class="btn btn-warning btn-md" onclick="saveItemEdit()">
+                <button class="btn btn-outline btn-md" id="cancelEditBtn">Cancel</button>
+                <button class="btn btn-warning btn-md" id="saveEditBtn">
                     <i class="fas fa-check-circle icon-edit"></i>
                     Save
                 </button>
             </div>
         </div>
-    </div>
+    </div> 
 </body>
 </html>
 @endsection

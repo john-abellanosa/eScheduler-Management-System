@@ -1,3 +1,4 @@
+// Data
 let departmentsData = [
     {
         id: 1,
@@ -302,14 +303,14 @@ function renderDepartments() {
     
     filteredDepartments.forEach(dept => {
         html += `
-            <div class="department-card">
+            <div class="department-card" data-dept-id="${dept.id}">
                 <div class="department-header">
                     <h3 class="department-title">${dept.name}</h3>
                     <div class="header-actions">
-                        <button class="btn-edit btn-sm" onclick="openEditModal('department', ${dept.id}, null, '${dept.name.replace(/'/g, "\\'")}')" title="Edit Department">
+                        <button class="btn-edit btn-sm edit-dept-btn" data-dept-id="${dept.id}" data-dept-name="${dept.name.replace(/"/g, '&quot;')}" title="Edit Department">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn-delete btn-sm" onclick="openDeleteConfirmation('department', ${dept.id}, null, '${dept.name.replace(/'/g, "\\'")}')" title="Delete Department">
+                        <button class="btn-delete btn-sm delete-dept-btn" data-dept-id="${dept.id}" data-dept-name="${dept.name.replace(/"/g, '&quot;')}" title="Delete Department">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
@@ -321,11 +322,11 @@ function renderDepartments() {
                             <input 
                                 type="text" 
                                 id="stationInput-${dept.id}" 
-                                class="form-input"
+                                class="form-input station-input"
+                                data-dept-id="${dept.id}"
                                 placeholder="Enter station name"
-                                onkeypress="if(event.key === 'Enter') addNewStation(${dept.id})"
                             >
-                            <button class="btn btn-primary" onclick="addNewStation(${dept.id})">
+                            <button class="btn btn-primary add-station-btn" data-dept-id="${dept.id}">
                                 <i class="fas fa-plus icon-add"></i>
                                 <span>Add Station</span>
                             </button>
@@ -354,10 +355,10 @@ function renderDepartments() {
                         </td>
                         <td class="table-cell-actions">
                             <div class="actions-cell">
-                                <button class="btn-edit btn-sm" onclick="openEditModal('station', ${dept.id}, ${station.id}, '${station.name.replace(/'/g, "\\'")}')" title="Edit Station">
+                                <button class="btn-edit btn-sm edit-station-btn" data-dept-id="${dept.id}" data-station-id="${station.id}" data-station-name="${station.name.replace(/"/g, '&quot;')}" title="Edit Station">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn-delete btn-sm" onclick="openDeleteConfirmation('station', ${dept.id}, ${station.id}, '${station.name.replace(/'/g, "\\'")}')" title="Delete Station">
+                                <button class="btn-delete btn-sm delete-station-btn" data-dept-id="${dept.id}" data-station-id="${station.id}" data-station-name="${station.name.replace(/"/g, '&quot;')}" title="Delete Station">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -376,6 +377,9 @@ function renderDepartments() {
     });
     
     container.innerHTML = html;
+    
+    // Attach event listeners to dynamically created elements
+    attachDepartmentEventListeners();
 }
 
 function renderManagerPositions() {
@@ -393,10 +397,10 @@ function renderManagerPositions() {
             <div class="position-item">
                 <div class="position-name">${position.name}</div>
                 <div class="position-actions">
-                    <button class="btn-edit btn-sm" onclick="editPosition(${position.id})" title="Edit Position">
+                    <button class="btn-edit btn-sm edit-position-btn" data-position-id="${position.id}" data-position-name="${position.name.replace(/"/g, '&quot;')}" title="Edit Position">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn-delete btn-sm" onclick="deletePosition(${position.id})" title="Delete Position">
+                    <button class="btn-delete btn-sm delete-position-btn" data-position-id="${position.id}" data-position-name="${position.name.replace(/"/g, '&quot;')}" title="Delete Position">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
@@ -404,6 +408,88 @@ function renderManagerPositions() {
     });
     
     container.innerHTML = html;
+    
+    // Attach event listeners to position buttons
+    attachPositionEventListeners();
+}
+
+// Event Listener Setup Functions
+function attachDepartmentEventListeners() {
+    // Edit department buttons
+    document.querySelectorAll('.edit-dept-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const deptId = parseInt(this.getAttribute('data-dept-id'));
+            const deptName = this.getAttribute('data-dept-name');
+            openEditModal('department', deptId, null, deptName);
+        });
+    });
+    
+    // Delete department buttons
+    document.querySelectorAll('.delete-dept-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const deptId = parseInt(this.getAttribute('data-dept-id'));
+            const deptName = this.getAttribute('data-dept-name');
+            openDeleteConfirmation('department', deptId, null, deptName);
+        });
+    });
+    
+    // Add station buttons
+    document.querySelectorAll('.add-station-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const deptId = parseInt(this.getAttribute('data-dept-id'));
+            addNewStation(deptId);
+        });
+    });
+    
+    // Station input enter key
+    document.querySelectorAll('.station-input').forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const deptId = parseInt(this.getAttribute('data-dept-id'));
+                addNewStation(deptId);
+            }
+        });
+    });
+    
+    // Edit station buttons
+    document.querySelectorAll('.edit-station-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const deptId = parseInt(this.getAttribute('data-dept-id'));
+            const stationId = parseInt(this.getAttribute('data-station-id'));
+            const stationName = this.getAttribute('data-station-name');
+            openEditModal('station', deptId, stationId, stationName);
+        });
+    });
+    
+    // Delete station buttons
+    document.querySelectorAll('.delete-station-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const deptId = parseInt(this.getAttribute('data-dept-id'));
+            const stationId = parseInt(this.getAttribute('data-station-id'));
+            const stationName = this.getAttribute('data-station-name');
+            openDeleteConfirmation('station', deptId, stationId, stationName);
+        });
+    });
+}
+
+function attachPositionEventListeners() {
+    // Edit position buttons
+    document.querySelectorAll('.edit-position-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const positionId = parseInt(this.getAttribute('data-position-id'));
+            const positionName = this.getAttribute('data-position-name');
+            openEditModal('position', null, positionId, positionName);
+        });
+    });
+    
+    // Delete position buttons
+    document.querySelectorAll('.delete-position-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const positionId = parseInt(this.getAttribute('data-position-id'));
+            const positionName = this.getAttribute('data-position-name');
+            openDeleteConfirmation('position', null, positionId, positionName);
+        });
+    });
 }
 
 // Initial render on page load
@@ -411,17 +497,52 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up search input event listeners
     const searchInput = document.getElementById('searchInput');
     const clearBtn = document.getElementById('clearSearchBtn');
+    const addDepartmentBtn = document.getElementById('addDepartmentBtn');
+    const addPositionBtn = document.getElementById('addPositionBtn');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const saveEditBtn = document.getElementById('saveEditBtn');
+    
+    // Search input event
+    searchInput.addEventListener('input', handleSearch);
+    
+    // Clear search button
+    clearBtn.addEventListener('click', clearSearch);
+    
+    // Add department button
+    addDepartmentBtn.addEventListener('click', addNewDepartment);
+    
+    // Department input enter key
+    document.getElementById('departmentInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addNewDepartment();
+        }
+    });
+    
+    // Add position button
+    addPositionBtn.addEventListener('click', addNewPosition);
+    
+    // Position input enter key
+    document.getElementById('positionInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addNewPosition();
+        }
+    });
+    
+    // Modal buttons
+    cancelDeleteBtn.addEventListener('click', closeDeleteConfirmation);
+    confirmDeleteBtn.addEventListener('click', performDelete);
+    cancelEditBtn.addEventListener('click', closeEditModal);
+    saveEditBtn.addEventListener('click', saveItemEdit);
     
     // Check initial search value
     if (searchQuery.length > 0) {
         clearBtn.classList.add('visible');
     }
     
-    // Add input event listener for real-time search
-    searchInput.addEventListener('input', handleSearch);
-    
     // Render initial data
     renderDepartments();
     renderManagerPositions();
     updateStats();
-}); 
+});

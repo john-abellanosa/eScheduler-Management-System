@@ -525,8 +525,7 @@
             </div>
 
             <div class="controls">
-                <button class="btn btn-primary" id="saveBtn">Save Limits</button>
-                <button class="btn" id="resetBtn">Reset Defaults</button>
+                <button class="btn btn-primary" id="saveBtn">Save Limits</button> 
             </div>
 
             <div class="status" id="statusMessage"></div>
@@ -682,8 +681,7 @@
                     input.addEventListener('change', handleInputChange);
                 });
 
-                document.getElementById('saveBtn').addEventListener('click', saveLimits);
-                document.getElementById('resetBtn').addEventListener('click', resetDefaults);
+                document.getElementById('saveBtn').addEventListener('click', saveLimits); 
             }
 
             function navigateWeek(direction) {
@@ -730,18 +728,7 @@
                 const direction = currentWeekOffset === 0 ? 'current' :
                                 currentWeekOffset < 0 ? 'previous' : 'next';
                 showStatus(`Limits saved for ${direction} week.`, 'success');
-            }
-
-            function resetDefaults() {
-                currentWeekDates.forEach(date => {
-                    const dateKey = date.toISOString().split('T')[0];
-                    limitsData[dateKey] = 0;
-                });
-
-                updateWeekDisplay();
-                updateTotal();
-                showStatus('Reset to default limits.', 'success');
-            }
+            } 
 
             function showStatus(message, type) {
                 const statusElement = document.getElementById('statusMessage');

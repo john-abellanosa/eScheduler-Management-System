@@ -146,7 +146,7 @@
                                 </div>
                             </div>
                             <button id="addManagerBtn" class="btn-add-crew">
-                                <i class="fas fa-plus"></i> Add Manager
+                                <i class="fas fa-plus"></i> Assign Manager
                             </button>
                         </div>
                     </div>
