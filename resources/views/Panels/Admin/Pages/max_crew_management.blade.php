@@ -16,10 +16,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="page-header">
+        {{-- <div class="page-header">
             <h1>Maximum Crew Configuration</h1>
             <p>Set maximum crew members allowed to be plotted for each day</p>
-        </div>
+        </div> --}}
 
         <div class="week-display">
             <div class="week-info">

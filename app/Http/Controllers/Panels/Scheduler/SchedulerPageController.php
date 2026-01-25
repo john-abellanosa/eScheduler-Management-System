@@ -11,6 +11,10 @@ class SchedulerPageController extends Controller
         return view('Panels.Scheduler.Auth.login');
     }
 
+    public function forgot_password () {
+        return view('Panels.Scheduler.Auth.forgot_password');
+    }
+
     public function dashboard () {
         return view('Panels.Scheduler.Pages.Dashboard.dashboard');
     }

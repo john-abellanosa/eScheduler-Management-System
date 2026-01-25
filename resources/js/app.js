@@ -1,6 +1,8 @@
 import './bootstrap';
 
 // ADMIN 
+import './Panels/Admin/Auth/login.js';
+
 import './Panels/Admin/PageLayout/layout.js';
 import './Panels/Admin/PageLayout/notifications.js';
 
@@ -28,6 +30,8 @@ import './Panels/Admin/Pages/Shift_Records/crew.js';
 
 
 // SCHEDULER 
+import './Panels/Scheduler/Auth/login.js';
+
 import './Panels/Scheduler/PageLayout/notifications.js';
 import './Panels/Scheduler/PageLayout/dropdown.js';
 

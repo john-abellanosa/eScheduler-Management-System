@@ -17,36 +17,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const exampleNotifications = [
         { 
             id: 1, 
-            title: "Shift Swap Request", 
-            message: "John Smith wants to swap his Friday evening shift with your Saturday morning shift.", 
+            title: "Swap Schedule Request", 
+            message: "John Smith wants to swap schedule with John Wick.", 
             created_at: new Date(Date.now() - 30 * 60000).toISOString(),
             status: "new" 
         },
         { 
             id: 2, 
-            title: "Schedule Published", 
-            message: "Next week's schedule is now available. Please review your assigned shifts.", 
+            title: "Give Away Schedule", 
+            message: "Michael Myers wants to give schedule to John Sindicato.", 
             created_at: new Date(Date.now() - 2 * 3600000).toISOString(),
-            status: "read" 
-        },
-        { 
-            id: 3, 
-            title: "Coverage Needed", 
-            message: "Urgent: Need coverage for cashier shift tomorrow from 2 PM to 6 PM.", 
-            created_at: new Date(Date.now() - 5 * 3600000).toISOString(),
             status: "new" 
         },
         { 
+            id: 3, 
+            title: "Leave Request", 
+            message: "Jane Doe has requested leave for the next week.", 
+            created_at: new Date(Date.now() - 5 * 3600000).toISOString(),
+            status: "read" 
+        },
+        { 
             id: 4, 
-            title: "Training Reminder", 
-            message: "Food safety training session scheduled for Thursday at 10 AM in the main dining area.", 
+            title: "Off Duty Request", 
+            message: "John Doe has requested off-duty for February 2, 2026.", 
             created_at: new Date(Date.now() - 1 * 86400000).toISOString(),
             status: "read" 
         },
         { 
             id: 5, 
-            title: "Overtime Opportunity", 
-            message: "Extra hours available this weekend. Sign up in the manager's office by end of day.", 
+            title: "Give Away Schedule", 
+            message: "Sean Ricany wants to give schedule to Robert Miller.", 
             created_at: new Date(Date.now() - 2 * 86400000).toISOString(),
             status: "read" 
         }

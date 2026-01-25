@@ -14,4 +14,5 @@ Route::get('/scheduler/shift_records', [SchedulerPageController::class, 'shift_r
 Route::get('/scheduler/settings', [SchedulerPageController::class, 'settings'])->name('Panels.Scheduler.Pages.settings');
 
 Route::get('/scheduler/login', [SchedulerPageController::class, 'scheduler_login'])->name('Panels.Scheduler.Auth.login');
+Route::get('/scheduler/forgot_password', [SchedulerPageController::class, 'forgot_password'])->name('Panels.Scheduler.Auth.forgot_password');
 

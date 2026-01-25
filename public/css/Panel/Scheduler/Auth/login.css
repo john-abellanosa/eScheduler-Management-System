@@ -65,6 +65,39 @@ body {
     border-left: 1px solid #e5e5e5;
 }
 
+/* Form Alert Notification - Below subtitle */
+.form-alert {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin-bottom: 1.5rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-alert.show {
+    display: block;
+}
+
+.form-alert-message {
+    font-size: 14px;
+    color: #c61f1f;
+    font-weight: 500;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Main Content */
 .main {
     display: flex;
@@ -337,7 +370,7 @@ body {
 }
 
 .form-header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     text-align: left;
 }
 
@@ -406,6 +439,18 @@ input.error {
 
 input::placeholder {
     color: #9ca3af;
+}
+
+/* Error Messages */
+.error-message {
+    display: none;
+    font-size: 12px;
+    color: #dc2626;
+    margin-top: 0.5rem;
+}
+
+.error-message.show {
+    display: block;
 }
 
 /* Password visibility toggle */

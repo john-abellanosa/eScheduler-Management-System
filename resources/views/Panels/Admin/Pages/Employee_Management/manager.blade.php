@@ -154,6 +154,87 @@
                         <tr>
                             <td>
                                 <div class="employee-info">
+                                    <div class="avatar">JL</div>
+                                    <div>
+                                        <div class="employee-name">Jessica Lewis</div>
+                                        <div class="employee-id">ID: FF014</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>jessica.lewis@example.com</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 456-7890</div>
+                            </td>
+                            <td>
+                                <div style="font-size: 0.85rem;">852 Poplar Ct</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">Atlanta, GA 30301</div>
+                            </td>
+                            <td>Aug 5, 2023</td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="employee-info">
+                                    <div class="avatar">SC</div>
+                                    <div>
+                                        <div class="employee-name">Sarah Clark</div>
+                                        <div class="employee-id">ID: FF012</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>sarah.clark@example.com</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 234-5678</div>
+                            </td>
+                            <td>
+                                <div style="font-size: 0.85rem;">369 Willow Way</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">Miami, FL 33101</div>
+                            </td>
+                            <td>Jun 15, 2023</td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="employee-info">
+                                    <div class="avatar">JT</div>
+                                    <div>
+                                        <div class="employee-name">Jennifer Taylor</div>
+                                        <div class="employee-id">ID: FF010</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>jennifer.taylor@example.com</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 012-3456</div>
+                            </td>
+                            <td>
+                                <div style="font-size: 0.85rem;">147 Birch Ave</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">Denver, CO 80202</div>
+                            </td>
+                            <td>May 15, 2023</td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="employee-info">
                                     <div class="avatar">EB</div>
                                     <div>
                                         <div class="employee-name">Emma Brown</div>
@@ -170,6 +251,33 @@
                                 <div style="font-size: 0.8rem; color: var(--light-text);">Seattle, WA 98101</div>
                             </td>
                             <td>Feb 18, 2023</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="employee-info">
+                                    <div class="avatar">RD</div>
+                                    <div>
+                                        <div class="employee-name">Robert Davis</div>
+                                        <div class="employee-id">ID: FF009</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>robert.davis@example.com</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 901-2345</div>
+                            </td>
+                            <td>
+                                <div style="font-size: 0.85rem;">987 Cedar Ln</div>
+                                <div style="font-size: 0.8rem; color: var(--light-text);">Austin, TX 73301</div>
+                            </td>
+                            <td>Apr 5, 2023</td>
                             <td><span class="status inactive">Inactive</span></td>
                             <td>
                                 <div class="actions">
@@ -208,60 +316,6 @@
                         <tr>
                             <td>
                                 <div class="employee-info">
-                                    <div class="avatar">RD</div>
-                                    <div>
-                                        <div class="employee-name">Robert Davis</div>
-                                        <div class="employee-id">ID: FF009</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div>robert.davis@example.com</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 901-2345</div>
-                            </td>
-                            <td>
-                                <div style="font-size: 0.85rem;">987 Cedar Ln</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">Austin, TX 73301</div>
-                            </td>
-                            <td>Apr 5, 2023</td>
-                            <td><span class="status inactive">Inactive</span></td>
-                            <td>
-                                <div class="actions">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="employee-info">
-                                    <div class="avatar">JT</div>
-                                    <div>
-                                        <div class="employee-name">Jennifer Taylor</div>
-                                        <div class="employee-id">ID: FF010</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div>jennifer.taylor@example.com</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 012-3456</div>
-                            </td>
-                            <td>
-                                <div style="font-size: 0.85rem;">147 Birch Ave</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">Denver, CO 80202</div>
-                            </td>
-                            <td>May 15, 2023</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <div class="actions">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="employee-info">
                                     <div class="avatar">TA</div>
                                     <div>
                                         <div class="employee-name">Thomas Anderson</div>
@@ -289,33 +343,6 @@
                         <tr>
                             <td>
                                 <div class="employee-info">
-                                    <div class="avatar">SC</div>
-                                    <div>
-                                        <div class="employee-name">Sarah Clark</div>
-                                        <div class="employee-id">ID: FF012</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div>sarah.clark@example.com</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 234-5678</div>
-                            </td>
-                            <td>
-                                <div style="font-size: 0.85rem;">369 Willow Way</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">Miami, FL 33101</div>
-                            </td>
-                            <td>Jun 15, 2023</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <div class="actions">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="employee-info">
                                     <div class="avatar">DR</div>
                                     <div>
                                         <div class="employee-name">Daniel Rodriguez</div>
@@ -333,33 +360,6 @@
                             </td>
                             <td>Jul 10, 2023</td>
                             <td><span class="status resigned">Resigned</span></td>
-                            <td>
-                                <div class="actions">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="employee-info">
-                                    <div class="avatar">JL</div>
-                                    <div>
-                                        <div class="employee-name">Jessica Lewis</div>
-                                        <div class="employee-id">ID: FF014</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div>jessica.lewis@example.com</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">(555) 456-7890</div>
-                            </td>
-                            <td>
-                                <div style="font-size: 0.85rem;">852 Poplar Ct</div>
-                                <div style="font-size: 0.8rem; color: var(--light-text);">Atlanta, GA 30301</div>
-                            </td>
-                            <td>Aug 5, 2023</td>
-                            <td><span class="status active">Active</span></td>
                             <td>
                                 <div class="actions">
                                     <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>

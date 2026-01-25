@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/js/Panels/Admin/Auth/login.js'])
     <link rel="icon" href="{{ asset('assets/images/website_icon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/Panel/Admin/Auth/login.css') }}">
     <title>Admin Login</title>
@@ -17,7 +18,7 @@
             <div class="logo-section">
                 <div class="logo">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="eScheduler Logo">
-                </div> 
+                </div>
                 <span class="admin-label">Admin Panel</span>
             </div>
         </div>
@@ -60,7 +61,7 @@
                         </div>
                         <span class="feature-text">Track attendance records and schedule changes</span>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
 
@@ -71,45 +72,49 @@
                     <p class="form-subtitle">Enter your credentials to access the admin dashboard</p>
                 </div>
 
+                <!-- Form Alert - Appears below subtitle -->
+                <div class="form-alert" id="formAlert">
+                    <div class="form-alert-message" id="formAlertMessage">Invalid Login Credentials</div>
+                </div>
+
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <div class="input-wrapper">
                             <i class="fas fa-user-shield input-icon"></i>
-                            <input type="text" id="email" name="email" placeholder="Please Enter your Email Address">
-                        </div> 
+                            <input type="text" id="email" name="email" placeholder="admin@example.com">
+                        </div>
+                        <div class="error-message" id="emailError"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
                         <div class="input-wrapper">
                             <i class="fas fa-key input-icon"></i>
-                            <input type="password" id="password" name="password" placeholder="Please Enter your Password">
+                            <input type="password" id="password" name="password" placeholder="Enter your password">
                             <button type="button" class="password-toggle" id="passwordToggle">
                                 <i class="fas fa-eye"></i>
                             </button>
-                        </div> 
+                        </div>
+                        <div class="error-message" id="passwordError"></div>
                     </div>
 
-                    <a href="#" class="forgot-password-link">Forgot password?</a>
+                    {{-- <a href="#" class="forgot-password-link">Forgot Password?</a> --}}
 
-                    <button type="button" class="login-btn" id="loginBtn" onclick="window.location.href='{{ route('Panels.Admin.Pages.Dashboard.dashboard') }}'">
-                        <span class="spinner" id="spinner"></span>
-                        <span id="btnText">Login</span>
+                    <button type="submit" class="login-btn" id="loginBtn">
+                        Login
                     </button>
                 </form>
-            </div>  
+            </div>
         </div>
     </main>
 
     <footer class="simple-footer">
         <div class="footer-content">
             <div class="copyright">
-                &copy; 2026 eScheduler. Admin Panel.
+                &copy; {{ date('Y') }} eScheduler. Scheduler Panel.
             </div>
         </div>
-    </footer>
-
+    </footer> 
 </body>
-
 </html>

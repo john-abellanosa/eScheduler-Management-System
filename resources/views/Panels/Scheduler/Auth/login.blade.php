@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/js/Panels/Scheduler/Auth/login.js'])
     <link rel="icon" href="{{ asset('assets/images/website_icon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/Panel/Scheduler/Auth/login.css') }}">
     <title>Scheduler Login</title>
@@ -85,29 +86,36 @@
                     <p class="form-subtitle">Enter your credentials to access the scheduler dashboard</p>
                 </div>
 
+                <!-- Form Alert - Appears below subtitle -->
+                <div class="form-alert" id="formAlert">
+                    <div class="form-alert-message" id="formAlertMessage">Invalid login credentials</div>
+                </div>
+
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <div class="input-wrapper">
                             <i class="fas fa-user-shield input-icon"></i>
-                            <input type="text" id="email" name="email" placeholder="Please Enter your Email Address">
+                            <input type="text" id="email" name="email" placeholder="scheduler@example.com">
                         </div>
+                        <div class="error-message" id="emailError"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
                         <div class="input-wrapper">
                             <i class="fas fa-key input-icon"></i>
-                            <input type="password" id="password" name="password" placeholder="Please Enter your Password">
+                            <input type="password" id="password" name="password" placeholder="Enter your password">
                             <button type="button" class="password-toggle" id="passwordToggle">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
+                        <div class="error-message" id="passwordError"></div>
                     </div>
 
-                    <a href="#" class="forgot-password-link">Forgot password?</a>
+                    <a href="{{ route('Panels.Scheduler.Auth.forgot_password') }}" class="forgot-password-link">Forgot password?</a>
 
-                    <button type="button" class="login-btn" id="loginBtn" onclick="window.location.href='{{ route('Panels.Scheduler.Pages.Dashboard.dashboard') }}'"> 
+                    <button type="submit" class="login-btn" id="loginBtn">
                         <span id="btnText">Login</span>
                     </button>
                 </form>
@@ -118,11 +126,9 @@
     <footer class="simple-footer">
         <div class="footer-content">
             <div class="copyright">
-                &copy; 2026 eScheduler. Scheduler Panel.
+                &copy; {{ date('Y') }} eScheduler. Scheduler Panel.
             </div>
         </div>
-    </footer>
-
+    </footer> 
 </body>
-
 </html>

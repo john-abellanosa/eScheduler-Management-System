@@ -10,6 +10,8 @@ export default defineConfig({
                 'resources/js/app.js',
 
                 // ADMIN 
+                'resources/js/Panels/Admin/Auth/login.js',
+
                 'resources/js/Panels/Admin/PageLayout/layout.js',
                 'resources/js/Panels/Admin/PageLayout/notifications.js',
 
@@ -36,6 +38,8 @@ export default defineConfig({
 
 
                 // SCHEDULER 
+                'resources/js/Panels/Scheduler/Auth/login.js',
+
                 'resources/js/Panels/Scheduler/PageLayout/notifications.js',
                 'resources/js/Panels/Scheduler/PageLayout/dropdown.js',
 
@@ -67,7 +71,7 @@ export default defineConfig({
         },
 
         hmr: {
-            host: '192.168.1.14',
+            host: '10.226.161.49',
             protocol: 'ws',
         },
     },
