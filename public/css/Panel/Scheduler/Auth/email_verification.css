@@ -75,16 +75,15 @@ body {
 }
 
 /* Login Side - All White */
-.login-side {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login-side { 
+    background: #ffffff; 
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .login-content {
     width: 100%;
-    max-width: 400px;
 }
 
 .form-header {
@@ -127,33 +126,47 @@ body {
     position: relative;
 }
 
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
 label {
     display: block;
     font-size: 13px;
     font-weight: 600;
     color: #374151;
-    margin-bottom: 0.5rem;
     letter-spacing: 0.2px;
 }
 
-.input-wrapper {
-    position: relative;
+/* Timer Styles */
+.timer {
+    font-size: 15px;
+    font-weight: 600;
+    color: #dc2626;
+    font-family: monospace;
 }
 
-.input-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af;
-    font-size: 16px;
-    z-index: 2;
+.timer.expired {
+    color: #6b7280;
 }
 
-input {
+/* OTP Container */
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.otp-input {
     width: 100%;
-    padding: 0.875rem 1rem 0.875rem 3rem;
-    font-size: 14px;
+    height: 60px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
     border: 1px solid #d1d5db;
     border-radius: 8px;
     transition: all 0.2s ease;
@@ -162,30 +175,14 @@ input {
     font-family: inherit;
 }
 
-input:focus {
+.otp-input:focus {
     outline: none;
     border-color: #1e3a8a;
     box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
 }
 
-input.error {
+.otp-input.error {
     border-color: #dc2626;
-}
-
-input::placeholder {
-    color: #9ca3af;
-}
-
-/* Error Messages */
-.error-message {
-    display: none;
-    font-size: 12px;
-    color: #dc2626;
-    margin-top: 0.5rem;
-}
-
-.error-message.show {
-    display: block;
 }
 
 /* Buttons */
@@ -227,22 +224,56 @@ input::placeholder {
     cursor: not-allowed;
 }
 
-.remember-password-link {
+/* Resend Section - In Row */
+.resend-row {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 13px;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.resend-text {
+    color: #6b7280;
+}
+
+.resend-link {
     color: #1e3a8a;
     text-decoration: none;
     font-weight: 500;
-    margin-top: 1rem;
     transition: color 0.2s ease;
-    gap: 0.5rem;
+    cursor: pointer;
 }
 
-.remember-password-link:hover {
+.resend-link:hover {
     color: #1e40af;
     text-decoration: underline;
+}
+
+.resend-link.disabled {
+    color: #9ca3af;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+.resend-link.disabled:hover {
+    color: #9ca3af;
+    text-decoration: none;
+}
+
+/* Error Messages */
+.error-message {
+    display: none;
+    font-size: 12px;
+    color: #dc2626;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.error-message.show {
+    display: block;
 }
 
 .simple-footer {
@@ -280,6 +311,15 @@ input::placeholder {
     .form-title {
         font-size: 24px;
     }
+
+    .otp-container {
+        gap: 0.5rem;
+    }
+
+    .otp-input {
+        height: 50px;
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -298,5 +338,36 @@ input::placeholder {
         justify-content: center;
         align-items: center;
         padding: 1rem;
+    }
+
+    .otp-container {
+        gap: 0.4rem;
+    }
+
+    .otp-input {
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .resend-row {
+        flex-direction: row;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 360px) {
+    .otp-container {
+        gap: 0.3rem;
+    }
+
+    .otp-input {
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .resend-row {
+        font-size: 13px;
     }
 }

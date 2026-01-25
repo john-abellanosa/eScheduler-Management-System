@@ -101,7 +101,7 @@
 
                     {{-- <a href="#" class="forgot-password-link">Forgot Password?</a> --}}
 
-                    <button type="submit" class="login-btn" id="loginBtn">
+                    <button type="button" class="login-btn" id="loginBtn" onclick="window.location.href='{{ route('Panels.Admin.Pages.Dashboard.dashboard') }}'">
                         Login
                     </button>
                 </form>

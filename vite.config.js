@@ -39,6 +39,9 @@ export default defineConfig({
 
                 // SCHEDULER 
                 'resources/js/Panels/Scheduler/Auth/login.js',
+                'resources/js/Panels/Scheduler/Auth/email_verification.js',
+                'resources/js/Panels/Scheduler/Auth/forgot_password.js',
+                'resources/js/Panels/Scheduler/Auth/change_password.js',
 
                 'resources/js/Panels/Scheduler/PageLayout/notifications.js',
                 'resources/js/Panels/Scheduler/PageLayout/dropdown.js',
@@ -62,17 +65,17 @@ export default defineConfig({
         tailwindcss(),
     ],
 
-    server: {
-        host: '0.0.0.0',
-        port: 5173,
+    // server: {
+    //     host: '0.0.0.0',
+    //     port: 5173,
 
-        watch: {
-            ignored: ['**/storage/framework/views/**'],
-        },
+    //     watch: {
+    //         ignored: ['**/storage/framework/views/**'],
+    //     },
 
-        hmr: {
-            host: '10.226.161.49',
-            protocol: 'ws',
-        },
-    },
+    //     hmr: {
+    //         host: '10.226.161.49',
+    //         protocol: 'ws',
+    //     },
+    // },
 });

@@ -31,6 +31,9 @@ import './Panels/Admin/Pages/Shift_Records/crew.js';
 
 // SCHEDULER 
 import './Panels/Scheduler/Auth/login.js';
+import './Panels/Scheduler/Auth/forgot_password.js';
+import './Panels/Scheduler/Auth/email_verification.js';
+import './Panels/Scheduler/Auth/change_password.js';
 
 import './Panels/Scheduler/PageLayout/notifications.js';
 import './Panels/Scheduler/PageLayout/dropdown.js';

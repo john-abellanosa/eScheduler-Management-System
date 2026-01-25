@@ -100,13 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        if (isValid) {
-            window.location.href = '{{ route("Panels.Admin.Pages.Dashboard.dashboard") }}';
-        }
-        
         if (!isValid) {
-            return;
-        } 
+            return;  
+        }
     }); 
 
     emailInput.focus();

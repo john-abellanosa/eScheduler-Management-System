@@ -15,6 +15,14 @@ class SchedulerPageController extends Controller
         return view('Panels.Scheduler.Auth.forgot_password');
     }
 
+    public function email_verification () {
+        return view('Panels.Scheduler.Auth.email_verification');
+    }
+
+    public function change_password () {
+        return view('Panels.Scheduler.Auth.change_password');
+    }
+
     public function dashboard () {
         return view('Panels.Scheduler.Pages.Dashboard.dashboard');
     }

@@ -15,4 +15,6 @@ Route::get('/scheduler/settings', [SchedulerPageController::class, 'settings'])-
 
 Route::get('/scheduler/login', [SchedulerPageController::class, 'scheduler_login'])->name('Panels.Scheduler.Auth.login');
 Route::get('/scheduler/forgot_password', [SchedulerPageController::class, 'forgot_password'])->name('Panels.Scheduler.Auth.forgot_password');
+Route::get('/scheduler/email_verification', [SchedulerPageController::class, 'email_verification'])->name('Panels.Scheduler.Auth.email_verification');
+Route::get('/scheduler/change_password', [SchedulerPageController::class, 'change_password'])->name('Panels.Scheduler.Auth.change_password');
 
